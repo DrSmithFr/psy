@@ -1,0 +1,20 @@
+.active {
+  user-select: none;
+  color:#fff;
+
+  &.brown {
+    background: #bb8b46;
+  }
+
+  &.green {
+    background: #4fbc78;
+  }
+
+  &.blue {
+    background: #39a8bc;
+  }
+
+  &.red {
+    background: #ad4cbc;
+  }
+}

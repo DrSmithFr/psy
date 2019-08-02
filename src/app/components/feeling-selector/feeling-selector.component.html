@@ -1,0 +1,29 @@
+<mat-chip-list>
+  <mat-chip
+    *ngFor="let feel of brown"
+    (click)="toggle(feel)"
+    [ngClass]="{'active': isActive(feel)}"
+    class="brown"
+  >{{feel}}</mat-chip>
+
+  <mat-chip
+    *ngFor="let feel of green"
+    (click)="toggle(feel)"
+    [ngClass]="{'active': isActive(feel)}"
+    class="green"
+  >{{feel}}</mat-chip>
+
+  <mat-chip
+    *ngFor="let feel of blue"
+    (click)="toggle(feel)"
+    [ngClass]="{'active': isActive(feel)}"
+    class="blue"
+  >{{feel}}</mat-chip>
+
+  <mat-chip
+    *ngFor="let feel of red"
+    (click)="toggle(feel)"
+    [ngClass]="{'active': isActive(feel)}"
+    class="red"
+  >{{feel}}</mat-chip>
+</mat-chip-list>
