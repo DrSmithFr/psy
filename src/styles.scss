@@ -1,32 +1,84 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
+@import "scss/breakpoint";
+@import "scss/grid";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
+// **Be sure that you only ever include this mixin once!**
 @include mat-core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$psy-primary: mat-palette($mat-indigo);
-$psy-accent: mat-palette($mat-pink, A200, A100, A400);
+// Define an alternate dark theme.
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$dark-warn: mat-palette($mat-deep-orange);
 
-// The warn palette is optional (defaults to red).
-$psy-warn: mat-palette($mat-red);
 
-// Create the theme object (a Sass map containing all of the palettes).
-$psy-theme: mat-light-theme($psy-primary, $psy-accent, $psy-warn);
+// dark mode
+// Foreground palette for dark themes.
+$dark-foreground: (
+  base:              white,
+  divider:           $light-dividers,
+  dividers:          $light-dividers,
+  disabled:          $light-disabled-text,
+  disabled-button:   rgba(white, 0.3),
+  disabled-text:     $light-disabled-text,
+  elevation:         black,
+  hint-text:         $light-disabled-text,
+  secondary-text:    $light-secondary-text,
+  icon:              white,
+  icons:             white,
+  text:              white,
+  slider-min:        white,
+  slider-off:        rgba(white, 0.3),
+  slider-off-active: rgba(white, 0.3),
+);
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($psy-theme);
+// Background palette for dark themes.
+$dark-background: (
+  status-bar: black,
+  app-bar:    map_get($mat-grey, 900),
+  background: #1d1d1d,
+  hover:      rgba(white, 0.04), // TODO(kara): check style with Material Design UX
+  card:       map_get($mat-grey, 800),
+  dialog:     map_get($mat-grey, 800),
+  disabled-button: rgba(white, 0.12),
+  raised-button: map-get($mat-grey, 800),
+  focused-button: $light-focused,
+  selected-button: map_get($mat-grey, 900),
+  selected-disabled-button: map_get($mat-grey, 800),
+  disabled-button-toggle: black,
+  unselected-chip: map_get($mat-grey, 700),
+  disabled-list-option: black,
+);
+
+$dark-theme: (
+  primary: $dark-primary,
+  accent: $dark-accent,
+  warn: $dark-warn,
+  is-dark: true,
+  foreground: $dark-foreground,
+  background: $dark-background,
+);
+
+// Include the alternative theme styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
+@include angular-material-theme($dark-theme);
+
+// Personal grid system
+
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  margin: 0;
+  padding: 0;
+
+  height: 100%;
+}
+
+body {
+  background: #121212;
+}
+

@@ -1,0 +1,54 @@
+@import "breakpoint";
+
+// Personal grid system
+// grid mixin
+$gridNumberOfColumns: 12;
+
+// container related
+.container {
+  max-width: $desktop-break * 1px;
+  margin: 0 auto;
+
+  &.fluid {
+    margin: 0;
+    max-width: 100%;
+  }
+}
+
+// row related
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+// column related
+@mixin create-mq($breakpoint) {
+  @if($breakpoint == 0) {
+    @content;
+  } @else {
+    @media screen and (min-width: $breakpoint *1px) {
+      @content;
+    }
+  }
+}
+
+@mixin create-col-classes($name, $grid__cols, $breakpoint) {
+  @include create-mq($breakpoint) {
+    @for $i from 1 through $grid__cols {
+      &.#{$name}-#{$i} {
+        flex-basis: (100 / ($grid__cols / $i) ) * 1%;
+      }
+    }
+  }
+}
+
+$map-grid-props: (
+  'small': 0,
+  'midle': $tablet-break,
+  'large': $desktop-break
+);
+
+@each $modifier , $breakpoint in $map-grid-props {
+  @include create-col-classes($modifier, $gridNumberOfColumns, $breakpoint);
+}

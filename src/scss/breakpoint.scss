@@ -1,0 +1,24 @@
+$mobile-break: 599;
+$tablet-break: 900;
+$desktop-break: 1200;
+
+@mixin mobile {
+  @media (max-width: 599px) { @content; }
+}
+
+@mixin tablet {
+  @media (min-width: 900px) { @content; }
+}
+
+@mixin desktop {
+  @media (min-width: 1200px) { @content; }
+}
+
+// usage
+//.my-box {
+//  padding: 10px;
+//
+//  @include desktop {
+//    padding: 20px;
+//  }
+//}
