@@ -1,0 +1,13 @@
+mat-sidenav-container, mat-sidenav-content {
+  height: 100%;
+}
+
+mat-sidenav button {
+  width: 80px;
+  height: 80px;
+}
+
+button.active {
+  background: #292929;
+  color: #ddd;
+}

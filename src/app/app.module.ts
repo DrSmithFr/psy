@@ -5,11 +5,12 @@ import {AppRoutingModule}                                                       
 import {AppComponent}                                                                                           from './app.component';
 import {BrowserAnimationsModule}                                                                                from '@angular/platform-browser/animations';
 import {
+  MatBadgeModule,
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
-  MatChipsModule, MatFormFieldModule,
-  MatIconModule, MatInputModule, MatSliderModule,
+  MatChipsModule, MatDividerModule, MatFormFieldModule,
+  MatIconModule, MatInputModule, MatSidenavModule, MatSliderModule,
   MatStepperModule,
   MatToolbarModule
 } from '@angular/material';
@@ -18,6 +19,8 @@ import { MoodSelectorComponent }    from './components/mood-selector/mood-select
 import { FeelingSelectorComponent } from './components/feeling-selector/feeling-selector.component';
 import { MoodOverviewComponent }    from './pages/mood-overview/mood-overview.component';
 import {ReactiveFormsModule}        from '@angular/forms';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule(
   {
@@ -26,7 +29,9 @@ import {ReactiveFormsModule}        from '@angular/forms';
       DashboardComponent,
       MoodSelectorComponent,
       FeelingSelectorComponent,
-      MoodOverviewComponent
+      MoodOverviewComponent,
+      NavigationComponent,
+      MenuComponent
     ],
     imports: [
       BrowserModule,
@@ -43,7 +48,10 @@ import {ReactiveFormsModule}        from '@angular/forms';
       MatFormFieldModule,
       ReactiveFormsModule,
       MatInputModule,
-      MatSliderModule
+      MatSliderModule,
+      MatBadgeModule,
+      MatSidenavModule,
+      MatDividerModule
     ],
     providers:    [],
     bootstrap:    [AppComponent]
