@@ -67,3 +67,19 @@ div, p, a, .text {
 .left {
   text-align: left;
 }
+
+.mat-slider-track-background,
+.mat-slider:hover .mat-slider-track-background {
+  background: #eeeeee;
+}
+
+.mat-slider-thumb {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.38) !important;
+}
+
+.mat-step-label {
+  font-family: $font-title;
+  font-size: 20px;
+  text-transform: capitalize;
+}

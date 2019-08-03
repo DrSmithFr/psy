@@ -1,11 +1,16 @@
 .block {
   margin-bottom: 60px;
+
+  &.moods {
+    margin-bottom: 30px;
+  }
+
+  &.feelings {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 }
 
-.block.moods {
-  margin-bottom: 30px;
-}
-
-.feelings h1 {
-  margin-bottom: 40px;
+.actions {
+  text-align: right;
 }
