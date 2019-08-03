@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {OverviewModel}            from '../../../models/overview.model';
 
 @Component({
   selector: 'app-feeling-selector',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./feeling-selector.component.scss']
 })
 export class FeelingSelectorComponent implements OnInit {
+
+  @Input() overview: OverviewModel;
 
   public brown: Array<string> = [
     'speed',
@@ -31,22 +34,16 @@ export class FeelingSelectorComponent implements OnInit {
     'angry'
   ];
 
-  private active: Array<string> = [];
-
   constructor() {}
 
   ngOnInit() {
   }
 
   toggle(feel: string): void {
-    if (this.active.indexOf(feel) === -1) {
-      this.active.push(feel);
-    } else {
-      this.active = this.active.filter(s => s !== feel);
-    }
+    this.overview.toggleFeeling(feel);
   }
 
   isActive(feel: string): boolean {
-    return this.active.indexOf(feel) !== -1;
+    return this.overview.hasFeeling(feel);
   }
 }

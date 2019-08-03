@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {OverviewModel}            from '../../../models/overview.model';
 
 @Component({
   selector: 'app-mood-selector',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mood-selector.component.scss']
 })
 export class MoodSelectorComponent implements OnInit {
+
+  @Input() overview: OverviewModel;
 
   constructor() { }
 

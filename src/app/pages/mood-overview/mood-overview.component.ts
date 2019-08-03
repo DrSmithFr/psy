@@ -1,32 +1,27 @@
-import {Component, OnInit}      from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {OverviewModel}     from '../../../models/overview.model';
 
-@Component({
-             selector:    'app-mood-overview',
-             templateUrl: './mood-overview.component.html',
-             styleUrls:   ['./mood-overview.component.scss']
-           })
+@Component(
+  {
+    selector:    'app-mood-overview',
+    templateUrl: './mood-overview.component.html',
+    styleUrls:   ['./mood-overview.component.scss']
+  }
+)
 export class MoodOverviewComponent implements OnInit {
 
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  overview: OverviewModel;
 
-  constructor(
-    private formBuilder: FormBuilder
-  ) {
+  constructor() {
+    this.overview = new OverviewModel();
   }
 
   ngOnInit() {
-    this.firstFormGroup  = this.formBuilder.group(
-      {
-        firstCtrl: ['']
-      }
-    );
-    this.secondFormGroup = this.formBuilder.group(
-      {
-        secondCtrl: ['']
-      }
-    );
+    // resetting overview
+    this.overview = new OverviewModel();
   }
 
+  submitOverview() {
+    console.log(this.overview);
+  }
 }

@@ -13,15 +13,15 @@ import {
   MatIconModule, MatInputModule, MatSidenavModule, MatSliderModule,
   MatStepperModule,
   MatToolbarModule
-} from '@angular/material';
-import { DashboardComponent }       from './pages/dashboard/dashboard.component';
-import { MoodSelectorComponent }    from './components/mood-selector/mood-selector.component';
-import { FeelingSelectorComponent } from './components/feeling-selector/feeling-selector.component';
-import { MoodOverviewComponent }    from './pages/mood-overview/mood-overview.component';
-import {ReactiveFormsModule}        from '@angular/forms';
-import { NavigationComponent } from './components/navigation/navigation.component';
-import { MenuComponent } from './components/menu/menu.component';
-import { ThoughtNoteComponent } from './components/thought-note/thought-note.component';
+}                                         from '@angular/material';
+import { DashboardComponent }             from './pages/dashboard/dashboard.component';
+import { MoodSelectorComponent }          from './components/mood-selector/mood-selector.component';
+import { FeelingSelectorComponent }       from './components/feeling-selector/feeling-selector.component';
+import { MoodOverviewComponent }          from './pages/mood-overview/mood-overview.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NavigationComponent }            from './components/navigation/navigation.component';
+import { MenuComponent }                  from './components/menu/menu.component';
+import { ThoughtNoteComponent }           from './components/thought-note/thought-note.component';
 
 @NgModule(
   {
@@ -53,7 +53,8 @@ import { ThoughtNoteComponent } from './components/thought-note/thought-note.com
       MatSliderModule,
       MatBadgeModule,
       MatSidenavModule,
-      MatDividerModule
+      MatDividerModule,
+      FormsModule
     ],
     providers:    [],
     bootstrap:    [AppComponent]

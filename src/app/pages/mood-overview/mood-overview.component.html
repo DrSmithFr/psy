@@ -1,42 +1,36 @@
 <div class="container">
   <mat-card>
 
-    <mat-vertical-stepper #stepper>
+    <mat-vertical-stepper>
 
       <mat-step>
-        <form [formGroup]="firstFormGroup">
-          <ng-template matStepLabel>Mood</ng-template>
-          <div class="block moods">
-            <app-mood-selector></app-mood-selector>
-          </div>
-          <div class="actions">
-            <button mat-button matStepperNext color="primary">Next</button>
-          </div>
-        </form>
+        <ng-template matStepLabel>Mood</ng-template>
+        <div class="block moods">
+          <app-mood-selector [overview]="overview"></app-mood-selector>
+        </div>
+        <div class="actions">
+          <button mat-button matStepperNext color="primary">Next</button>
+        </div>
       </mat-step>
 
       <mat-step optional>
-        <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>feelings</ng-template>
-          <div class="block feelings">
-            <app-feeling-selector></app-feeling-selector>
-          </div>
-          <div class="actions">
-            <button mat-button matStepperNext color="primary">Next</button>
-          </div>
-        </form>
+        <ng-template matStepLabel>feelings</ng-template>
+        <div class="block feelings">
+          <app-feeling-selector [overview]="overview"></app-feeling-selector>
+        </div>
+        <div class="actions">
+          <button mat-button matStepperNext color="primary">Next</button>
+        </div>
       </mat-step>
 
       <mat-step optional>
-        <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>thoughts</ng-template>
-          <div class="block thoughts">
-            <app-thought-note></app-thought-note>
-          </div>
-          <div class="actions">
-            <button mat-raised-button color="primary" routerLink="/">Save</button>
-          </div>
-        </form>
+        <ng-template matStepLabel>thoughts</ng-template>
+        <div class="block thoughts">
+          <app-thought-note [overview]="overview"></app-thought-note>
+        </div>
+        <div class="actions">
+          <button mat-raised-button color="primary" routerLink="/" (click)="submitOverview()">Save</button>
+        </div>
       </mat-step>
 
     </mat-vertical-stepper>
