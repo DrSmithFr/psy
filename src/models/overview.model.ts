@@ -2,6 +2,7 @@ export class OverviewModel {
   public mood: number;
   public note: string;
   public feelings: Array<string> = [];
+  public createdAt: Date = new Date();
 
   constructor() {
     this.mood = 5;
