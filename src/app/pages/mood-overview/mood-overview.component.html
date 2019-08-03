@@ -1,18 +1,22 @@
 <div class="container">
   <mat-card>
-    <h1>Mood</h1>
 
-    <div class="block">
+    <div class="block moods">
+      <h1>Mood</h1>
       <app-mood-selector></app-mood-selector>
     </div>
 
-    <h1>feelings</h1>
-
-    <div class="block">
+    <div class="block feelings">
+      <h1>feelings</h1>
       <app-feeling-selector></app-feeling-selector>
     </div>
 
-    <div class="block center">
+    <div class="block thoughts">
+      <h1>thoughts</h1>
+      <app-thought-note></app-thought-note>
+    </div>
+
+    <div class="block center submit">
       <button mat-raised-button color="primary" routerLink="/">Save</button>
     </div>
 

@@ -21,6 +21,7 @@ import { MoodOverviewComponent }    from './pages/mood-overview/mood-overview.co
 import {ReactiveFormsModule}        from '@angular/forms';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { ThoughtNoteComponent } from './components/thought-note/thought-note.component';
 
 @NgModule(
   {
@@ -31,7 +32,8 @@ import { MenuComponent } from './components/menu/menu.component';
       FeelingSelectorComponent,
       MoodOverviewComponent,
       NavigationComponent,
-      MenuComponent
+      MenuComponent,
+      ThoughtNoteComponent
     ],
     imports: [
       BrowserModule,
