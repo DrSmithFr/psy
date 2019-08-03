@@ -1,0 +1,37 @@
+.overview-container {
+  min-height: 58px;
+  position: relative;
+
+  span {
+    position: absolute;
+    top: 18px;
+    color: #999;
+  }
+
+  h1 {
+    margin-bottom: 25px;
+  }
+
+  h2 {
+    font-weight: 100;
+    font-size: 14px;
+    margin-bottom: 0;
+
+    color: #607d8b;
+  }
+
+  .row {
+    text-wrap: normal;
+  }
+
+  .feeling {
+    display: inline-block;
+    padding: 1px 3px;
+  }
+
+  .mood-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}

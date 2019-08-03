@@ -9,11 +9,11 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
-  MatChipsModule, MatDividerModule, MatFormFieldModule,
+  MatChipsModule, MatDividerModule, MatExpansionModule, MatFormFieldModule,
   MatIconModule, MatInputModule, MatSidenavModule, MatSliderModule,
   MatStepperModule,
   MatToolbarModule
-}                                         from '@angular/material';
+} from '@angular/material';
 import { DashboardComponent }             from './pages/dashboard/dashboard.component';
 import { MoodSelectorComponent }          from './components/mood-selector/mood-selector.component';
 import { FeelingSelectorComponent }       from './components/feeling-selector/feeling-selector.component';
@@ -22,6 +22,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NavigationComponent }            from './components/navigation/navigation.component';
 import { MenuComponent }                  from './components/menu/menu.component';
 import { ThoughtNoteComponent }           from './components/thought-note/thought-note.component';
+import { OverviewDisplayComponent } from './components/overview-display/overview-display.component';
+import { MoodLoadComponent } from './components/mood-load/mood-load.component';
 
 @NgModule(
   {
@@ -33,7 +35,9 @@ import { ThoughtNoteComponent }           from './components/thought-note/though
       MoodOverviewComponent,
       NavigationComponent,
       MenuComponent,
-      ThoughtNoteComponent
+      ThoughtNoteComponent,
+      OverviewDisplayComponent,
+      MoodLoadComponent
     ],
     imports: [
       BrowserModule,
@@ -54,7 +58,8 @@ import { ThoughtNoteComponent }           from './components/thought-note/though
       MatBadgeModule,
       MatSidenavModule,
       MatDividerModule,
-      FormsModule
+      FormsModule,
+      MatExpansionModule
     ],
     providers:    [],
     bootstrap:    [AppComponent]

@@ -42,7 +42,6 @@ export class DbService {
   }
 
   addOverview(value: OverviewModel) {
-    console.log('bam');
     this.promise.then((db: any) => {
       db.put('overview', value);
     });

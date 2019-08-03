@@ -1,0 +1,33 @@
+<div>
+  <div class="overview-container">
+    <h1>{{ overview.createdAt|date }}</h1>
+    <span>{{ overview.createdAt|date: 'H:m:s' }}</span>
+
+    <div class="center mood-icon">
+      <img src="/assets/mood-levels/{{overview.mood}}.svg" height="50">
+    </div>
+
+    <div class="row" *ngIf="overview.feelings.length && overview.note">
+      <div class="small-6">
+        <h2>Feeling</h2>
+        <div class="feeling" *ngFor="let feeling of overview.feelings">{{feeling}}</div>
+      </div>
+      <div class="small-6">
+        <h2>Note</h2>
+        {{overview.note}}
+      </div>
+    </div>
+
+    <div class="row" *ngIf="!overview.feelings.length || !overview.note">
+      <div class="small-12" *ngIf="overview.feelings.length">
+        <h2>Feeling</h2>
+        <div class="feeling" *ngFor="let feeling of overview.feelings">{{feeling}}</div>
+      </div>
+      <div class="small-12" *ngIf="overview.note">
+        <h2>Note</h2>
+        {{overview.note}}
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -45,6 +45,7 @@ body {
 
 h1, h2, h3, h4, h5, .title {
   font-family: $font-title;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -68,6 +69,10 @@ div, p, a, .text {
   text-align: left;
 }
 
+.wrapper {
+  margin: 3%;
+}
+
 .mat-slider-track-background,
 .mat-slider:hover .mat-slider-track-background {
   background: #eeeeee;
@@ -82,4 +87,8 @@ div, p, a, .text {
   font-family: $font-title;
   font-size: 20px;
   text-transform: capitalize;
+}
+
+.shadow {
+  box-shadow: 0 0 5px rgba(0,0,0,.3) !important;
 }

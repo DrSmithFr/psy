@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {DbService}           from '../../services/db.service';
+import {OverviewModel}       from '../../../models/overview.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  public overviews: OverviewModel[] = [];
+
+  constructor(
+    private database: DbService
+  ) { }
 
   ngOnInit() {
+    this.database.getOverviews().then(all => {
+      this.overviews = all;
+    });
   }
 
 }

@@ -3,14 +3,14 @@
     <img src="/assets/moods/happy.svg" height="30">
   </div>
   <div class="small-4 center">
-    <img src="/assets/moods/neutral.svg" height="30">
+    <img src="/assets/mood-levels/{{slider.displayValue}}.svg" height="70">
   </div>
   <div class="small-4 right">
     <img src="/assets/moods/bad.svg" height="30">
   </div>
 </div>
 
-<mat-slider
+<mat-slider #slider
   tickInterval="1"
   value="5"
   min="0"
