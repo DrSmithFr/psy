@@ -9,24 +9,26 @@ export class FeelingSelectorComponent implements OnInit {
 
   public brown: Array<string> = [
     'speed',
-    'distracted'
+    'distracted',
+    'agitated'
   ];
 
   public green: Array<string> = [
     'active',
     'confident',
-    'relax'
+    'relaxed'
   ];
 
   public blue: Array<string> = [
     'tired',
-    'slow'
+    'slow',
+    'guilty'
   ];
 
   public red: Array<string> = [
     'anxious',
     'afraid',
-    'guilty'
+    'angry'
   ];
 
   private active: Array<string> = [];
