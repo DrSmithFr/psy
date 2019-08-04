@@ -4,32 +4,32 @@
     <mat-vertical-stepper>
 
       <mat-step>
-        <ng-template matStepLabel>Mood</ng-template>
+        <ng-template matStepLabel>{{'mood.load.title'|trans|async}}</ng-template>
         <div class="block moods">
           <app-mood-selector [overview]="overview"></app-mood-selector>
         </div>
         <div class="actions">
-          <button mat-button matStepperNext color="primary">Next</button>
+          <button mat-button matStepperNext color="primary">{{'general.next'|trans|async}}</button>
         </div>
       </mat-step>
 
       <mat-step optional>
-        <ng-template matStepLabel>feelings</ng-template>
+        <ng-template matStepLabel>{{'mood.load.feeling'|trans|async}}</ng-template>
         <div class="block feelings">
           <app-feeling-selector [overview]="overview"></app-feeling-selector>
         </div>
         <div class="actions">
-          <button mat-button matStepperNext color="primary">Next</button>
+          <button mat-button matStepperNext color="primary">{{'general.next'|trans|async}}</button>
         </div>
       </mat-step>
 
       <mat-step optional>
-        <ng-template matStepLabel>thoughts</ng-template>
+        <ng-template matStepLabel>{{'mood.load.thoughts'|trans|async}}</ng-template>
         <div class="block thoughts">
           <app-thought-note [overview]="overview"></app-thought-note>
         </div>
         <div class="actions">
-          <button mat-raised-button color="primary" routerLink="/" (click)="submitOverview()">Save</button>
+          <button mat-raised-button color="primary" routerLink="/" (click)="submitOverview()">{{'general.save'|trans|async}}</button>
         </div>
       </mat-step>
 
