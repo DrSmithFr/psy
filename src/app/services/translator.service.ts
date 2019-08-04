@@ -22,9 +22,6 @@ export class TranslatorService {
   }
 
   trans(value: string): Observable<string> {
-
-    console.log(value);
-
     return Observable.create((observer) => {
 
       this.loaded.subscribe(() => {
@@ -48,8 +45,6 @@ export class TranslatorService {
       moodLoadTranslations,
       generalTranslations
     ];
-
-    console.log(registered);
 
     registered.forEach((list: TranslationModel[]) => {
       list.forEach(trans => {
