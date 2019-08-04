@@ -22,7 +22,7 @@
 
     <mat-divider></mat-divider>
 
-    <button mat-stroked-button (click)="close()">
+    <button mat-stroked-button (click)="close()" routerLink="/settings" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       <mat-icon>settings</mat-icon>
       <mat-label>Settings</mat-label>
     </button>

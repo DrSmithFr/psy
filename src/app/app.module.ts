@@ -10,10 +10,10 @@ import {
   MatButtonToggleModule,
   MatCardModule,
   MatChipsModule, MatDividerModule, MatExpansionModule, MatFormFieldModule,
-  MatIconModule, MatInputModule, MatPaginatorModule, MatSidenavModule, MatSliderModule,
+  MatIconModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatSidenavModule, MatSliderModule,
   MatStepperModule,
   MatToolbarModule
-}                                         from '@angular/material';
+} from '@angular/material';
 import {DashboardComponent}               from './pages/dashboard/dashboard.component';
 import {MoodSelectorComponent}            from './components/mood-selector/mood-selector.component';
 import {FeelingSelectorComponent}         from './components/feeling-selector/feeling-selector.component';
@@ -27,6 +27,7 @@ import {MoodLoadComponent}                from './components/mood-load/mood-load
 import {MoodShortHistoryComponent}        from './components/mood-short-history/mood-short-history.component';
 import {OverviewHistoryComponent}         from './pages/overview-history/overview-history.component';
 import {TranslatorPipe}                   from './pipes/translator.pipe';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule(
   {
@@ -43,9 +44,10 @@ import {TranslatorPipe}                   from './pipes/translator.pipe';
       MoodLoadComponent,
       MoodShortHistoryComponent,
       OverviewHistoryComponent,
-      TranslatorPipe
+      TranslatorPipe,
+      SettingsComponent
     ],
-    imports:      [
+    imports: [
       BrowserModule,
       AppRoutingModule,
       BrowserAnimationsModule,
@@ -66,7 +68,8 @@ import {TranslatorPipe}                   from './pipes/translator.pipe';
       MatDividerModule,
       FormsModule,
       MatExpansionModule,
-      MatPaginatorModule
+      MatPaginatorModule,
+      MatSelectModule
     ],
     providers:    [],
     bootstrap:    [AppComponent]
