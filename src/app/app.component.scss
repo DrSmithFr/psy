@@ -11,3 +11,15 @@ button.active {
   background: #292929;
   color: #ddd;
 }
+
+mat-sidenav {
+  width: 200px;
+
+  button {
+    width: 100%;
+
+    mat-label {
+      margin-left: 10px;
+    }
+  }
+}

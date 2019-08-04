@@ -2,31 +2,29 @@
   <mat-sidenav #sidenav (keydown.escape)="close()" disableClose>
 
     <button mat-stroked-button (click)="close()" routerLink="/" routerLinkActive="active">
-      <mat-icon>face</mat-icon>
+      <mat-icon>dashboard</mat-icon>
+      <mat-label>Home</mat-label>
     </button>
 
     <mat-divider></mat-divider>
 
     <button mat-stroked-button (click)="close()" routerLink="/overview" routerLinkActive="active">
-      <mat-icon>help_outline</mat-icon>
+      <mat-icon>mood</mat-icon>
+      <mat-label>Mood</mat-label>
     </button>
 
     <mat-divider></mat-divider>
 
-    <button mat-stroked-button (click)="close()">
-      <mat-icon>all_inbox</mat-icon>
-    </button>
-
-    <mat-divider></mat-divider>
-
-    <button mat-stroked-button (click)="close()">
-      <mat-icon>backup</mat-icon>
+    <button mat-stroked-button (click)="close()" routerLink="/overview/history" routerLinkActive="active">
+      <mat-icon>history</mat-icon>
+      <mat-label>History</mat-label>
     </button>
 
     <mat-divider></mat-divider>
 
     <button mat-stroked-button (click)="close()">
       <mat-icon>settings</mat-icon>
+      <mat-label>Settings</mat-label>
     </button>
 
   </mat-sidenav>

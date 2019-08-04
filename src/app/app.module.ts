@@ -25,6 +25,7 @@ import { ThoughtNoteComponent }           from './components/thought-note/though
 import { OverviewDisplayComponent } from './components/overview-display/overview-display.component';
 import { MoodLoadComponent } from './components/mood-load/mood-load.component';
 import { MoodShortHistoryComponent } from './components/mood-short-history/mood-short-history.component';
+import { OverviewHistoryComponent } from './pages/overview-history/overview-history.component';
 
 @NgModule(
   {
@@ -39,7 +40,8 @@ import { MoodShortHistoryComponent } from './components/mood-short-history/mood-
       ThoughtNoteComponent,
       OverviewDisplayComponent,
       MoodLoadComponent,
-      MoodShortHistoryComponent
+      MoodShortHistoryComponent,
+      OverviewHistoryComponent
     ],
     imports: [
       BrowserModule,

@@ -1,0 +1,14 @@
+<div class="wrapper">
+
+  <mat-card>
+    <div *ngFor="let overview of overviews; let i = index">
+      <app-overview-display [overview]="overview"></app-overview-display>
+      <hr *ngIf="i !== (overviews.length -1)">
+    </div>
+  </mat-card>
+
+  <div class="center">
+    <p>End of history</p>
+  </div>
+
+</div>

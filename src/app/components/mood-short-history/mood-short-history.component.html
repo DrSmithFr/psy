@@ -21,11 +21,9 @@
         <hr *ngIf="i !== (overviews.length -1)">
       </div>
 
-      <mat-paginator
-        [length]="overviews.length"
-        [pageSize]="pageSize"
-        (page)="updateList($event)">
-      </mat-paginator>
+      <div class="center">
+        <button mat-button routerLink="overview/history">See all</button>
+      </div>
 
     </div>
 
