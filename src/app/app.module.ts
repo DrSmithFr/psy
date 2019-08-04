@@ -10,7 +10,7 @@ import {
   MatButtonToggleModule,
   MatCardModule,
   MatChipsModule, MatDividerModule, MatExpansionModule, MatFormFieldModule,
-  MatIconModule, MatInputModule, MatSidenavModule, MatSliderModule,
+  MatIconModule, MatInputModule, MatPaginatorModule, MatSidenavModule, MatSliderModule,
   MatStepperModule,
   MatToolbarModule
 } from '@angular/material';
@@ -24,6 +24,7 @@ import { MenuComponent }                  from './components/menu/menu.component
 import { ThoughtNoteComponent }           from './components/thought-note/thought-note.component';
 import { OverviewDisplayComponent } from './components/overview-display/overview-display.component';
 import { MoodLoadComponent } from './components/mood-load/mood-load.component';
+import { MoodShortHistoryComponent } from './components/mood-short-history/mood-short-history.component';
 
 @NgModule(
   {
@@ -37,7 +38,8 @@ import { MoodLoadComponent } from './components/mood-load/mood-load.component';
       MenuComponent,
       ThoughtNoteComponent,
       OverviewDisplayComponent,
-      MoodLoadComponent
+      MoodLoadComponent,
+      MoodShortHistoryComponent
     ],
     imports: [
       BrowserModule,
@@ -59,7 +61,8 @@ import { MoodLoadComponent } from './components/mood-load/mood-load.component';
       MatSidenavModule,
       MatDividerModule,
       FormsModule,
-      MatExpansionModule
+      MatExpansionModule,
+      MatPaginatorModule
     ],
     providers:    [],
     bootstrap:    [AppComponent]

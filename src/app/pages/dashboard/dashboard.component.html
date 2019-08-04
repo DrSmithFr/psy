@@ -1,26 +1,10 @@
 <div class="wrapper">
   <mat-card class="shadow">
     <h1>Mood load</h1>
-    <app-mood-load [overviews]="overviews"></app-mood-load>
+    <app-mood-load></app-mood-load>
 
     <div class="historic">
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Historic
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <hr class="first">
-
-          <div *ngFor="let overview of overviews.reverse(); let i = index">
-            <app-overview-display [overview]="overview"></app-overview-display>
-            <hr *ngIf="i !== (overviews.length -1)">
-          </div>
-
-        </mat-expansion-panel>
-      </mat-accordion>
+      <app-mood-short-history></app-mood-short-history>
     </div>
 
   </mat-card>

@@ -25,7 +25,6 @@ export class MoodOverviewComponent implements OnInit {
   }
 
   submitOverview() {
-    console.log('boom');
     this.database.addOverview(this.overview);
     this.overview = new OverviewModel();
   }

@@ -1,0 +1,33 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Historic
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <hr class="first">
+
+    <div *ngIf="overviews && overviews.length">
+
+      <mat-paginator
+        [length]="overviews.length"
+        [pageSize]="pageSize"
+        (page)="updateList($event)">
+      </mat-paginator>
+
+      <div *ngFor="let overview of list; let i = index">
+        <app-overview-display [overview]="overview"></app-overview-display>
+        <hr *ngIf="i !== (overviews.length -1)">
+      </div>
+
+      <mat-paginator
+        [length]="overviews.length"
+        [pageSize]="pageSize"
+        (page)="updateList($event)">
+      </mat-paginator>
+
+    </div>
+
+  </mat-expansion-panel>
+</mat-accordion>

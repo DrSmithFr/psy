@@ -1,6 +1,8 @@
-import {Injectable}              from '@angular/core';
-import {OverviewModel}           from '../../models/overview.model';
-import {DBSchema, openDB}        from 'idb';
+import {Injectable}       from '@angular/core';
+import {OverviewModel}    from '../../models/overview.model';
+import {DBSchema, openDB} from 'idb';
+import {of, Subject}      from 'rxjs';
+import {tap}              from 'rxjs/operators';
 
 interface AppDb extends DBSchema {
   'overview': {
@@ -22,6 +24,7 @@ interface AppDb extends DBSchema {
 )
 export class DbService {
   private promise;
+  private overviews: Subject<OverviewModel[]> = new Subject();
 
   constructor() {
     this.connect();
@@ -44,12 +47,25 @@ export class DbService {
   addOverview(value: OverviewModel) {
     this.promise.then((db: any) => {
       db.put('overview', value);
+      this.updateOverviews();
     });
   }
 
   getOverviews() {
-    return this.promise.then((db: any) => {
-      return db.getAll('overview');
-    });
+    this.updateOverviews();
+    return this.overviews.asObservable();
+  }
+
+  updateOverviews(): void {
+    this.promise
+        .then(
+          (db: any) => {
+            db
+              .getAll('overview')
+              .then(list => {
+                this.overviews.next(list.reverse());
+              });
+          }
+        );
   }
 }

@@ -1,18 +1,31 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {OverviewModel}            from '../../../models/overview.model';
+import {Component, OnInit} from '@angular/core';
+import {DbService}         from '../../services/db.service';
+import {MoodLoadService}   from '../../services/mood-load.service';
 
-@Component({
-  selector: 'app-mood-load',
-  templateUrl: './mood-load.component.html',
-  styleUrls: ['./mood-load.component.scss']
-})
+@Component(
+  {
+    selector:    'app-mood-load',
+    templateUrl: './mood-load.component.html',
+    styleUrls:   ['./mood-load.component.scss']
+  }
+)
 export class MoodLoadComponent implements OnInit {
 
-  @Input() overviews: OverviewModel[];
+  public averages: number[];
 
-  constructor() { }
+  constructor(
+    private database: DbService,
+    private service: MoodLoadService
+  ) {
+  }
 
   ngOnInit() {
+    this
+      .database
+      .getOverviews()
+      .subscribe(list => {
+        this.averages = this.service.getMoodLoad(list);
+      });
   }
 
 }
