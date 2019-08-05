@@ -10,7 +10,7 @@ import {
   MatButtonToggleModule,
   MatCardModule,
   MatChipsModule, MatDividerModule, MatExpansionModule, MatFormFieldModule,
-  MatIconModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatSidenavModule, MatSliderModule,
+  MatIconModule, MatInputModule, MatListModule, MatPaginatorModule, MatSelectModule, MatSidenavModule, MatSliderModule,
   MatStepperModule,
   MatToolbarModule
 } from '@angular/material';
@@ -31,6 +31,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { InstallPwaComponent } from './components/install-pwa/install-pwa.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { EventsSelectorComponent } from './components/events-selector/events-selector.component';
 
 @NgModule(
   {
@@ -49,7 +50,8 @@ import { environment } from '../environments/environment';
       OverviewHistoryComponent,
       TranslatorPipe,
       SettingsComponent,
-      InstallPwaComponent
+      InstallPwaComponent,
+      EventsSelectorComponent
     ],
     imports: [
       BrowserModule,
@@ -74,7 +76,8 @@ import { environment } from '../environments/environment';
       MatExpansionModule,
       MatPaginatorModule,
       MatSelectModule,
-      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+      ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+      MatListModule
     ],
     providers:    [],
     bootstrap:    [AppComponent]

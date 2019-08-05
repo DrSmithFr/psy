@@ -90,7 +90,7 @@ div, p, a, .text {
 }
 
 .shadow {
-  box-shadow: 0 0 5px rgba(0,0,0,.3) !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .3) !important;
 }
 
 hr {
@@ -99,4 +99,11 @@ hr {
 
 .full {
   width: 100%;
+}
+
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate {
+  background: #607d8b;
 }

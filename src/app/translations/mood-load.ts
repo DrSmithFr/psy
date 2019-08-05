@@ -12,6 +12,11 @@ export const moodLoadTranslations: TranslationModel[] = [
     en: 'Feeling'
   },
   {
+    id: 'mood.load.events',
+    fr: 'Évenvements',
+    en: 'Events'
+  },
+  {
     id: 'mood.load.thoughts',
     fr: 'Pensées',
     en: 'Thoughts'
