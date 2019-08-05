@@ -28,6 +28,9 @@ import {MoodShortHistoryComponent}        from './components/mood-short-history/
 import {OverviewHistoryComponent}         from './pages/overview-history/overview-history.component';
 import {TranslatorPipe}                   from './pipes/translator.pipe';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { InstallPwaComponent } from './components/install-pwa/install-pwa.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule(
   {
@@ -45,7 +48,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
       MoodShortHistoryComponent,
       OverviewHistoryComponent,
       TranslatorPipe,
-      SettingsComponent
+      SettingsComponent,
+      InstallPwaComponent
     ],
     imports: [
       BrowserModule,
@@ -69,7 +73,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
       FormsModule,
       MatExpansionModule,
       MatPaginatorModule,
-      MatSelectModule
+      MatSelectModule,
+      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     ],
     providers:    [],
     bootstrap:    [AppComponent]
