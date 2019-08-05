@@ -11,6 +11,7 @@ import {MoodLoadService}   from '../../services/mood-load.service';
 )
 export class MoodLoadComponent implements OnInit {
 
+  public periods: number[];
   public averages: number[];
 
   constructor(
@@ -24,6 +25,7 @@ export class MoodLoadComponent implements OnInit {
       .database
       .getOverviews()
       .subscribe(list => {
+        this.periods = this.service.determinePeriods(list);
         this.averages = this.service.getMoodLoad(list);
       });
   }

@@ -35,8 +35,7 @@ export class MoodLoadService {
   }
 
   getPeriods(list: OverviewModel[]): Date[] {
-    const oldest  = this.stats.overviewOldest(list);
-    const periods = this.determinePeriods(oldest);
+    const periods = this.determinePeriods(list);
 
     const today = new Date();
 
@@ -49,7 +48,8 @@ export class MoodLoadService {
     return result;
   }
 
-  private determinePeriods(oldest: OverviewModel): number[] {
+  public determinePeriods(list: OverviewModel[]): number[] {
+    const oldest = this.stats.overviewOldest(list);
     const diff = this.daysBetween(oldest.createdAt, new Date());
 
     if (diff < 7) {

@@ -1,14 +1,14 @@
-<div class="row center" *ngIf="averages && averages.length === 3">
+<div class="row center" *ngIf="averages && periods && averages.length === 3">
   <div class="small-4 midle-4">
     <img src="/assets/mood-levels/{{ averages[0] }}.svg" height="80">
-    <span>Day</span>
+    <span>{{periods[0]}} Days</span>
   </div>
   <div class="small-4 midle-4">
     <img src="/assets/mood-levels/{{ averages[1] }}.svg" height="80">
-    <span>Week</span>
+    <span>{{periods[1]}} Days</span>
   </div>
   <div class="small-4 midle-4">
     <img src="/assets/mood-levels/{{ averages[2] }}.svg" height="80">
-    <span>Month</span>
+    <span>{{periods[2]}} Days</span>
   </div>
 </div>
