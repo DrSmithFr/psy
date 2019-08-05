@@ -6,24 +6,24 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
 
-    <hr class="first">
-
     <div *ngIf="overviews && overviews.length">
+
+      <div *ngFor="let overview of list; let i = index">
+        <app-overview-display [overview]="overview"></app-overview-display>
+        <hr>
+      </div>
+
+      <div class="center">
+        <button mat-button class="full" routerLink="overview/history">See all</button>
+      </div>
+
+      <hr class="first">
 
       <mat-paginator
         [length]="overviews.length"
         [pageSize]="pageSize"
         (page)="updateList($event)">
       </mat-paginator>
-
-      <div *ngFor="let overview of list; let i = index">
-        <app-overview-display [overview]="overview"></app-overview-display>
-        <hr *ngIf="i !== (overviews.length -1)">
-      </div>
-
-      <div class="center">
-        <button mat-button routerLink="overview/history">See all</button>
-      </div>
 
     </div>
 

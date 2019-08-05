@@ -12,7 +12,7 @@ import {DbService}                from '../../services/db.service';
 )
 export class MoodShortHistoryComponent implements OnInit {
 
-  private overviews: OverviewModel[] = [];
+  public overviews: OverviewModel[] = [];
 
   public pageSize              = 3;
   public list: OverviewModel[] = [];
