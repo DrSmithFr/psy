@@ -13,7 +13,7 @@ export class OverviewModel {
   }
 
   removeFeeling(value: string): void {
-    this.feelings = this.feelings.filter(s => s === value);
+    this.feelings = this.feelings.filter(s => s !== value);
   }
 
   hasFeeling(value: string): boolean {
