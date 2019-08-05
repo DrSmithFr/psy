@@ -1,23 +1,9 @@
 <mat-sidenav-container (backdropClick)="close()">
   <mat-sidenav #sidenav (keydown.escape)="close()" disableClose>
 
-    <button mat-stroked-button (click)="close()" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-      <mat-icon>dashboard</mat-icon>
-      <mat-label>Home</mat-label>
-    </button>
-
-    <mat-divider></mat-divider>
-
-    <button mat-stroked-button (click)="close()" routerLink="/overview" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <button mat-stroked-button (click)="close()" routerLink="/mood" routerLinkActive="active">
       <mat-icon>mood</mat-icon>
       <mat-label>Mood</mat-label>
-    </button>
-
-    <mat-divider></mat-divider>
-
-    <button mat-stroked-button (click)="close()" routerLink="/overview/history" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-      <mat-icon>history</mat-icon>
-      <mat-label>History</mat-label>
     </button>
 
     <mat-divider></mat-divider>
