@@ -1,6 +1,7 @@
 import {Injectable}      from '@angular/core';
 import {OverviewModel}   from '../../models/overview.model';
 import {OverviewService} from './overview.service';
+import {LoadModel} from '../../models/load.model';
 
 @Injectable(
   {
@@ -14,14 +15,25 @@ export class MoodLoadService {
   ) {
   }
 
-  getMoodLoad(list: OverviewModel[]): number[] {
+  getMoodLoad(list: OverviewModel[]): LoadModel[] {
     const overviews = this.getOverviewForPeriods(list);
 
     return [
-      this.stats.getMoodAverage(overviews[0]),
-      this.stats.getMoodAverage(overviews[1]),
-      this.stats.getMoodAverage(overviews[2]),
+      this.getLoadModel(overviews[0]),
+      this.getLoadModel(overviews[1]),
+      this.getLoadModel(overviews[2]),
     ];
+  }
+
+  getLoadModel(list: OverviewModel[]): LoadModel {
+    const load = new LoadModel();
+
+    load.mood = this.stats.getMoodAverage(list);
+    load.feeling = this.stats.getFeelings(list);
+
+    console.log(load);
+
+    return load;
   }
 
   getOverviewForPeriods(list: OverviewModel[]): Array<OverviewModel>[] {

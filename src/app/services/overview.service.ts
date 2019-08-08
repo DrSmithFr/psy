@@ -33,4 +33,23 @@ export class OverviewService {
 
     return Math.round(moods / list.length);
   }
+
+  getFeelings(list: OverviewModel[]): Map<string, number> {
+    const map = new Map<string, number>();
+
+    list.forEach(model => {
+      model.feelings.forEach(feel => {
+        if (!map.has(feel)) {
+          map.set(feel, 0);
+        }
+
+        const count = map.get(feel);
+        map.set(feel, count + 1);
+      });
+    });
+
+    return map;
+  }
+
+
 }

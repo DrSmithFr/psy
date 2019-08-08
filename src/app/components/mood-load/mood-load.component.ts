@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {DbService}         from '../../services/db.service';
-import {MoodLoadService}   from '../../services/mood-load.service';
+import {DbService} from '../../services/db.service';
+import {MoodLoadService} from '../../services/mood-load.service';
+import {LoadModel} from '../../../models/load.model';
 
 @Component(
   {
@@ -12,7 +13,7 @@ import {MoodLoadService}   from '../../services/mood-load.service';
 export class MoodLoadComponent implements OnInit {
 
   public periods: number[];
-  public averages: number[];
+  public stats: LoadModel[];
 
   constructor(
     private database: DbService,
@@ -26,7 +27,7 @@ export class MoodLoadComponent implements OnInit {
       .getOverviews()
       .subscribe(list => {
         this.periods = this.service.determinePeriods(list);
-        this.averages = this.service.getMoodLoad(list);
+        this.stats   = this.service.getMoodLoad(list);
       });
   }
 

@@ -1,8 +1,7 @@
-import {Injectable}       from '@angular/core';
-import {OverviewModel}    from '../../models/overview.model';
+import {Injectable} from '@angular/core';
+import {OverviewModel} from '../../models/overview.model';
 import {DBSchema, openDB} from 'idb';
-import {of, Subject}      from 'rxjs';
-import {tap}              from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 interface AppDb extends DBSchema {
   'overview': {
