@@ -5,11 +5,12 @@ import {AppRoutingModule}                 from './app-routing.module';
 import {AppComponent}                     from './app.component';
 import {BrowserAnimationsModule}          from '@angular/platform-browser/animations';
 import {
+  MAT_DIALOG_DEFAULT_OPTIONS,
   MatBadgeModule,
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
-  MatChipsModule, MatDividerModule, MatExpansionModule, MatFormFieldModule,
+  MatChipsModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatFormFieldModule,
   MatIconModule, MatInputModule, MatListModule, MatPaginatorModule, MatSelectModule, MatSidenavModule, MatSliderModule,
   MatStepperModule,
   MatToolbarModule
@@ -33,6 +34,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { EventsSelectorComponent } from './components/events-selector/events-selector.component';
 import { MoodChartComponent } from './components/mood-chart/mood-chart.component';
+import { ClearDataComponent } from './dialogs/clear-data/clear-data.component';
 
 @NgModule(
   {
@@ -53,7 +55,8 @@ import { MoodChartComponent } from './components/mood-chart/mood-chart.component
       SettingsComponent,
       InstallPwaComponent,
       EventsSelectorComponent,
-      MoodChartComponent
+      MoodChartComponent,
+      ClearDataComponent
     ],
     imports: [
       BrowserModule,
@@ -79,9 +82,15 @@ import { MoodChartComponent } from './components/mood-chart/mood-chart.component
       MatPaginatorModule,
       MatSelectModule,
       ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-      MatListModule
+      MatListModule,
+      MatDialogModule
     ],
-    providers:    [],
+    entryComponents: [
+      ClearDataComponent
+    ],
+    providers:    [
+      {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    ],
     bootstrap:    [AppComponent]
   }
 )

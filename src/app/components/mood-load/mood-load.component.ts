@@ -26,6 +26,11 @@ export class MoodLoadComponent implements OnInit {
       .database
       .getOverviews()
       .subscribe(list => {
+        if (!list.length) {
+          // avoid display errors
+          return;
+        }
+
         this.periods = this.service.determinePeriods(list);
         this.stats   = this.service.getMoodLoad(list);
       });

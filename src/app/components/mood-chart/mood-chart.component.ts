@@ -32,6 +32,11 @@ export class MoodChartComponent implements OnInit {
       .database
       .getOverviews()
       .subscribe(list => {
+        if (!list.length) {
+          // avoid display errors
+          return;
+        }
+
         this.instanciateChart();
 
         const overviews = this.service.getOverviewOfTheWeek(list);

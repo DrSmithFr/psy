@@ -1,4 +1,5 @@
 export class OverviewModel {
+  public id: number;
   public mood: number;
   public note: string;
   public feelings: Array<string> = [];

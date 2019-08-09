@@ -67,4 +67,25 @@ export class DbService {
           }
         );
   }
+
+  removeOverviews(list: OverviewModel[]) {
+    console.log(list);
+    for (const item of list) {
+      console.log(item);
+      this.removeOverview(item);
+    }
+  }
+
+  removeOverview(item: OverviewModel) {
+    this.promise
+        .then(
+          (db: any) => {
+            db
+              .delete('overview', item.id)
+              .then(() => {
+                this.overviews.next([]);
+              });
+          }
+        );
+  }
 }
