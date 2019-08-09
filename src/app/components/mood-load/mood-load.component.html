@@ -3,25 +3,16 @@
   <div class="small-4 midle-4">
     <img src="/assets/mood-levels/{{ stats[0].mood }}.svg" height="80">
     <span>{{periods[0]}} Days</span>
-    <div class="feelings">
-      <mat-label *ngFor="let feel of stats[0].feeling | keyvalue">{{feel.key}} <i>({{feel.value}})</i></mat-label>
-    </div>
   </div>
 
   <div class="small-4 midle-4">
     <img src="/assets/mood-levels/{{ stats[1].mood }}.svg" height="80">
     <span>{{periods[1]}} Days</span>
-    <div class="feelings">
-      <mat-label *ngFor="let feel of stats[1].feeling | keyvalue">{{feel.key}} <i>({{feel.value}})</i></mat-label>
-    </div>
   </div>
 
   <div class="small-4 midle-4">
     <img src="/assets/mood-levels/{{ stats[2].mood }}.svg" height="80">
     <span>{{periods[2]}} Days</span>
-    <div class="feelings">
-      <mat-label *ngFor="let feel of stats[2].feeling | keyvalue">{{feel.key}} <i>({{feel.value}})</i></mat-label>
-    </div>
   </div>
 
 </div>

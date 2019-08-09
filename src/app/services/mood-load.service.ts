@@ -31,8 +31,6 @@ export class MoodLoadService {
     load.mood = this.stats.getMoodAverage(list);
     load.feeling = this.stats.getFeelings(list);
 
-    console.log(load);
-
     return load;
   }
 

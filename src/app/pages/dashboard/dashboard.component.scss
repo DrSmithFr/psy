@@ -1,13 +1,6 @@
 hr {
   border: 1px solid #eee;
-
-  &.first {
-    margin-top: 0;
-  }
-}
-
-.historic {
-  margin-top: 20px;
+  margin: 10px 0;
 }
 
 .add-entry {
@@ -15,4 +8,8 @@ hr {
   a {
     width: 100%;
   }
+}
+
+mat-card {
+  margin-bottom: 10px;
 }

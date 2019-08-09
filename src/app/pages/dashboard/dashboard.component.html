@@ -1,16 +1,5 @@
 <div class="wrapper">
 
-  <mat-card class="shadow">
-    <h1>Mood load</h1>
-
-    <app-mood-load></app-mood-load>
-
-    <div class="historic">
-      <app-mood-short-history></app-mood-short-history>
-    </div>
-
-  </mat-card>
-
   <div class="add-entry center">
     <a mat-flat-button routerLink="/mood/overview" color="primary">
       <mat-icon>add</mat-icon>
@@ -18,4 +7,15 @@
     </a>
   </div>
 
+  <mat-card class="shadow">
+    <h1>Mood load</h1>
+    <app-mood-load></app-mood-load>
+  </mat-card>
+
+  <mat-card class="shadow">
+    <h1>Feelings</h1>
+    <app-mood-chart></app-mood-chart>
+  </mat-card>
+
+  <app-mood-short-history></app-mood-short-history>
 </div>

@@ -32,6 +32,7 @@ import { InstallPwaComponent } from './components/install-pwa/install-pwa.compon
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { EventsSelectorComponent } from './components/events-selector/events-selector.component';
+import { MoodChartComponent } from './components/mood-chart/mood-chart.component';
 
 @NgModule(
   {
@@ -51,7 +52,8 @@ import { EventsSelectorComponent } from './components/events-selector/events-sel
       TranslatorPipe,
       SettingsComponent,
       InstallPwaComponent,
-      EventsSelectorComponent
+      EventsSelectorComponent,
+      MoodChartComponent
     ],
     imports: [
       BrowserModule,
