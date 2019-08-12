@@ -1,7 +1,7 @@
 {
   "name": "psy",
   "short_name": "psy",
-  "theme_color": "#607d8b",
+  "theme_color": "#ffffff",
   "background_color": "#eeeeee",
   "display": "standalone",
   "scope": "/",
