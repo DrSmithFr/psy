@@ -7,44 +7,42 @@ import {SettingsComponent} from './pages/settings/settings.component';
 
 const routes: Routes = [
   {
-    path:      'mood/overview',
-    component: MoodOverviewComponent
-  },
-  {
-    path:      'mood/history',
-    component: OverviewHistoryComponent
-  },
-  {
-    path:      'mood',
-    component: MoodDashboardComponent
-  },
-  {
-    path:      'settings',
-    component: SettingsComponent
-  }
-];
-
-const layouts: Routes = [
-  {
-    path: 'fullscreen',
+    path: 'mood',
+    data: {
+      image: '/assets/draws/feeling.png'
+    },
     children: [
-
+      {
+        path:      'overview',
+        component: MoodOverviewComponent
+      },
+      {
+        path:      'history',
+        component: OverviewHistoryComponent
+      },
+      {
+        path:      '',
+        component: MoodDashboardComponent
+      },
     ]
   },
   {
-    path: 'common',
-    children: routes
+    path:      'settings',
+    data: {
+      image: '/assets/draws/settings.png'
+    },
+    component: SettingsComponent
   },
   {
     path:       '',
     pathMatch:  'full',
-    redirectTo: '/common/mood',
+    redirectTo: '/mood',
   }
 ];
 
 @NgModule(
   {
-    imports: [RouterModule.forRoot(layouts)],
+    imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
   }
 )

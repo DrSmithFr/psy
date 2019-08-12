@@ -1,33 +1,31 @@
-<router-outlet>
-  <mat-sidenav-container (backdropClick)="close()">
-    <mat-sidenav #sidenav (keydown.escape)="close()" disableClose>
+<mat-sidenav-container (backdropClick)="close()">
+  <mat-sidenav #sidenav (keydown.escape)="close()" disableClose>
 
-      <!-- avoid focus -->
-      <input cdkFocusInitial type='text' style="display: none" />
+    <!-- avoid focus -->
+    <input cdkFocusInitial type='text' style="display: none" />
 
-      <button mat-button (click)="close()" routerLink="/common/mood" routerLinkActive="active" autofocus="false">
-        <img src="/assets/draws/feeling.png">
-        <mat-label>Mood</mat-label>
-      </button>
+    <button mat-button (click)="close()" routerLink="/mood" routerLinkActive="active" autofocus="false">
+      <img src="/assets/draws/feeling.png">
+      <mat-label>Mood</mat-label>
+    </button>
 
-      <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
 
-      <button mat-button (click)="close()" routerLink="/common/settings" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <img src="/assets/draws/settings.png" height="200">
-        <mat-label>Settings</mat-label>
-      </button>
+    <button mat-button (click)="close()" routerLink="/settings" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <img src="/assets/draws/settings.png" height="200">
+      <mat-label>Settings</mat-label>
+    </button>
 
-    </mat-sidenav>
+  </mat-sidenav>
 
-    <mat-sidenav-content>
-      <app-navigation (opening)="sidenav.open()"></app-navigation>
+  <mat-sidenav-content>
+    <app-navigation (opening)="sidenav.open()"></app-navigation>
 
-      <button mat-flat-button color="warn" (click)="notifier.overviewNotif()">NOTIF</button>
+    <div class="container fluid">
+      <router-outlet></router-outlet>
+      <app-install-pwa></app-install-pwa>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
-      <div class="container fluid">
-        <router-outlet></router-outlet>
-        <app-install-pwa></app-install-pwa>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</router-outlet>
+
