@@ -4,13 +4,11 @@ import {MoodOverviewComponent} from './pages/mood-overview/mood-overview.compone
 import {MoodDashboardComponent} from './pages/mood-dashboard/mood-dashboard.component';
 import {OverviewHistoryComponent} from './pages/overview-history/overview-history.component';
 import {SettingsComponent} from './pages/settings/settings.component';
+import {UnderConstructionComponent} from './components/under-construction/under-construction.component';
 
 const routes: Routes = [
   {
     path: 'mood',
-    data: {
-      image: '/assets/draws/feeling.png'
-    },
     children: [
       {
         path:      'overview',
@@ -27,10 +25,19 @@ const routes: Routes = [
     ]
   },
   {
+    path:      'meds',
+    component: UnderConstructionComponent
+  },
+  {
+    path:      'sleep',
+    component: UnderConstructionComponent
+  },
+  {
+    path:      'schedule',
+    component: UnderConstructionComponent
+  },
+  {
     path:      'settings',
-    data: {
-      image: '/assets/draws/settings.png'
-    },
     component: SettingsComponent
   },
   {

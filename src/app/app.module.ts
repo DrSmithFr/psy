@@ -36,6 +36,7 @@ import {FeelingChartComponent} from './components/feeling-chart/feeling-chart.co
 import {ClearDataComponent} from './dialogs/clear-data/clear-data.component';
 import {PushNotificationsModule} from 'ng-push';
 import { EventHeatMapComponent } from './components/event-heat-map/event-heat-map.component';
+import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
 
 @NgModule(
   {
@@ -58,7 +59,8 @@ import { EventHeatMapComponent } from './components/event-heat-map/event-heat-ma
       EventsSelectorComponent,
       FeelingChartComponent,
       ClearDataComponent,
-      EventHeatMapComponent
+      EventHeatMapComponent,
+      UnderConstructionComponent
     ],
     imports:         [
       BrowserModule,
