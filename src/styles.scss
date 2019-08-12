@@ -43,10 +43,17 @@ body {
   font-family: $font-text;
 }
 
+mat-label {
+  font-family: $font-title;
+}
+
+.mat-button-wrapper, .mat-option-text {
+  font-family: $font-text;
+}
+
 h1, h2, h3, h4, h5, .title {
   font-family: $font-title;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: normal;
 }
 
 h1 {
