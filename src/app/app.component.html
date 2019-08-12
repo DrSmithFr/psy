@@ -18,6 +18,8 @@
   <mat-sidenav-content>
     <app-navigation (opening)="sidenav.open()"></app-navigation>
 
+    <button mat-flat-button color="warn" (click)="notifier.persistentNotification()">NOTIF</button>
+
     <div class="container fluid">
       <router-outlet></router-outlet>
       <app-install-pwa></app-install-pwa>
