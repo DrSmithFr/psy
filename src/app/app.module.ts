@@ -32,7 +32,7 @@ import {InstallPwaComponent} from './components/install-pwa/install-pwa.componen
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {EventsSelectorComponent} from './components/events-selector/events-selector.component';
-import {MoodChartComponent} from './components/mood-chart/mood-chart.component';
+import {FeelingChartComponent} from './components/feeling-chart/feeling-chart.component';
 import {ClearDataComponent} from './dialogs/clear-data/clear-data.component';
 import {PushNotificationsModule} from 'ng-push';
 import { EventHeatMapComponent } from './components/event-heat-map/event-heat-map.component';
@@ -56,7 +56,7 @@ import { EventHeatMapComponent } from './components/event-heat-map/event-heat-ma
       SettingsComponent,
       InstallPwaComponent,
       EventsSelectorComponent,
-      MoodChartComponent,
+      FeelingChartComponent,
       ClearDataComponent,
       EventHeatMapComponent
     ],

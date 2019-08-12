@@ -12,12 +12,12 @@ import {OverviewModel} from '../../../models/overview.model';
 
 @Component(
   {
-    selector:    'app-mood-chart',
-    templateUrl: './mood-chart.component.html',
-    styleUrls:   ['./mood-chart.component.scss']
+    selector:    'app-feeling-chart',
+    templateUrl: './feeling-chart.component.html',
+    styleUrls:   ['./feeling-chart.component.scss']
   }
 )
-export class MoodChartComponent implements OnInit {
+export class FeelingChartComponent implements OnInit {
 
   @Input() overviews: OverviewModel[];
 
@@ -54,6 +54,15 @@ export class MoodChartComponent implements OnInit {
     data.sort((a, b) => {
       return b.value - a.value;
     });
+
+    if (data.length === 0) {
+      data.push(
+        {
+          name: 'undefined',
+          value: 1
+        }
+      );
+    }
 
     this.chart.data = data;
   }
