@@ -7,8 +7,14 @@
   </div>
 
   <div *ngIf="list.length">
+
     <mat-card class="shadow">
       <h1>Mood load</h1>
+
+      <div class="center">
+        <img src="/assets/draws/feeling.png" height="160">
+      </div>
+
       <app-mood-load [overviews]="list"></app-mood-load>
     </mat-card>
 
@@ -17,10 +23,10 @@
       <app-mood-chart [overviews]="list"></app-mood-chart>
     </mat-card>
 
-    <mat-card class="shadow">
-      <h1>Events</h1>
-      <app-event-heat-map [overviews]="list"></app-event-heat-map>
-    </mat-card>
+<!--    <mat-card class="shadow">-->
+<!--      <h1>Events</h1>-->
+<!--      <app-event-heat-map [overviews]="list"></app-event-heat-map>-->
+<!--    </mat-card>-->
 
     <app-mood-short-history></app-mood-short-history>
   </div>
