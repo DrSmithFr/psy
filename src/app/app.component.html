@@ -36,7 +36,9 @@
       <app-navigation (opening)="sidenav.open()"></app-navigation>
 
       <div class="container fluid">
-        <router-outlet></router-outlet>
+        <div [@routeAnimations]="prepareRoute(outlet)" >
+          <router-outlet #outlet="outlet"></router-outlet>
+        </div>
         <app-install-pwa></app-install-pwa>
       </div>
     </div>

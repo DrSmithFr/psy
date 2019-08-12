@@ -3,16 +3,20 @@ import {MatSidenav} from '@angular/material';
 import {DbService} from './services/db.service';
 import {TranslatorService} from './services/translator.service';
 import {NotifierService} from './services/notifier.service';
-import {Router} from '@angular/router';
+import {RouterOutlet} from '@angular/router';
 import {SwPush} from '@angular/service-worker';
+import {slideInAnimation} from './animations/slideIn.animation';
 
 @Component(
   {
-             selector:    'app-root',
-             templateUrl: './app.component.html',
-             styleUrls:   ['./app.component.scss']
-           }
-           )
+    selector:    'app-root',
+    templateUrl: './app.component.html',
+    styleUrls:   ['./app.component.scss'],
+    animations:  [
+      slideInAnimation
+    ]
+  }
+)
 export class AppComponent {
   @ViewChild('sidenav') sidenav: MatSidenav;
 
@@ -34,5 +38,9 @@ export class AppComponent {
 
   close() {
     this.sidenav.close();
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 }

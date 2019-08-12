@@ -21,7 +21,8 @@ const routes: Routes = [
       {
         path:      '',
         data: {
-          img: '/assets/draws/feeling.png'
+          img: '/assets/draws/feeling.png',
+          animation: 'MoodDashboard'
         },
         component: MoodDashboardComponent
       },
@@ -30,28 +31,32 @@ const routes: Routes = [
   {
     path:      'meds',
     data: {
-      img: '/assets/draws/medecine.svg'
+      img: '/assets/draws/medecine.svg',
+      animation: 'MedsDashboard'
     },
     component: UnderConstructionComponent
   },
   {
     path:      'sleep',
     data: {
-      img: '/assets/draws/sleep.svg'
+      img: '/assets/draws/sleep.svg',
+      animation: 'SleepDashboard'
     },
     component: UnderConstructionComponent
   },
   {
     path:      'schedule',
     data: {
-      img: '/assets/draws/events.svg'
+      img: '/assets/draws/events.svg',
+      animation: 'ScheduleDashboard'
     },
     component: UnderConstructionComponent
   },
   {
     path:      'settings',
     data: {
-      img: '/assets/draws/settings.png'
+      img: '/assets/draws/settings.png',
+      animation: 'Settings'
     },
     component: SettingsComponent
   },
