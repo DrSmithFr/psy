@@ -7,33 +7,59 @@ import {Injectable} from '@angular/core';
 )
 export class NotifierService {
 
+  public hasPermission = false;
+
   constructor() {
+    this.hasPermission = Notification.permission === 'granted';
   }
 
   requestPermission() {
-    if (!('Notification' in window)) {
-      alert('Notification API not supported!');
+    if (this.hasPermission) {
+      console.warn('notification already enabled');
       return;
     }
 
-    Notification.requestPermission(result => {
+    Notification.requestPermission().then(permission => {
+      this.hasPermission = permission === 'granted';
     });
   }
 
-  persistentNotification() {
-    if (!('Notification' in window) || !('ServiceWorkerRegistration' in window)) {
-      alert('Persistent Notification API not supported!');
+  notify(title: string, options?: NotificationOptions) {
+    if (!this.hasPermission) {
+      console.warn('notification disabled');
       return;
     }
 
-    try {
-      navigator
-        .serviceWorker
-        .getRegistration()
-        .then(reg => reg.showNotification('Hi there - persistent!'))
-        .catch(err => alert('Service Worker registration error: ' + err));
-    } catch (err) {
-      alert('Notification API error: ' + err);
+    if (!options) {
+      options = {
+        icon:               '../assets/icons/icon-192x192.png',
+        lang:               'string',
+        requireInteraction: false,
+        vibrate:            2,
+      };
     }
+
+    navigator
+      .serviceWorker
+      .getRegistration()
+      .then(reg => reg.showNotification(title, options))
+      .catch(err => alert('Service Worker registration error: ' + err));
+  }
+
+  overviewNotif() {
+    this.notify(
+      'Overview',
+      {
+        icon:      '../assets/logo_big.png',
+        lang:      'fr_FR',
+        body:      'Time for your report !',
+        tag:       'overview',
+        timestamp: Date.now() + 1000 * 60 * 30,
+        vibrate:   [500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170, 40, 500],
+        data: {
+          url: '/mood/overview'
+        }
+      }
+    );
   }
 }
