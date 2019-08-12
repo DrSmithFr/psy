@@ -35,6 +35,7 @@ import { environment } from '../environments/environment';
 import { EventsSelectorComponent } from './components/events-selector/events-selector.component';
 import { MoodChartComponent } from './components/mood-chart/mood-chart.component';
 import { ClearDataComponent } from './dialogs/clear-data/clear-data.component';
+import {PushNotificationsModule} from 'ng-push';
 
 @NgModule(
   {
@@ -83,7 +84,8 @@ import { ClearDataComponent } from './dialogs/clear-data/clear-data.component';
       MatSelectModule,
       ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
       MatListModule,
-      MatDialogModule
+      MatDialogModule,
+      PushNotificationsModule
     ],
     entryComponents: [
       ClearDataComponent

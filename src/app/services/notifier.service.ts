@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {SwPush} from '@angular/service-worker';
+import {Router} from '@angular/router';
 
 @Injectable(
   {
@@ -9,8 +11,25 @@ export class NotifierService {
 
   public hasPermission = false;
 
-  constructor() {
+  constructor(
+    private swPush: SwPush,
+    private router: Router
+  ) {
     this.hasPermission = Notification.permission === 'granted';
+
+    this.swPush.notificationClicks.subscribe(event => {
+      const notif = event.notification;
+
+      console.log(event);
+
+      if (notif && notif.data.url) {
+        window.location.replace(notif.data.url);
+      }
+
+      if (notif && notif.data.uri) {
+        this.router.navigateByUrl(notif.data.url).then(() => {});
+      }
+    });
   }
 
   requestPermission() {
@@ -51,13 +70,11 @@ export class NotifierService {
       'Overview',
       {
         icon:      '../assets/logo_big.png',
-        lang:      'fr_FR',
         body:      'Time for your report !',
         tag:       'overview',
-        timestamp: Date.now() + 1000 * 60 * 30,
         vibrate:   [500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170, 40, 500],
         data: {
-          url: '/mood/overview'
+          uri: '/mood/overview'
         }
       }
     );
