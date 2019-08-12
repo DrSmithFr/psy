@@ -1,8 +1,10 @@
-import {Injectable}                from '@angular/core';
-import {moodLoadTranslations}      from '../translations/mood-load';
-import {generalTranslations}       from '../translations/general';
-import {TranslationModel}          from '../../models/translation.model';
+import {Injectable} from '@angular/core';
+import {moodLoadTranslations} from '../translations/mood-load';
+import {generalTranslations} from '../translations/general';
+import {TranslationModel} from '../../models/translation.model';
 import {Observable, ReplaySubject} from 'rxjs';
+import {StateService} from './state.service';
+import {take} from 'rxjs/operators';
 
 @Injectable(
   {
@@ -16,9 +18,33 @@ export class TranslatorService {
   private translations: Map<string, TranslationModel>;
   private loaded: ReplaySubject<boolean> = new ReplaySubject<boolean>();
 
-  constructor() {
+  constructor(
+    private state: StateService
+  ) {
     this.translations = new Map<string, TranslationModel>();
     this.loaded       = new ReplaySubject<true>();
+  }
+
+  init() {
+    const registered = [
+      moodLoadTranslations,
+      generalTranslations
+    ];
+
+    registered.forEach((list: TranslationModel[]) => {
+      list.forEach(trans => {
+        this.translations.set(trans.id, trans);
+      });
+    });
+
+    this
+      .state
+      .STATE_LOCALE
+      .pipe(take(1))
+      .subscribe(locale => {
+        this.local = locale;
+        this.loaded.next(true);
+      });
   }
 
   trans(value: string): Observable<string> {
@@ -38,20 +64,5 @@ export class TranslatorService {
 
   getTranslationAccordingToLocal(t: TranslationModel): string {
     return t[this.local];
-  }
-
-  init() {
-    const registered = [
-      moodLoadTranslations,
-      generalTranslations
-    ];
-
-    registered.forEach((list: TranslationModel[]) => {
-      list.forEach(trans => {
-        this.translations.set(trans.id, trans);
-      });
-    });
-
-    this.loaded.next(true);
   }
 }
