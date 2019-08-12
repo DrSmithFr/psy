@@ -20,24 +20,39 @@ const routes: Routes = [
       },
       {
         path:      '',
+        data: {
+          img: '/assets/draws/feeling.png'
+        },
         component: MoodDashboardComponent
       },
     ]
   },
   {
     path:      'meds',
+    data: {
+      img: '/assets/draws/medecine.svg'
+    },
     component: UnderConstructionComponent
   },
   {
     path:      'sleep',
+    data: {
+      img: '/assets/draws/sleep.svg'
+    },
     component: UnderConstructionComponent
   },
   {
     path:      'schedule',
+    data: {
+      img: '/assets/draws/schedule.svg'
+    },
     component: UnderConstructionComponent
   },
   {
     path:      'settings',
+    data: {
+      img: '/assets/draws/settings.png'
+    },
     component: SettingsComponent
   },
   {

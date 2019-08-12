@@ -1,5 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NotifierService} from '../../services/notifier.service';
+import {ActivatedRoute, NavigationEnd, ResolveStart, Router} from '@angular/router';
+import {filter, map, mergeMap} from 'rxjs/operators';
 
 @Component(
   {
@@ -10,14 +12,32 @@ import {NotifierService} from '../../services/notifier.service';
 )
 export class NavigationComponent implements OnInit {
 
-  @Output() opening = new EventEmitter<true>();
+  @Output() opening           = new EventEmitter<true>();
+  public currentImage: string = null;
 
   constructor(
-    public notifier: NotifierService
+    private router: Router
   ) {
   }
 
   ngOnInit() {
+    this.router.events.pipe(
+      filter(event => event instanceof ResolveStart),
+      map((event: ResolveStart) => {
+        let data  = null;
+
+        let route = event.state.root;
+
+        while (route) {
+          data  = route.data || data;
+          route = route.firstChild;
+        }
+
+        return data;
+      }),
+    ).subscribe((data: { img: string }) => {
+      this.currentImage = data.img;
+    });
   }
 
   onMenuClick() {
