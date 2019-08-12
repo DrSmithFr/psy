@@ -1,9 +1,9 @@
-import {NgModule}                 from '@angular/core';
-import {Routes, RouterModule}     from '@angular/router';
-import {MoodOverviewComponent}    from './pages/mood-overview/mood-overview.component';
-import {DashboardComponent}       from './pages/dashboard/dashboard.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {MoodOverviewComponent} from './pages/mood-overview/mood-overview.component';
+import {MoodDashboardComponent} from './pages/mood-dashboard/mood-dashboard.component';
 import {OverviewHistoryComponent} from './pages/overview-history/overview-history.component';
-import {SettingsComponent}        from './pages/settings/settings.component';
+import {SettingsComponent} from './pages/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path:      'mood',
-    component: DashboardComponent
+    component: MoodDashboardComponent
   },
   {
     path:      'settings',
@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   {
     path:       '',
-    pathMatch: 'full',
+    pathMatch:  'full',
     redirectTo: '/mood',
   }
 ];

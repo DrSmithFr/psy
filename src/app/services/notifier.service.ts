@@ -17,19 +17,27 @@ export class NotifierService {
   ) {
     this.hasPermission = Notification.permission === 'granted';
 
-    this.swPush.notificationClicks.subscribe(event => {
-      const notif = event.notification;
 
-      console.log(event);
+  }
 
-      if (notif && notif.data.url) {
-        window.location.replace(notif.data.url);
-      }
+  onNotificationClick(event: {
+    action: string;
+    notification: NotificationOptions & {
+      title: string;
+    };
+  }) {
+    const notif = event.notification;
 
-      if (notif && notif.data.uri) {
-        this.router.navigateByUrl(notif.data.url).then(() => {});
-      }
-    });
+    console.log(event);
+
+    if (notif && notif.data.url) {
+      window.location.replace(notif.data.url);
+    }
+
+    if (notif && notif.data.uri) {
+      this.router.navigateByUrl(notif.data.uri).then(() => {
+      });
+    }
   }
 
   requestPermission() {
@@ -69,11 +77,11 @@ export class NotifierService {
     this.notify(
       'Overview',
       {
-        icon:      '../assets/logo_big.png',
-        body:      'Time for your report !',
-        tag:       'overview',
-        vibrate:   [500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170, 40, 500],
-        data: {
+        icon:    '../assets/logo_big.png',
+        body:    'Time for your report !',
+        tag:     'overview',
+        vibrate: [500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170, 40, 500],
+        data:    {
           uri: '/mood/overview'
         }
       }
