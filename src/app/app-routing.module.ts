@@ -21,17 +21,30 @@ const routes: Routes = [
   {
     path:      'settings',
     component: SettingsComponent
+  }
+];
+
+const layouts: Routes = [
+  {
+    path: 'fullscreen',
+    children: [
+
+    ]
+  },
+  {
+    path: 'common',
+    children: routes
   },
   {
     path:       '',
     pathMatch:  'full',
-    redirectTo: '/mood',
+    redirectTo: '/common/mood',
   }
 ];
 
 @NgModule(
   {
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(layouts)],
     exports: [RouterModule]
   }
 )
