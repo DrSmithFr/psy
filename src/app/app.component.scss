@@ -18,9 +18,21 @@ mat-sidenav {
 
   button {
     width: 100%;
+    padding: 0;
+
+    &.active, &:active, &:focus {
+      background: #fff;
+      color: #607d8b;
+      border-left: 5px solid #607d8b;
+      text-decoration: underline;
+    }
 
     mat-label {
       margin-left: 10px;
+    }
+
+    img {
+      height: 70px;
     }
   }
 }

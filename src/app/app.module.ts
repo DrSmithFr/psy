@@ -35,6 +35,7 @@ import {EventsSelectorComponent} from './components/events-selector/events-selec
 import {MoodChartComponent} from './components/mood-chart/mood-chart.component';
 import {ClearDataComponent} from './dialogs/clear-data/clear-data.component';
 import {PushNotificationsModule} from 'ng-push';
+import { EventHeatMapComponent } from './components/event-heat-map/event-heat-map.component';
 
 @NgModule(
   {
@@ -56,7 +57,8 @@ import {PushNotificationsModule} from 'ng-push';
       InstallPwaComponent,
       EventsSelectorComponent,
       MoodChartComponent,
-      ClearDataComponent
+      ClearDataComponent,
+      EventHeatMapComponent
     ],
     imports:         [
       BrowserModule,

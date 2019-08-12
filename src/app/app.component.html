@@ -1,15 +1,18 @@
 <mat-sidenav-container (backdropClick)="close()">
   <mat-sidenav #sidenav (keydown.escape)="close()" disableClose>
 
-    <button mat-stroked-button (click)="close()" routerLink="/mood" routerLinkActive="active">
-      <mat-icon>mood</mat-icon>
+    <!-- avoid focus -->
+    <input cdkFocusInitial type='text' style="display: none" />
+
+    <button mat-button (click)="close()" routerLink="/mood" routerLinkActive="active" autofocus="false">
+      <img src="/assets/draws/feeling.png">
       <mat-label>Mood</mat-label>
     </button>
 
     <mat-divider></mat-divider>
 
-    <button mat-stroked-button (click)="close()" routerLink="/settings" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-      <mat-icon>settings</mat-icon>
+    <button mat-button (click)="close()" routerLink="/settings" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <img src="/assets/draws/settings.png" height="200">
       <mat-label>Settings</mat-label>
     </button>
 

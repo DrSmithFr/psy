@@ -1,5 +1,11 @@
 <div class="wrapper">
 
+  <div *ngIf="list.length === 0" class="center">
+    <h1>No Data</h1>
+    <img src="/assets/draws/no-data.svg" height="200">
+    <p>Add an entry to start your journey !</p>
+  </div>
+
   <div class="add-entry center">
     <a mat-flat-button routerLink="/mood/overview" color="primary">
       <mat-icon>add</mat-icon>
@@ -7,15 +13,23 @@
     </a>
   </div>
 
-  <mat-card class="shadow">
-    <h1>Mood load</h1>
-    <app-mood-load></app-mood-load>
-  </mat-card>
+  <div *ngIf="list.length">
+    <mat-card class="shadow">
+      <h1>Mood load</h1>
+      <app-mood-load [overviews]="list"></app-mood-load>
+    </mat-card>
 
-  <mat-card class="shadow">
-    <h1>Feelings</h1>
-    <app-mood-chart></app-mood-chart>
-  </mat-card>
+    <mat-card class="shadow">
+      <h1>Feelings</h1>
+      <app-mood-chart [overviews]="list"></app-mood-chart>
+    </mat-card>
 
-  <app-mood-short-history></app-mood-short-history>
+    <mat-card class="shadow">
+      <h1>Events</h1>
+      <app-event-heat-map [overviews]="list"></app-event-heat-map>
+    </mat-card>
+
+    <app-mood-short-history></app-mood-short-history>
+  </div>
+
 </div>
