@@ -1,5 +1,4 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import {NotifierService} from '../../services/notifier.service';
 
 @Component(

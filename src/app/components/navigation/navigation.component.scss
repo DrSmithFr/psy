@@ -9,4 +9,9 @@
 mat-toolbar {
   background: #fff;
   border-bottom: 1px solid #ddd;
+
+  z-index: 1;
+
+  position: fixed;
+  top: 0;
 }

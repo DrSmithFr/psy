@@ -19,12 +19,14 @@ mat-sidenav {
   button {
     width: 100%;
     padding: 0;
+    border-bottom: 1px solid #ddd;
 
     &.active, &:active, &:focus {
       background: #fff;
       color: #607d8b;
       border-left: 5px solid #607d8b;
       text-decoration: underline;
+      font-weight: bold;
     }
 
     mat-label {
@@ -32,7 +34,15 @@ mat-sidenav {
     }
 
     img {
-      height: 70px;
+      width: 70px;
     }
+  }
+}
+
+mat-sidenav-content {
+  padding-top: 56px;
+
+  .sidenav-wrapper {
+    margin-bottom: 65px;
   }
 }
