@@ -44,7 +44,7 @@ const routes: Routes = [
   {
     path:      'schedule',
     data: {
-      img: '/assets/draws/schedule.svg'
+      img: '/assets/draws/events.svg'
     },
     component: UnderConstructionComponent
   },

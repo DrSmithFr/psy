@@ -7,10 +7,10 @@
 
     <span class="spacer"></span>
 
-    <img src="{{currentImage}}" height="50" *ngIf="currentImage !== ''">
+    <img src="{{currentImage}}" height="50" *ngIf="currentImage !== ''" (click)="notifier.overviewNotif()">
 
 <!--    <button mat-button>-->
-<!--      <mat-icon class="icon" (click)="notifier.overviewNotif()">notification_important</mat-icon>-->
+<!--      <mat-icon class="icon" >notification_important</mat-icon>-->
 <!--    </button>-->
 
   </mat-toolbar-row>

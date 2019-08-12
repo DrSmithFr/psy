@@ -28,8 +28,6 @@ export class NotifierService {
   }) {
     const notif = event.notification;
 
-    console.log(event);
-
     if (notif && notif.data.url) {
       window.location.replace(notif.data.url);
     }
@@ -70,7 +68,7 @@ export class NotifierService {
       .serviceWorker
       .getRegistration()
       .then(reg => reg.showNotification(title, options))
-      .catch(err => alert('Service Worker registration error: ' + err));
+      .catch(err => console.warn('Service Worker registration error: ' + err));
   }
 
   overviewNotif() {

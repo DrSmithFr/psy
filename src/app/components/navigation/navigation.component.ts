@@ -16,7 +16,8 @@ export class NavigationComponent implements OnInit {
   public currentImage: string = null;
 
   constructor(
-    private router: Router
+    private router: Router,
+    public notifier: NotifierService
   ) {
   }
 
