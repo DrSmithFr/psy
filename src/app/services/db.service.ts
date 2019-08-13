@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {OverviewModel} from '../../models/overview.model';
 import {openDB} from 'idb';
-import {Subject} from 'rxjs';
+import {combineLatest, of, Subject} from 'rxjs';
 import {MedsModel} from '../../models/meds.model';
 
 @Injectable(
@@ -62,11 +62,15 @@ export class DbService {
   }
 
   removeOverviews(list: OverviewModel[]) {
-    console.log(list);
+    const obs = [];
+
     for (const item of list) {
-      console.log(item);
-      this.removeOverview(item);
+      obs.push(this.removeOverview(item));
     }
+
+    obs.push(of(true));
+
+    return combineLatest(obs);
   }
 
   removeOverview(item: OverviewModel) {
@@ -107,24 +111,27 @@ export class DbService {
         );
   }
 
-  removeMedss(list: MedsModel[]) {
-    console.log(list);
+  removeMeds(list: MedsModel[]) {
+    const obs = [];
+
     for (const item of list) {
-      console.log(item);
-      this.removeMed(item);
+      obs.push(this.removeMed(item));
     }
+    obs.push(of(true));
+    return combineLatest(obs);
   }
 
   removeMed(item: MedsModel) {
-    this.promise
-        .then(
-          (db: any) => {
-            db
-              .delete('meds', item.id)
-              .then(() => {
-                this.meds.next([]);
-              });
-          }
-        );
+    return this
+      .promise
+      .then(
+        (db: any) => {
+          return db
+            .delete('meds', item.id)
+            .then(() => {
+              this.meds.next([]);
+            });
+        }
+      );
   }
 }

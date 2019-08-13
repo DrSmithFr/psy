@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {DbService} from '../../services/db.service';
 import {Router} from '@angular/router';
+import {combineLatest} from 'rxjs';
 
 @Component(
   {
@@ -23,10 +24,20 @@ export class ClearDataComponent implements OnInit {
   }
 
   clearData() {
-    this.database.getOverviews().subscribe(list => {
-      this.database.removeOverviews(list);
-      this.dialogRef.close(true);
-      this.router.navigateByUrl('/');
-    });
+    combineLatest(
+      this.database.getOverviews(),
+      this.database.getMeds(),
+    ).subscribe(
+      ([
+         overviews,
+         meds
+       ]) => {
+        combineLatest(
+          this.database.removeOverviews(overviews),
+          this.database.removeMeds(meds)
+        ).subscribe(() => {
+          window.location.replace('/');
+        });
+      });
   }
 }
