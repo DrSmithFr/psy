@@ -18,7 +18,7 @@ const routes: Routes = [
       {
         path:      'overview',
         data: {
-          img: '/assets/draws/feeling.png',
+          img: '/assets/draws/mood.svg',
           animation: 'MoodDashboard'
         },
         component: MoodOverviewComponent
@@ -26,7 +26,7 @@ const routes: Routes = [
       {
         path:      'history',
         data: {
-          img: '/assets/draws/feeling.png',
+          img: '/assets/draws/mood.svg',
           animation: 'MoodDashboard'
         },
         component: OverviewHistoryComponent
@@ -34,7 +34,7 @@ const routes: Routes = [
       {
         path:      '',
         data: {
-          img: '/assets/draws/feeling.png',
+          img: '/assets/draws/mood.svg',
           animation: 'MoodDashboard'
         },
         component: MoodDashboardComponent
@@ -89,7 +89,7 @@ const routes: Routes = [
   {
     path:      'settings',
     data: {
-      img: '/assets/draws/settings.png',
+      img: '/assets/draws/settings.svg',
       animation: 'Settings'
     },
     component: SettingsComponent

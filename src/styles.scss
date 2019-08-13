@@ -44,14 +44,14 @@ body {
 }
 
 mat-label {
-  font-family: $font-title;
+  font-family: $font-text;
 }
 
 .mat-button-wrapper, .mat-option-text {
   font-family: $font-text;
 }
 
-h1, h2, h3, h4, h5, .title {
+h1, h2, h3, h4, h5, .title, mat-card-title {
   font-family: $font-title;
   font-weight: normal;
 }
