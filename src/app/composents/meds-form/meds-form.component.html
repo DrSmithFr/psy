@@ -6,8 +6,8 @@
       <mat-step>
         <ng-template matStepLabel>Description</ng-template>
 
-        <mat-form-field class="example-full-width">
-          <input placeholder="Name" matInput #message maxlength="255" [(ngModel)]="med.name">
+        <mat-form-field class="full-width">
+            <input placeholder="Name" matInput #message maxlength="255" [(ngModel)]="med.name">
           <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
         </mat-form-field>
 
@@ -19,9 +19,13 @@
       <mat-step>
         <ng-template matStepLabel>Quantity</ng-template>
 
-        <mat-form-field class="example-full-width">
-          <input matInput [(ngModel)]="med.count" type="number">
-        </mat-form-field>
+        <div class="int-field">
+          <button mat-icon-button (click)="med.count = med.count - 1">-</button>
+          <mat-form-field>
+            <input matInput min="0" [(ngModel)]="med.count" type="number">
+          </mat-form-field>
+          <button mat-icon-button (click)="med.count = med.count + 1">+</button>
+        </div>
 
         <div class="actions">
           <button mat-button matStepperNext color="primary">{{'general.next'|trans|async}}</button>

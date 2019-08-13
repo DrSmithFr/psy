@@ -46,6 +46,7 @@ import { MedsCreationComponent } from './pages/meds-creation/meds-creation.compo
 import { MedsFormComponent } from './composents/meds-form/meds-form.component';
 import { MedDisplayComponent } from './composents/med-display/med-display.component';
 import { MedsEditionComponent } from './pages/meds-edition/meds-edition.component';
+import { DrugsDashboardComponent } from './pages/drugs-dashboard/drugs-dashboard.component';
 
 @NgModule(
   {
@@ -78,7 +79,8 @@ import { MedsEditionComponent } from './pages/meds-edition/meds-edition.componen
       MedsCreationComponent,
       MedsFormComponent,
       MedDisplayComponent,
-      MedsEditionComponent
+      MedsEditionComponent,
+      DrugsDashboardComponent
     ],
     imports:         [
       BrowserModule,

@@ -4,12 +4,12 @@ import {MoodOverviewComponent} from './pages/mood-overview/mood-overview.compone
 import {MoodDashboardComponent} from './pages/mood-dashboard/mood-dashboard.component';
 import {OverviewHistoryComponent} from './pages/overview-history/overview-history.component';
 import {SettingsComponent} from './pages/settings/settings.component';
-import {UnderConstructionComponent} from './components/under-construction/under-construction.component';
 import {MedsDashboardComponent} from './pages/meds-dashboard/meds-dashboard.component';
 import {SleepDashboardComponent} from './pages/sleep-dashboard/sleep-dashboard.component';
 import {ScheduleDashboardComponent} from './pages/schedule-dashboard/schedule-dashboard.component';
 import {MedsCreationComponent} from './pages/meds-creation/meds-creation.component';
 import {MedsEditionComponent} from './pages/meds-edition/meds-edition.component';
+import {DrugsDashboardComponent} from './pages/drugs-dashboard/drugs-dashboard.component';
 
 const routes: Routes = [
   {
@@ -67,6 +67,19 @@ const routes: Routes = [
           animation: 'MedsDashboard'
         },
         component: MedsDashboardComponent
+      },
+    ]
+  },
+  {
+    path:      'drugs',
+    children: [
+      {
+        path:      '',
+        data: {
+          img: '/assets/draws/drugs.svg',
+          animation: 'DrugsDashboard'
+        },
+        component: DrugsDashboardComponent
       },
     ]
   },

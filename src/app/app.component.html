@@ -14,6 +14,11 @@
 <!--      <mat-label>Sleep</mat-label>-->
 <!--    </button>-->
 
+    <button mat-button (click)="close()" routerLink="/drugs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <img src="/assets/draws/drugs.svg">
+      <mat-label>Abuse</mat-label>
+    </button>
+
     <button mat-button (click)="close()" routerLink="/meds" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       <img src="/assets/draws/medecine.svg">
       <mat-label>Meds</mat-label>
