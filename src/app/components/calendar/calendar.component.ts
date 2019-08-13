@@ -22,6 +22,7 @@ export class CalendarComponent implements OnInit {
   }
 
   renderCalendarCells() {
+    const currentYear = this.selected.getFullYear();
     const currentMonth = this.selected.getMonth();
     const date         = new Date(this.selected.getFullYear(), currentMonth, 1);
 
@@ -42,7 +43,7 @@ export class CalendarComponent implements OnInit {
         date.setDate(date.getDate() + 1);
       }
 
-      if (date.getMonth() > currentMonth) {
+      if (date.getMonth() > currentMonth || date.getMonth() < currentMonth && date.getFullYear() > currentYear) {
         displayDate = false;
       }
     }
