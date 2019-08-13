@@ -1,0 +1,31 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Meds
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div *ngIf="meds && meds.length">
+
+      <div *ngFor="let med of meds; let i = index">
+        <app-med-display [med]="med"></app-med-display>
+        <hr>
+      </div>
+
+      <div class="center">
+        <button mat-button class="full" routerLink="/meds/create">Add medicine</button>
+      </div>
+
+      <hr class="first">
+
+      <mat-paginator
+        [length]="meds.length"
+        [pageSize]="pageSize"
+        (page)="updateList($event)">
+      </mat-paginator>
+
+    </div>
+
+  </mat-expansion-panel>
+</mat-accordion>

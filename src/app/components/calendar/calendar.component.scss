@@ -20,7 +20,7 @@
 }
 
 .right-wrapper {
-  background-color: #f05855;
+  background-color: #607d8b;
   color: white;
   transform-origin: left center;
   transform: rotateY(110deg);
@@ -72,7 +72,7 @@ table tbody:before {
 }
 
 table th {
-  color: #f05855;
+  color: #607d8b;
   font-size: 0.75em;
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -95,7 +95,7 @@ table td::before {
   left: 50%;
   top: 100%;
   transform: translate(-50%, -8px);
-  background-color: #f05855;
+  background-color: #607d8b;
 }
 
 table td.currentDay::before {
@@ -112,7 +112,7 @@ table td.selectable {
 }
 
 table td.selectable:hover {
-  background: #f05855;
+  background: #607d8b;
   color: white;
 }
 
@@ -122,6 +122,6 @@ table td.between {
 }
 
 table td.active, table td.hover {
-  background: #f05855;
+  background: #607d8b;
   color: white;
 }

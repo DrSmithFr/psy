@@ -1,3 +1,26 @@
 <div class="wrapper">
+
   <app-under-construction></app-under-construction>
+
+  <div class="center" *ngIf="list.length === 0">
+    <h1>No Data</h1>
+    <img src="/assets/draws/no-data.svg" height="200">
+
+    <button mat-flat-button color="primary" routerLink="/meds/create">Create medications</button>
+  </div>
+
+  <div *ngIf="list.length">
+    <mat-card class="shadow">
+      <h1>Today</h1>
+    </mat-card>
+
+    <app-meds-list [meds]="list"></app-meds-list>
+  </div>
+
+</div>
+
+<div class="add-wrapper">
+  <button mat-fab color="primary" routerLink="/meds/create">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>

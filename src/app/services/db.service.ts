@@ -1,20 +1,8 @@
 import {Injectable} from '@angular/core';
 import {OverviewModel} from '../../models/overview.model';
-import {DBSchema, openDB} from 'idb';
+import {openDB} from 'idb';
 import {Subject} from 'rxjs';
-
-interface AppDb extends DBSchema {
-  'overview': {
-    value: {
-      mood: string,
-      feelings: string[],
-      note: string,
-      date: Date
-    },
-    key: number,
-    indexes: { 'by-date': number }
-  };
-}
+import {MedsModel} from '../../models/meds.model';
 
 @Injectable(
   {
@@ -24,19 +12,24 @@ interface AppDb extends DBSchema {
 export class DbService {
   private promise;
   private overviews: Subject<OverviewModel[]> = new Subject();
+  private meds: Subject<MedsModel[]>          = new Subject();
 
   constructor() {
     this.connect();
   }
 
   connect() {
-    this.promise = openDB<AppDb>(
+    this.promise = openDB<any>(
       'app-database-local',
-      1,
+      2,
       {
         upgrade(db) {
           if (!db.objectStoreNames.contains('overview')) {
             db.createObjectStore('overview', {keyPath: 'id', autoIncrement: true});
+          }
+
+          if (!db.objectStoreNames.contains('meds')) {
+            db.createObjectStore('meds', {keyPath: 'id', autoIncrement: true});
           }
         }
       }
@@ -46,16 +39,16 @@ export class DbService {
   addOverview(value: OverviewModel) {
     this.promise.then((db: any) => {
       db.put('overview', value);
-      this.updateOverviews();
+      this.loadOverviews();
     });
   }
 
   getOverviews() {
-    this.updateOverviews();
+    this.loadOverviews();
     return this.overviews.asObservable();
   }
 
-  updateOverviews(): void {
+  loadOverviews(): void {
     this.promise
         .then(
           (db: any) => {
@@ -84,6 +77,52 @@ export class DbService {
               .delete('overview', item.id)
               .then(() => {
                 this.overviews.next([]);
+              });
+          }
+        );
+  }
+
+  addMeds(value: MedsModel) {
+    this.promise.then((db: any) => {
+      db.put('meds', value);
+      this.loadMeds();
+    });
+  }
+
+  getMeds() {
+    this.loadMeds();
+    return this.meds.asObservable();
+  }
+
+  loadMeds(): void {
+    this.promise
+        .then(
+          (db: any) => {
+            db
+              .getAll('meds')
+              .then(list => {
+                this.meds.next(list.reverse());
+              });
+          }
+        );
+  }
+
+  removeMedss(list: MedsModel[]) {
+    console.log(list);
+    for (const item of list) {
+      console.log(item);
+      this.removeMed(item);
+    }
+  }
+
+  removeMed(item: MedsModel) {
+    this.promise
+        .then(
+          (db: any) => {
+            db
+              .delete('meds', item.id)
+              .then(() => {
+                this.meds.next([]);
               });
           }
         );

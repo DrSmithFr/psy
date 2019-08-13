@@ -8,6 +8,8 @@ import {UnderConstructionComponent} from './components/under-construction/under-
 import {MedsDashboardComponent} from './pages/meds-dashboard/meds-dashboard.component';
 import {SleepDashboardComponent} from './pages/sleep-dashboard/sleep-dashboard.component';
 import {ScheduleDashboardComponent} from './pages/schedule-dashboard/schedule-dashboard.component';
+import {MedsCreationComponent} from './pages/meds-creation/meds-creation.component';
+import {MedsEditionComponent} from './pages/meds-edition/meds-edition.component';
 
 const routes: Routes = [
   {
@@ -15,10 +17,18 @@ const routes: Routes = [
     children: [
       {
         path:      'overview',
+        data: {
+          img: '/assets/draws/feeling.png',
+          animation: 'MoodDashboard'
+        },
         component: MoodOverviewComponent
       },
       {
         path:      'history',
+        data: {
+          img: '/assets/draws/feeling.png',
+          animation: 'MoodDashboard'
+        },
         component: OverviewHistoryComponent
       },
       {
@@ -33,11 +43,32 @@ const routes: Routes = [
   },
   {
     path:      'meds',
-    data: {
-      img: '/assets/draws/medecine.svg',
-      animation: 'MedsDashboard'
-    },
-    component: MedsDashboardComponent
+    children: [
+      {
+        path:      'create',
+        data: {
+          img: '/assets/draws/medecine.svg',
+          animation: 'MedsDashboard'
+        },
+        component: MedsCreationComponent
+      },
+      {
+        path:      'edit/:id',
+        data: {
+          img: '/assets/draws/medecine.svg',
+          animation: 'MedsDashboard'
+        },
+        component: MedsEditionComponent
+      },
+      {
+        path:      '',
+        data: {
+          img: '/assets/draws/medecine.svg',
+          animation: 'MedsDashboard'
+        },
+        component: MedsDashboardComponent
+      },
+    ]
   },
   {
     path:      'sleep',

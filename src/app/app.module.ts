@@ -41,6 +41,11 @@ import { SleepDashboardComponent } from './pages/sleep-dashboard/sleep-dashboard
 import { MedsDashboardComponent } from './pages/meds-dashboard/meds-dashboard.component';
 import { ScheduleDashboardComponent } from './pages/schedule-dashboard/schedule-dashboard.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { MedsListComponent } from './components/meds-list/meds-list.component';
+import { MedsCreationComponent } from './pages/meds-creation/meds-creation.component';
+import { MedsFormComponent } from './composents/meds-form/meds-form.component';
+import { MedDisplayComponent } from './composents/med-display/med-display.component';
+import { MedsEditionComponent } from './pages/meds-edition/meds-edition.component';
 
 @NgModule(
   {
@@ -68,7 +73,12 @@ import { CalendarComponent } from './components/calendar/calendar.component';
       SleepDashboardComponent,
       MedsDashboardComponent,
       ScheduleDashboardComponent,
-      CalendarComponent
+      CalendarComponent,
+      MedsListComponent,
+      MedsCreationComponent,
+      MedsFormComponent,
+      MedDisplayComponent,
+      MedsEditionComponent
     ],
     imports:         [
       BrowserModule,

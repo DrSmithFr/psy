@@ -1,0 +1,46 @@
+<div class="wrapper">
+  <mat-card class="shadow">
+
+    <mat-vertical-stepper>
+
+      <mat-step>
+        <ng-template matStepLabel>Description</ng-template>
+
+        <mat-form-field class="example-full-width">
+          <input placeholder="Name" matInput #message maxlength="255" [(ngModel)]="med.name">
+          <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-button matStepperNext color="primary">{{'general.next'|trans|async}}</button>
+        </div>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Quantity</ng-template>
+
+        <mat-form-field class="example-full-width">
+          <input matInput [(ngModel)]="med.count" type="number">
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-button matStepperNext color="primary">{{'general.next'|trans|async}}</button>
+        </div>
+      </mat-step>
+
+      <mat-step optional>
+        <ng-template matStepLabel>Reminders</ng-template>
+
+
+
+        <div class="actions">
+          <button mat-raised-button color="primary" routerLink="/meds" (click)="submit()">
+            {{'general.save'|trans|async}}</button>
+        </div>
+      </mat-step>
+
+    </mat-vertical-stepper>
+
+
+  </mat-card>
+</div>

@@ -1,0 +1,12 @@
+<div>
+  <div class="meds-container">
+    <h1>{{ med.name }}</h1>
+    <span>Restant: {{med.count}}</span>
+    <div class="actions">
+      <button mat-icon-button routerLink="/meds/edit/{{med.id}}">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+  </div>
+
+</div>
