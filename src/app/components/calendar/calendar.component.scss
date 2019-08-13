@@ -1,0 +1,127 @@
+
+
+.header {
+  padding: 15px 0 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header i {
+  padding: 0 5px;
+  cursor: pointer;
+}
+
+.header span {
+  display: inline-block;
+  margin: 0 3px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.right-wrapper {
+  background-color: #f05855;
+  color: white;
+  transform-origin: left center;
+  transform: rotateY(110deg);
+  transition: all 0.5s;
+}
+
+.right-wrapper.is-active {
+  transform: rotateY(0deg);
+}
+
+.right-wrapper .header {
+  text-align: left;
+  justify-content: center;
+}
+
+.right-wrapper .day {
+  font-size: 12em;
+  text-indent: -12px;
+  display: block;
+}
+
+.right-wrapper .month {
+  font-size: 2.5em;
+}
+
+.showDate {
+  text-align: right;
+  width: 100%;
+}
+
+.showDate i.is-active {
+  transform: scale(-1);
+}
+
+table {
+  text-align: center;
+
+  width: 90%;
+  margin: 30px auto 0;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+table tbody:before {
+  content: "-";
+  display: block;
+  line-height: 0.75em;
+  color: transparent;
+}
+
+table th {
+  color: #f05855;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+table td {
+  padding: 11px 5px;
+  color: #ced0ce;
+  font-size: 0.75em;
+  transition: all 0.3s;
+  position: relative;
+}
+
+table td::before {
+  content: "";
+  display: none;
+  width: 50%;
+  height: 2px;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, -8px);
+  background-color: #f05855;
+}
+
+table td.currentDay::before {
+  display: block;
+}
+
+table td.currentDay.selectable:hover::before {
+  background-color: #ffffff;
+}
+
+table td.selectable {
+  color: #303633;
+  cursor: pointer;
+}
+
+table td.selectable:hover {
+  background: #f05855;
+  color: white;
+}
+
+table td.between {
+  background-color: #333;
+  color: white;
+}
+
+table td.active, table td.hover {
+  background: #f05855;
+  color: white;
+}

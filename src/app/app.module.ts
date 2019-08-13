@@ -40,6 +40,7 @@ import { UnderConstructionComponent } from './components/under-construction/unde
 import { SleepDashboardComponent } from './pages/sleep-dashboard/sleep-dashboard.component';
 import { MedsDashboardComponent } from './pages/meds-dashboard/meds-dashboard.component';
 import { ScheduleDashboardComponent } from './pages/schedule-dashboard/schedule-dashboard.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 @NgModule(
   {
@@ -66,7 +67,8 @@ import { ScheduleDashboardComponent } from './pages/schedule-dashboard/schedule-
       UnderConstructionComponent,
       SleepDashboardComponent,
       MedsDashboardComponent,
-      ScheduleDashboardComponent
+      ScheduleDashboardComponent,
+      CalendarComponent
     ],
     imports:         [
       BrowserModule,
