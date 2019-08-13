@@ -37,6 +37,9 @@ import {ClearDataComponent} from './dialogs/clear-data/clear-data.component';
 import {PushNotificationsModule} from 'ng-push';
 import { EventHeatMapComponent } from './components/event-heat-map/event-heat-map.component';
 import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
+import { SleepDashboardComponent } from './pages/sleep-dashboard/sleep-dashboard.component';
+import { MedsDashboardComponent } from './pages/meds-dashboard/meds-dashboard.component';
+import { ScheduleDashboardComponent } from './pages/schedule-dashboard/schedule-dashboard.component';
 
 @NgModule(
   {
@@ -60,7 +63,10 @@ import { UnderConstructionComponent } from './components/under-construction/unde
       FeelingChartComponent,
       ClearDataComponent,
       EventHeatMapComponent,
-      UnderConstructionComponent
+      UnderConstructionComponent,
+      SleepDashboardComponent,
+      MedsDashboardComponent,
+      ScheduleDashboardComponent
     ],
     imports:         [
       BrowserModule,

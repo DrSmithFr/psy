@@ -5,6 +5,9 @@ import {MoodDashboardComponent} from './pages/mood-dashboard/mood-dashboard.comp
 import {OverviewHistoryComponent} from './pages/overview-history/overview-history.component';
 import {SettingsComponent} from './pages/settings/settings.component';
 import {UnderConstructionComponent} from './components/under-construction/under-construction.component';
+import {MedsDashboardComponent} from './pages/meds-dashboard/meds-dashboard.component';
+import {SleepDashboardComponent} from './pages/sleep-dashboard/sleep-dashboard.component';
+import {ScheduleDashboardComponent} from './pages/schedule-dashboard/schedule-dashboard.component';
 
 const routes: Routes = [
   {
@@ -34,7 +37,7 @@ const routes: Routes = [
       img: '/assets/draws/medecine.svg',
       animation: 'MedsDashboard'
     },
-    component: UnderConstructionComponent
+    component: MedsDashboardComponent
   },
   {
     path:      'sleep',
@@ -42,7 +45,7 @@ const routes: Routes = [
       img: '/assets/draws/sleep.svg',
       animation: 'SleepDashboard'
     },
-    component: UnderConstructionComponent
+    component: SleepDashboardComponent
   },
   {
     path:      'schedule',
@@ -50,7 +53,7 @@ const routes: Routes = [
       img: '/assets/draws/events.svg',
       animation: 'ScheduleDashboard'
     },
-    component: UnderConstructionComponent
+    component: ScheduleDashboardComponent
   },
   {
     path:      'settings',
