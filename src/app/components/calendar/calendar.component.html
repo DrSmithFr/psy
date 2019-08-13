@@ -1,10 +1,10 @@
 <div class="calendar-wrapper">
 
   <div class="header">
-    <button mat-button (click)="previousMonth()"><</button>
+    <button mat-icon-button (click)="previousMonth()"><</button>
     <span>{{selected|date: 'MMMM'}}<span class="month">
     </span>{{selected|date: 'yyyy'}}<span class="year"></span></span>
-    <button mat-button (click)="nextMonth()">></button>
+    <button mat-icon-button (click)="nextMonth()">></button>
   </div>
   <div class="calender">
     <table>
