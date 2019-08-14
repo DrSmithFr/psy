@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OverviewModel}     from '../../../models/overview.model';
 import {DbService}         from '../../services/db.service';
+import {Router} from '@angular/router';
 
 @Component(
   {
@@ -14,7 +15,8 @@ export class MoodOverviewComponent implements OnInit {
   overview: OverviewModel;
 
   constructor(
-    private database: DbService
+    private database: DbService,
+    private router: Router
   ) {
     this.overview = new OverviewModel();
   }
@@ -24,8 +26,10 @@ export class MoodOverviewComponent implements OnInit {
     this.overview = new OverviewModel();
   }
 
-  submitOverview() {
-    this.database.addOverview(this.overview);
-    this.overview = new OverviewModel();
+  submit() {
+    this.database.addOverview(this.overview).subscribe(() => {
+      this.router.navigateByUrl('/');
+      this.overview = new OverviewModel();
+    });
   }
 }

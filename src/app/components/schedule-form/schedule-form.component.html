@@ -61,12 +61,14 @@
             <input placeholder="Address" matInput #address maxlength="255" formControlName="street">
             <mat-hint align="end">{{address.value.length}} / 256</mat-hint>
           </mat-form-field>
-
-          <div class="actions">
-            <button mat-flat-button color="primary" (click)="submit()">
-              {{'general.save'|trans|async}}</button>
-          </div>
         </form>
+
+        <div class="actions">
+          <button mat-flat-button color="primary" (click)="submit()">
+            {{'general.save'|trans|async}}
+          </button>
+        </div>
+
       </mat-step>
 
     </mat-vertical-stepper>
