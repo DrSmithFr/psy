@@ -1,69 +1,75 @@
 <div class="wrapper">
   <mat-card class="shadow">
 
-    <mat-vertical-stepper>
+    <mat-vertical-stepper [linear]="true">
 
-      <mat-step>
-        <ng-template matStepLabel>When</ng-template>
+      <mat-step [stepControl]="when">
+        <form [formGroup]="when">
+          <ng-template matStepLabel>When</ng-template>
 
-        <mat-form-field>
-          <input matInput [matDatepicker]="datePicker" placeholder="Choose date" [(ngModel)]="appointment.date">
-          <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
-          <mat-datepicker #datePicker touchUi="true"></mat-datepicker>
-        </mat-form-field>
+          <mat-form-field>
+            <input matInput [matDatepicker]="datePicker" placeholder="Choose date" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+            <mat-datepicker #datePicker touchUi="true"></mat-datepicker>
+          </mat-form-field>
 
-        <mat-form-field>
-          <input matInput [ngxTimepicker]="timePicker" placeholder="Choose time">
-          <button mat-button matSuffix mat-icon-button (click)="timePicker.open()">
-            <mat-icon>access_time</mat-icon>
-          </button>
-          <ngx-material-timepicker #timePicker [format]="2" [minutesGap]="5"></ngx-material-timepicker>
-        </mat-form-field>
+          <mat-form-field>
+            <input matInput [ngxTimepicker]="timePicker" placeholder="Choose time" [format]="24" formControlName="time">
+            <button mat-button matSuffix mat-icon-button (click)="timePicker.open()">
+              <mat-icon>access_time</mat-icon>
+            </button>
+            <ngx-material-timepicker #timePicker [minutesGap]="5"></ngx-material-timepicker>
+          </mat-form-field>
 
-        <div class="actions">
-          <button mat-button matStepperNext color="primary">{{'general.next'|trans|async}}</button>
-        </div>
+          <div class="actions">
+            <button mat-button matStepperNext color="primary">{{'general.next'|trans|async}}</button>
+          </div>
+        </form>
       </mat-step>
 
-      <mat-step>
-        <ng-template matStepLabel>What</ng-template>
+      <mat-step [stepControl]="what">
+        <form [formGroup]="what">
+          <ng-template matStepLabel>What</ng-template>
 
-        <mat-form-field class="full-width">
-          <input placeholder="Title" matInput #title maxlength="255" [(ngModel)]="appointment.title">
-          <mat-hint align="end">{{title.value.length}} / 256</mat-hint>
-        </mat-form-field>
+          <mat-form-field class="full-width">
+            <input placeholder="Title" matInput #title maxlength="255" formControlName="title">
+            <mat-hint align="end">{{title.value.length}} / 256</mat-hint>
+          </mat-form-field>
 
-        <mat-form-field class="full-width">
-          <input placeholder="Description" matInput #description maxlength="255" [(ngModel)]="appointment.description">
-          <mat-hint align="end">{{description.value.length}} / 256</mat-hint>
-        </mat-form-field>
+          <mat-form-field class="full-width">
+            <input placeholder="Description" matInput #description maxlength="255"
+                   formControlName="description">
+            <mat-hint align="end">{{description.value.length}} / 256</mat-hint>
+          </mat-form-field>
 
-        <div class="actions">
-          <button mat-button matStepperNext color="primary">{{'general.next'|trans|async}}</button>
-        </div>
+          <div class="actions">
+            <button mat-button matStepperNext color="primary">{{'general.next'|trans|async}}</button>
+          </div>
+        </form>
       </mat-step>
 
-      <mat-step optional>
-        <ng-template matStepLabel>Where</ng-template>
+      <mat-step optional [stepControl]="where">
+        <form [formGroup]="where">
+          <ng-template matStepLabel>Where</ng-template>
 
-        <mat-form-field class="full-width">
-          <input placeholder="City" matInput #city maxlength="255" [(ngModel)]="appointment.city">
-          <mat-hint align="end">{{city.value.length}} / 256</mat-hint>
-        </mat-form-field>
+          <mat-form-field class="full-width">
+            <input placeholder="City" matInput #city maxlength="255" formControlName="city">
+            <mat-hint align="end">{{city.value.length}} / 256</mat-hint>
+          </mat-form-field>
 
-        <mat-form-field class="full-width">
-          <input placeholder="Address" matInput #address maxlength="255" [(ngModel)]="appointment.address">
-          <mat-hint align="end">{{address.value.length}} / 256</mat-hint>
-        </mat-form-field>
+          <mat-form-field class="full-width">
+            <input placeholder="Address" matInput #address maxlength="255" formControlName="street">
+            <mat-hint align="end">{{address.value.length}} / 256</mat-hint>
+          </mat-form-field>
 
-        <div class="actions">
-          <button mat-raised-button color="primary" routerLink="/schedule" (click)="submit()">
-            {{'general.save'|trans|async}}</button>
-        </div>
+          <div class="actions">
+            <button mat-flat-button color="primary" (click)="submit()">
+              {{'general.save'|trans|async}}</button>
+          </div>
+        </form>
       </mat-step>
 
     </mat-vertical-stepper>
-
 
   </mat-card>
 </div>

@@ -19,6 +19,6 @@ export class MedsFormComponent implements OnInit {
   }
 
   submit() {
-    this.database.addMeds(this.med);
+    this.database.addMed(this.med);
   }
 }

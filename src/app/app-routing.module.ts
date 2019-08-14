@@ -104,6 +104,14 @@ const routes: Routes = [
         component: ScheduleCreationComponent
       },
       {
+        path:      'edit/:id',
+        data: {
+          img: '/assets/draws/events.svg',
+          animation: 'ScheduleCreation'
+        },
+        component: ScheduleCreationComponent
+      },
+      {
         path:      '',
         data: {
           img: '/assets/draws/events.svg',

@@ -1,3 +1,14 @@
 mat-card {
   margin-bottom: 10px;
 }
+
+.wrapper {
+  margin-bottom: 56px + 72px;
+}
+
+.add-wrapper {
+  z-index: 10;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}

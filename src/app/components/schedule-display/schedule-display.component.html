@@ -1,0 +1,9 @@
+<h1 *ngIf="!highlighted">{{appointment.date|date}} at {{appointment.date|date: 'HH:mm'}}</h1>
+<h1 *ngIf="highlighted">{{appointment.date|date: 'HH:mm'}}</h1>
+<b>Title:</b> {{appointment.title}}<br>
+<b>Description:</b> {{appointment.description}}<br>
+<b>Address:</b> {{appointment.address}}, {{appointment.city|uppercase}}<br>
+
+<div class="right">
+  <button mat-button routerLink="/schedule/edit/{{appointment.id}}">Edit</button>
+</div>

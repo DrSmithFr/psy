@@ -36,7 +36,7 @@ $gridNumberOfColumns: 12;
 @mixin create-col-classes($name, $grid__cols, $breakpoint) {
   @include create-mq($breakpoint) {
     @for $i from 1 through $grid__cols {
-      &.#{$name}-#{$i} {
+      .#{$name}-#{$i} {
         flex-basis: (100 / ($grid__cols / $i) ) * 1%;
       }
     }

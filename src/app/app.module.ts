@@ -58,6 +58,7 @@ import { DrugsDashboardComponent } from './pages/drugs-dashboard/drugs-dashboard
 import { ScheduleCreationComponent } from './pages/schedule-creation/schedule-creation.component';
 import { ScheduleFormComponent } from './components/schedule-form/schedule-form.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { ScheduleDisplayComponent } from './components/schedule-display/schedule-display.component';
 
 @NgModule(
   {
@@ -93,7 +94,8 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
       MedsEditionComponent,
       DrugsDashboardComponent,
       ScheduleCreationComponent,
-      ScheduleFormComponent
+      ScheduleFormComponent,
+      ScheduleDisplayComponent
     ],
     imports: [
       BrowserModule,
