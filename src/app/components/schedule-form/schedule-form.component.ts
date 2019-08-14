@@ -82,7 +82,9 @@ export class ScheduleFormComponent implements OnInit {
       .database
       .addAppointment(this.appointment)
       .subscribe(() => {
-        this.router.navigateByUrl('schedule');
+        console.log('boby');
+        this.router.navigateByUrl('/schedule');
+        console.log('boba');
       });
   }
 }

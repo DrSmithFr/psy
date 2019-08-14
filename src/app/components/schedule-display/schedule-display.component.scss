@@ -1,0 +1,38 @@
+mat-expansion-panel {
+  margin-bottom: 10px !important;
+
+  &.highlighted {
+    mat-expansion-panel-header {
+      background: #607d8b !important;
+    }
+
+    mat-panel-title {
+      color: #ffffff;
+    }
+  }
+
+  h2 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #607d8b;
+    margin-bottom: 0;
+  }
+
+  .actions {
+    padding: 16px 16px 0 16px;
+  }
+
+
+  mat-panel-title {
+    display: flex;
+    justify-content: space-between;
+
+    p, h1 {
+      margin: 0;
+    }
+  }
+}
+
+hr {
+  border: 1px solid #eee;
+}

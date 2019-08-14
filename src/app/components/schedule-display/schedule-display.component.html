@@ -1,9 +1,45 @@
-<h1 *ngIf="!highlighted">{{appointment.date|date}} at {{appointment.date|date: 'HH:mm'}}</h1>
-<h1 *ngIf="highlighted">{{appointment.date|date: 'HH:mm'}}</h1>
-<b>Title:</b> {{appointment.title}}<br>
-<b>Description:</b> {{appointment.description}}<br>
-<b>Address:</b> {{appointment.address}}, {{appointment.city|uppercase}}<br>
+<mat-accordion class="shadow">
+  <mat-expansion-panel [class.highlighted]="highlighted">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h1>{{appointment.title}}</h1>
+        <p *ngIf="highlighted">{{appointment.date|date: 'HH:mm'}}</p>
+        <div *ngIf="!highlighted" class="right">
+          <p><b>{{appointment.date|date}}</b></p>
+          <p>{{appointment.date|date: 'HH:mm'}}</p>
+        </div>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
 
-<div class="right">
-  <button mat-button routerLink="/schedule/edit/{{appointment.id}}">Edit</button>
-</div>
+    <hr *ngIf="!highlighted">
+
+    <div class="row">
+      <div class="small-6">
+        <div *ngIf="appointment.description">
+          <h2>Description:</h2> {{appointment.description}}
+        </div>
+      </div>
+      <div class="small-6">
+        <div *ngIf="appointment.address || appointment.city">
+          <h2>Address:</h2> {{appointment.address}}, {{appointment.city|uppercase}}
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="actions right" *ngIf="!highlighted">
+      <button mat-button routerLink="/schedule/edit/{{appointment.id}}">Edit</button>
+    </div>
+
+    <div class="row" *ngIf="highlighted">
+      <div class="small-6">
+        <button mat-button routerLink="/schedule/edit/{{appointment.id}}">Edit</button>
+      </div>
+      <div class="small-6 right">
+        <button mat-flat-button color="primary" routerLink="/schedule/edit/{{appointment.id}}">Report</button>
+      </div>
+    </div>
+
+  </mat-expansion-panel>
+</mat-accordion>

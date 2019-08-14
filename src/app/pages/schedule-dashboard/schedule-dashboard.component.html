@@ -1,15 +1,15 @@
 <div class="wrapper">
-  <mat-card *ngFor="let appointment of today" class="shadow">
+  <div *ngFor="let appointment of today">
     <app-schedule-display [appointment]="appointment" [highlighted]="true"></app-schedule-display>
-  </mat-card>
+  </div>
 
   <mat-card class="shadow">
     <app-calendar></app-calendar>
   </mat-card>
 
-  <mat-card *ngFor="let appointment of comming" class="shadow">
+  <div *ngFor="let appointment of comming">
     <app-schedule-display [appointment]="appointment"></app-schedule-display>
-  </mat-card>
+  </div>
 </div>
 
 <div class="add-wrapper">
