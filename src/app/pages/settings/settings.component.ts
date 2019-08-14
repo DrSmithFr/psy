@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import {ClearDataComponent} from '../../dialogs/clear-data/clear-data.component';
 import {StateService} from '../../services/state.service';
 

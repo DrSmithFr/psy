@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {MatSidenav} from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 import {DbService} from './services/db.service';
 import {TranslatorService} from './services/translator.service';
 import {NotifierService} from './services/notifier.service';
@@ -18,7 +18,7 @@ import {slideInAnimation} from './animations/slideIn.animation';
   }
 )
 export class AppComponent {
-  @ViewChild('sidenav') sidenav: MatSidenav;
+  @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
 
   constructor(
     private database: DbService,

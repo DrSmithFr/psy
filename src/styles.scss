@@ -114,3 +114,23 @@ hr {
 .mat-accent .mat-pseudo-checkbox-indeterminate {
   background: #607d8b;
 }
+
+// TimePiker
+.timepicker {
+  --body-background-color: #fff;
+  --primary-font-family: $font-text;
+  --button-color: #607d8b;
+  --dial-active-color: #fff;
+  --dial-inactive-color: rgba(255, 255, 255, .5);
+  --dial-background-color: #607d8b;
+  --clock-face-time-active-color: #fff;
+  --clock-face-time-inactive-color: #6c6c6c;
+  --clock-face-inner-time-inactive-color: #929292;
+  --clock-face-time-disabled-color: #c5c5c5;
+  --clock-face-background-color: #f0f0f0;
+  --clock-hand-color: #607d8b;
+
+  .timepicker-dial__control:focus {
+    outline: none;
+  }
+}

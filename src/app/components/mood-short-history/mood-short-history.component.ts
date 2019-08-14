@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {OverviewModel}            from '../../../models/overview.model';
-import {PageEvent}                from '@angular/material';
+import { PageEvent } from '@angular/material/paginator';
 import {DbService}                from '../../services/db.service';
 
 @Component(

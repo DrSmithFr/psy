@@ -10,6 +10,7 @@ import {ScheduleDashboardComponent} from './pages/schedule-dashboard/schedule-da
 import {MedsCreationComponent} from './pages/meds-creation/meds-creation.component';
 import {MedsEditionComponent} from './pages/meds-edition/meds-edition.component';
 import {DrugsDashboardComponent} from './pages/drugs-dashboard/drugs-dashboard.component';
+import {ScheduleCreationComponent} from './pages/schedule-creation/schedule-creation.component';
 
 const routes: Routes = [
   {
@@ -93,11 +94,24 @@ const routes: Routes = [
   },
   {
     path:      'schedule',
-    data: {
-      img: '/assets/draws/events.svg',
-      animation: 'ScheduleDashboard'
-    },
-    component: ScheduleDashboardComponent
+    children: [
+      {
+        path:      'create',
+        data: {
+          img: '/assets/draws/events.svg',
+          animation: 'ScheduleCreation'
+        },
+        component: ScheduleCreationComponent
+      },
+      {
+        path:      '',
+        data: {
+          img: '/assets/draws/events.svg',
+          animation: 'ScheduleDashboard'
+        },
+        component: ScheduleDashboardComponent
+      },
+    ]
   },
   {
     path:      'settings',

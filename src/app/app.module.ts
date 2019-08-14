@@ -3,17 +3,26 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {
-  MAT_DIALOG_DEFAULT_OPTIONS,
-  MatBadgeModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatCardModule,
-  MatChipsModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatFormFieldModule,
-  MatIconModule, MatInputModule, MatListModule, MatPaginatorModule, MatSelectModule, MatSidenavModule, MatSliderModule,
-  MatStepperModule,
-  MatToolbarModule
-} from '@angular/material';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import {MoodDashboardComponent} from './pages/mood-dashboard/mood-dashboard.component';
 import {MoodSelectorComponent} from './components/mood-selector/mood-selector.component';
 import {FeelingSelectorComponent} from './components/feeling-selector/feeling-selector.component';
@@ -34,7 +43,6 @@ import {environment} from '../environments/environment';
 import {EventsSelectorComponent} from './components/events-selector/events-selector.component';
 import {FeelingChartComponent} from './components/feeling-chart/feeling-chart.component';
 import {ClearDataComponent} from './dialogs/clear-data/clear-data.component';
-import {PushNotificationsModule} from 'ng-push';
 import { EventHeatMapComponent } from './components/event-heat-map/event-heat-map.component';
 import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
 import { SleepDashboardComponent } from './pages/sleep-dashboard/sleep-dashboard.component';
@@ -47,6 +55,9 @@ import { MedsFormComponent } from './components/meds-form/meds-form.component';
 import { MedDisplayComponent } from './components/med-display/med-display.component';
 import { MedsEditionComponent } from './pages/meds-edition/meds-edition.component';
 import { DrugsDashboardComponent } from './pages/drugs-dashboard/drugs-dashboard.component';
+import { ScheduleCreationComponent } from './pages/schedule-creation/schedule-creation.component';
+import { ScheduleFormComponent } from './components/schedule-form/schedule-form.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @NgModule(
   {
@@ -80,9 +91,11 @@ import { DrugsDashboardComponent } from './pages/drugs-dashboard/drugs-dashboard
       MedsFormComponent,
       MedDisplayComponent,
       MedsEditionComponent,
-      DrugsDashboardComponent
+      DrugsDashboardComponent,
+      ScheduleCreationComponent,
+      ScheduleFormComponent
     ],
-    imports:         [
+    imports: [
       BrowserModule,
       AppRoutingModule,
       BrowserAnimationsModule,
@@ -108,7 +121,9 @@ import { DrugsDashboardComponent } from './pages/drugs-dashboard/drugs-dashboard
       ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
       MatListModule,
       MatDialogModule,
-      PushNotificationsModule
+      NgxMaterialTimepickerModule,
+      MatDatepickerModule,
+      MatNativeDateModule
     ],
     entryComponents: [
       ClearDataComponent

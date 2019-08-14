@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild}                     from '@angular/core';
 import {OverviewModel}                                           from '../../../models/overview.model';
-import {MatListOption, MatSelectionList, MatSelectionListChange} from '@angular/material';
+import { MatListOption, MatSelectionList, MatSelectionListChange } from '@angular/material/list';
 
 @Component({
              selector:    'app-events-selector',
@@ -10,7 +10,7 @@ import {MatListOption, MatSelectionList, MatSelectionListChange} from '@angular/
 export class EventsSelectorComponent implements OnInit {
 
   @Input() overview: OverviewModel;
-  @ViewChild(MatSelectionList) list: MatSelectionList;
+  @ViewChild(MatSelectionList, { static: true }) list: MatSelectionList;
 
   public events = [
     'boby'
