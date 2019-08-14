@@ -43,8 +43,8 @@ import { ScheduleDashboardComponent } from './pages/schedule-dashboard/schedule-
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { MedsListComponent } from './components/meds-list/meds-list.component';
 import { MedsCreationComponent } from './pages/meds-creation/meds-creation.component';
-import { MedsFormComponent } from './composents/meds-form/meds-form.component';
-import { MedDisplayComponent } from './composents/med-display/med-display.component';
+import { MedsFormComponent } from './components/meds-form/meds-form.component';
+import { MedDisplayComponent } from './components/med-display/med-display.component';
 import { MedsEditionComponent } from './pages/meds-edition/meds-edition.component';
 import { DrugsDashboardComponent } from './pages/drugs-dashboard/drugs-dashboard.component';
 
