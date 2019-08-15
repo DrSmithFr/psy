@@ -11,19 +11,18 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
 
-    <hr *ngIf="!highlighted">
-
-    <div class="row">
-      <div class="small-6">
+    <div class="details">
         <div *ngIf="appointment.description">
-          <h2>Description:</h2> {{appointment.description}}
+          <h2>Description</h2> {{appointment.description}}
         </div>
-      </div>
-      <div class="small-6">
         <div *ngIf="appointment.address || appointment.city">
-          <h2>Address:</h2> {{appointment.address}}, {{appointment.city|uppercase}}
+          <h2>Address</h2> {{appointment.address}}, {{appointment.city|uppercase}}
         </div>
-      </div>
+    </div>
+
+    <div class="report" *ngIf="appointment.report">
+      <h2>Report</h2>
+      {{appointment.report}}
     </div>
 
     <hr>

@@ -11,6 +11,19 @@ mat-expansion-panel {
     }
   }
 
+  .details {
+    display: flex;
+    div {
+      flex: 1;
+      border-top: 2px solid #eeeeee;
+    }
+  }
+
+  .report {
+    border-top: 2px solid #eeeeee;
+    margin-top: 7px;
+  }
+
   h2 {
     font-size: 14px;
     font-weight: bold;

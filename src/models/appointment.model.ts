@@ -5,5 +5,6 @@ export class AppointmentModel {
   public description: string;
   public city: string;
   public address: string;
+  public report: string;
   public createdAt: Date = new Date();
 }
