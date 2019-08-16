@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <mat-card class="shadow" *ngIf="event">
+    <mat-form-field class="full-width">
+      <textarea matInput placeholder="Leave a note" [(ngModel)]="event.report"></textarea>
+    </mat-form-field>
+
+    <mat-card-actions>
+      <div class="row">
+        <div class="small-6">
+          <button mat-button routerLink="/event">Cancel</button>
+        </div>
+        <div class="small-6 right">
+          <button mat-flat-button color="primary" class="right" (click)="submit()">Save</button>
+        </div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+
+
+

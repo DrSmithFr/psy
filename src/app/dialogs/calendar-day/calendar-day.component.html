@@ -1,9 +1,11 @@
 <h1 mat-dialog-title>{{date|date}}</h1>
+
 <div mat-dialog-content class="events-list">
   <div *ngFor="let event of events">
     <app-event-display [event]="event" [highlighted]="isHighlighted(event)"></app-event-display>
   </div>
 </div>
+
 <div mat-dialog-actions>
 
   <div class="row">
@@ -11,7 +13,7 @@
       <button mat-button [mat-dialog-close]="false">Close</button>
     </div>
     <div class="small-6 right">
-      <button mat-flat-button color="primary" routerLink="/event/create" [queryParams]="{date: date.getTime()}" [mat-dialog-close]="false">Add event</button>
+      <button mat-flat-button color="primary" routerLink="/event/create" [queryParams]="{date: date.getTime()}" [mat-dialog-close]="true">Add event</button>
     </div>
   </div>
 

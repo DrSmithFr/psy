@@ -11,6 +11,7 @@ import {SleepDashboardComponent} from './modules/sleep/pages/sleep-dashboard/sle
 import {EventCreationComponent} from './modules/event/pages/event-creation/event-creation.component';
 import {EventDashboardComponent} from './modules/event/pages/event-dashboard/event-dashboard.component';
 import {SettingsComponent} from './modules/settings/pages/settings/settings.component';
+import {EventReportComponent} from './modules/event/pages/event-report/event-report.component';
 
 const routes: Routes = [
   {
@@ -110,6 +111,14 @@ const routes: Routes = [
           animation: 'EventCreation'
         },
         component: EventCreationComponent
+      },
+      {
+        path:      'report/:id',
+        data: {
+          img: '/assets/draws/events.svg',
+          animation: 'EventReport'
+        },
+        component: EventReportComponent
       },
       {
         path:      '',

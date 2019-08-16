@@ -60,6 +60,7 @@ import {EventCreationComponent} from './modules/event/pages/event-creation/event
 import {EventFormComponent} from './modules/event/components/event-form/event-form.component';
 import {EventDisplayComponent} from './modules/event/components/event-display/event-display.component';
 import {OverviewDisplayComponent} from './modules/mood/components/overview-display/overview-display.component';
+import { EventReportComponent } from './modules/event/pages/event-report/event-report.component';
 
 @NgModule(
   {
@@ -98,6 +99,7 @@ import {OverviewDisplayComponent} from './modules/mood/components/overview-displ
       EventFormComponent,
       EventDisplayComponent,
       CalendarDayComponent,
+      EventReportComponent,
     ],
     imports: [
       BrowserModule,

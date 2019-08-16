@@ -80,6 +80,10 @@ div, p, a, .text {
   margin: 3%;
 }
 
+.full-width {
+  width: 100%;
+}
+
 .mat-slider-track-background,
 .mat-slider:hover .mat-slider-track-background {
   background: #eeeeee;
@@ -140,3 +144,4 @@ hr {
 .mat-calendar-body-cell-content {
   border-radius: 0 !important;
 }
+

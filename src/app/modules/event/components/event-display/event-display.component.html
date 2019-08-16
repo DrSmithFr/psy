@@ -28,15 +28,15 @@
     <hr>
 
     <div class="actions right" *ngIf="!highlighted">
-      <button mat-button routerLink="/event/edit/{{event.id}}">Edit</button>
+      <button mat-button routerLink="/event/edit/{{event.id}}" [mat-dialog-close]="true">Edit</button>
     </div>
 
     <div class="row" *ngIf="highlighted">
       <div class="small-6">
-        <button mat-button routerLink="/event/edit/{{event.id}}">Edit</button>
+        <button mat-button routerLink="/event/edit/{{event.id}}" [mat-dialog-close]="true">Edit</button>
       </div>
       <div class="small-6 right">
-        <button mat-flat-button color="primary" routerLink="/event/edit/{{event.id}}">Report</button>
+        <button mat-flat-button color="primary" routerLink="/event/report/{{event.id}}" [mat-dialog-close]="true">Report</button>
       </div>
     </div>
 

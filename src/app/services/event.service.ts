@@ -11,8 +11,6 @@ export class EventService {
   eventAfterDay(list: EventModel[], after: Date) {
     const limit = new Date(after.getFullYear(), after.getMonth(), after.getDate() + 1);
 
-    console.log(limit.toDateString());
-
     return list.filter(model => {
       return model.date > limit;
     });
