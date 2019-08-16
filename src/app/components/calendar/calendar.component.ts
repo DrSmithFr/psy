@@ -1,4 +1,4 @@
-import {Component, OnInit, Renderer} from '@angular/core';
+import {Component, Input, OnInit, Renderer} from '@angular/core';
 
 @Component(
   {
@@ -8,6 +8,8 @@ import {Component, OnInit, Renderer} from '@angular/core';
   }
 )
 export class CalendarComponent implements OnInit {
+
+  @Input() dates: string[];
 
   public selected: Date;
 
@@ -62,6 +64,12 @@ export class CalendarComponent implements OnInit {
       elem,
       'currentDay',
       date.toDateString() === today.toDateString()
+    );
+
+    this.renderer.setElementClass(
+      elem,
+      'has-event',
+      this.dates.indexOf(date.toDateString()) !== -1
     );
   }
 
