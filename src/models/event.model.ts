@@ -1,4 +1,4 @@
-export class AppointmentModel {
+export class EventModel {
   public id: number;
   public date: Date;
   public title: string;

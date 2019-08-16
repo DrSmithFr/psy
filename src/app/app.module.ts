@@ -47,7 +47,7 @@ import { EventHeatMapComponent } from './components/event-heat-map/event-heat-ma
 import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
 import { SleepDashboardComponent } from './pages/sleep-dashboard/sleep-dashboard.component';
 import { MedsDashboardComponent } from './pages/meds-dashboard/meds-dashboard.component';
-import { ScheduleDashboardComponent } from './pages/schedule-dashboard/schedule-dashboard.component';
+import { EventDashboardComponent } from './pages/event-dashboard/event-dashboard.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { MedsListComponent } from './components/meds-list/meds-list.component';
 import { MedsCreationComponent } from './pages/meds-creation/meds-creation.component';
@@ -55,10 +55,10 @@ import { MedsFormComponent } from './components/meds-form/meds-form.component';
 import { MedDisplayComponent } from './components/med-display/med-display.component';
 import { MedsEditionComponent } from './pages/meds-edition/meds-edition.component';
 import { DrugsDashboardComponent } from './pages/drugs-dashboard/drugs-dashboard.component';
-import { ScheduleCreationComponent } from './pages/schedule-creation/schedule-creation.component';
-import { ScheduleFormComponent } from './components/schedule-form/schedule-form.component';
+import { EventCreationComponent } from './pages/event-creation/event-creation.component';
+import { EventFormComponent } from './components/event-form/event-form.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-import { ScheduleDisplayComponent } from './components/schedule-display/schedule-display.component';
+import { EventDisplayComponent } from './components/event-display/event-display.component';
 import { CalendarDayComponent } from './dialogs/calendar-day/calendar-day.component';
 
 @NgModule(
@@ -86,7 +86,7 @@ import { CalendarDayComponent } from './dialogs/calendar-day/calendar-day.compon
       UnderConstructionComponent,
       SleepDashboardComponent,
       MedsDashboardComponent,
-      ScheduleDashboardComponent,
+      EventDashboardComponent,
       CalendarComponent,
       MedsListComponent,
       MedsCreationComponent,
@@ -94,9 +94,9 @@ import { CalendarDayComponent } from './dialogs/calendar-day/calendar-day.compon
       MedDisplayComponent,
       MedsEditionComponent,
       DrugsDashboardComponent,
-      ScheduleCreationComponent,
-      ScheduleFormComponent,
-      ScheduleDisplayComponent,
+      EventCreationComponent,
+      EventFormComponent,
+      EventDisplayComponent,
       CalendarDayComponent
     ],
     imports: [

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import {AppointmentModel} from '../../models/appointment.model';
+import {EventModel} from '../../models/event.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ScheduleService {
+export class EventService {
 
   constructor() { }
 
-  appointmentAfterDay(list: AppointmentModel[], after: Date) {
+  eventAfterDay(list: EventModel[], after: Date) {
     const limit = new Date(after.getFullYear(), after.getMonth(), after.getDate() + 1);
 
     console.log(limit.toDateString());
@@ -18,7 +18,7 @@ export class ScheduleService {
     });
   }
 
-  appointmentAt(list: AppointmentModel[], at: Date) {
+  eventAt(list: EventModel[], at: Date) {
     return list.filter(model => {
       return model.date.toDateString() === at.toDateString();
     });

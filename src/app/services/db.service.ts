@@ -3,7 +3,7 @@ import {OverviewModel} from '../../models/overview.model';
 import {openDB} from 'idb';
 import {combineLatest, Observable} from 'rxjs';
 import {MedsModel} from '../../models/meds.model';
-import {AppointmentModel} from '../../models/appointment.model';
+import {EventModel} from '../../models/event.model';
 
 @Injectable(
   {
@@ -20,7 +20,7 @@ export class DbService {
   connect() {
     this.promise = openDB<any>(
       'app-database-local',
-      3,
+      4,
       {
         upgrade(db) {
           if (!db.objectStoreNames.contains('overview')) {
@@ -31,8 +31,8 @@ export class DbService {
             db.createObjectStore('meds', {keyPath: 'id', autoIncrement: true});
           }
 
-          if (!db.objectStoreNames.contains('appointments')) {
-            db.createObjectStore('appointments', {keyPath: 'id', autoIncrement: true});
+          if (!db.objectStoreNames.contains('events')) {
+            db.createObjectStore('events', {keyPath: 'id', autoIncrement: true});
           }
         }
       }
@@ -135,22 +135,22 @@ export class DbService {
     return this.removeList('meds', keys);
   }
 
-  getAppointments(): Observable<AppointmentModel[]> {
-    return this.all('appointments');
+  getEvents(): Observable<EventModel[]> {
+    return this.all('events');
   }
 
 
-  addAppointment(value: AppointmentModel) {
-    return this.add('appointments', value);
+  addEvent(value: EventModel) {
+    return this.add('events', value);
   }
 
-  removeAppointments(list: AppointmentModel[]) {
+  removeEvents(list: EventModel[]) {
     const keys = [];
 
     for (const item of list) {
       keys.push(item.id);
     }
 
-    return this.removeList('appointments', keys);
+    return this.removeList('events', keys);
   }
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AppointmentModel} from '../../../models/appointment.model';
+import {EventModel} from '../../../models/event.model';
 import {DbService} from '../../services/db.service';
-import {ScheduleService} from '../../services/schedule.service';
+import {EventService} from '../../services/event.service';
 import * as _ from 'lodash';
 import {ClearDataComponent} from '../../dialogs/clear-data/clear-data.component';
 import {MatDialog} from '@angular/material';
@@ -9,34 +9,34 @@ import {CalendarDayComponent} from '../../dialogs/calendar-day/calendar-day.comp
 
 @Component(
   {
-    selector:    'app-schedule-dashboard',
-    templateUrl: './schedule-dashboard.component.html',
-    styleUrls:   ['./schedule-dashboard.component.scss']
+    selector:    'app-event-dashboard',
+    templateUrl: './event-dashboard.component.html',
+    styleUrls:   ['./event-dashboard.component.scss']
   }
 )
-export class ScheduleDashboardComponent implements OnInit {
+export class EventDashboardComponent implements OnInit {
 
-  public events: AppointmentModel[];
-  public today: AppointmentModel[];
-  public comming: AppointmentModel[];
+  public events: EventModel[];
+  public today: EventModel[];
+  public comming: EventModel[];
 
   constructor(
     public dialog: MatDialog,
     private database: DbService,
-    private service: ScheduleService
+    private service: EventService
   ) {
   }
 
   ngOnInit() {
     this
       .database
-      .getAppointments()
+      .getEvents()
       .subscribe(list => {
         const today = new Date();
 
         this.events  = list;
-        this.today   = this.service.appointmentAt(list, today);
-        this.comming = this.service.appointmentAfterDay(list, today);
+        this.today   = this.service.eventAt(list, today);
+        this.comming = this.service.eventAfterDay(list, today);
       });
   }
 

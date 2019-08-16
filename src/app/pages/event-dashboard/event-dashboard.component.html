@@ -1,0 +1,19 @@
+<div class="wrapper" *ngIf="events">
+  <div *ngFor="let event of today">
+    <app-event-display [event]="event" [highlighted]="true"></app-event-display>
+  </div>
+
+  <mat-card class="shadow">
+    <app-calendar [dates]="getEventDates()" (selection)="displayRecap($event)"></app-calendar>
+  </mat-card>
+
+  <div *ngFor="let event of comming">
+    <app-event-display [event]="event"></app-event-display>
+  </div>
+</div>
+
+<div class="add-wrapper">
+  <button mat-fab color="primary" routerLink="/event/create">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

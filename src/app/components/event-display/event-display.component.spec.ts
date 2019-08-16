@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScheduleDisplayComponent } from './schedule-display.component';
+import { EventDisplayComponent } from './event-display.component';
 
-describe('ScheduleDisplayComponent', () => {
-  let component: ScheduleDisplayComponent;
-  let fixture: ComponentFixture<ScheduleDisplayComponent>;
+describe('EventDisplayComponent', () => {
+  let component: EventDisplayComponent;
+  let fixture: ComponentFixture<EventDisplayComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ScheduleDisplayComponent ]
+      declarations: [ EventDisplayComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ScheduleDisplayComponent);
+    fixture = TestBed.createComponent(EventDisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,44 @@
+<mat-accordion>
+  <mat-expansion-panel [class.highlighted]="highlighted" class="shadow">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h1>{{event.title}}</h1>
+        <p *ngIf="highlighted">{{event.date|date: 'HH:mm'}}</p>
+        <div *ngIf="!highlighted" class="right">
+          <p><b>{{event.date|date}}</b></p>
+          <p>{{event.date|date: 'HH:mm'}}</p>
+        </div>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="details">
+        <div *ngIf="event.description">
+          <h2>Description</h2> {{event.description}}
+        </div>
+        <div *ngIf="event.address || event.city">
+          <h2>Address</h2> {{event.address}}, {{event.city|uppercase}}
+        </div>
+    </div>
+
+    <div class="report" *ngIf="event.report">
+      <h2>Report</h2>
+      {{event.report}}
+    </div>
+
+    <hr>
+
+    <div class="actions right" *ngIf="!highlighted">
+      <button mat-button routerLink="/event/edit/{{event.id}}">Edit</button>
+    </div>
+
+    <div class="row" *ngIf="highlighted">
+      <div class="small-6">
+        <button mat-button routerLink="/event/edit/{{event.id}}">Edit</button>
+      </div>
+      <div class="small-6 right">
+        <button mat-flat-button color="primary" routerLink="/event/edit/{{event.id}}">Report</button>
+      </div>
+    </div>
+
+  </mat-expansion-panel>
+</mat-accordion>

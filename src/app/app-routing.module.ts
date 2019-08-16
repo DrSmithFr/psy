@@ -6,11 +6,11 @@ import {OverviewHistoryComponent} from './pages/overview-history/overview-histor
 import {SettingsComponent} from './pages/settings/settings.component';
 import {MedsDashboardComponent} from './pages/meds-dashboard/meds-dashboard.component';
 import {SleepDashboardComponent} from './pages/sleep-dashboard/sleep-dashboard.component';
-import {ScheduleDashboardComponent} from './pages/schedule-dashboard/schedule-dashboard.component';
+import {EventDashboardComponent} from './pages/event-dashboard/event-dashboard.component';
 import {MedsCreationComponent} from './pages/meds-creation/meds-creation.component';
 import {MedsEditionComponent} from './pages/meds-edition/meds-edition.component';
 import {DrugsDashboardComponent} from './pages/drugs-dashboard/drugs-dashboard.component';
-import {ScheduleCreationComponent} from './pages/schedule-creation/schedule-creation.component';
+import {EventCreationComponent} from './pages/event-creation/event-creation.component';
 
 const routes: Routes = [
   {
@@ -93,31 +93,31 @@ const routes: Routes = [
     component: SleepDashboardComponent
   },
   {
-    path:      'schedule',
+    path:      'event',
     children: [
       {
         path:      'create',
         data: {
           img: '/assets/draws/events.svg',
-          animation: 'ScheduleCreation'
+          animation: 'EventCreation'
         },
-        component: ScheduleCreationComponent
+        component: EventCreationComponent
       },
       {
         path:      'edit/:id',
         data: {
           img: '/assets/draws/events.svg',
-          animation: 'ScheduleCreation'
+          animation: 'EventCreation'
         },
-        component: ScheduleCreationComponent
+        component: EventCreationComponent
       },
       {
         path:      '',
         data: {
           img: '/assets/draws/events.svg',
-          animation: 'ScheduleDashboard'
+          animation: 'EventDashboard'
         },
-        component: ScheduleDashboardComponent
+        component: EventDashboardComponent
       },
     ]
   },

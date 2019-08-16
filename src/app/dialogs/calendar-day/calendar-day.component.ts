@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
-import {AppointmentModel} from '../../../models/appointment.model';
+import {EventModel} from '../../../models/event.model';
 import {DbService} from '../../services/db.service';
 
 @Component({
@@ -10,7 +10,7 @@ import {DbService} from '../../services/db.service';
 })
 export class CalendarDayComponent implements OnInit {
 
-  public events: AppointmentModel[];
+  public events: EventModel[];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public date: Date,
@@ -20,7 +20,7 @@ export class CalendarDayComponent implements OnInit {
   ngOnInit() {
     this
       .database
-      .getAppointments()
+      .getEvents()
       .subscribe(list => {
         this.events = list.filter(event => {
           return event.date.toDateString() === this.date.toDateString();
@@ -28,7 +28,7 @@ export class CalendarDayComponent implements OnInit {
       });
   }
 
-  isHighlighted(event: AppointmentModel): boolean {
+  isHighlighted(event: EventModel): boolean {
     const today = new Date();
 
     if (event.date.toDateString() === today.toDateString()) {

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScheduleCreationComponent } from './schedule-creation.component';
+import { EventDashboardComponent } from './event-dashboard.component';
 
-describe('ScheduleCreationComponent', () => {
-  let component: ScheduleCreationComponent;
-  let fixture: ComponentFixture<ScheduleCreationComponent>;
+describe('EventDashboardComponent', () => {
+  let component: EventDashboardComponent;
+  let fixture: ComponentFixture<EventDashboardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ScheduleCreationComponent ]
+      declarations: [ EventDashboardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ScheduleCreationComponent);
+    fixture = TestBed.createComponent(EventDashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
