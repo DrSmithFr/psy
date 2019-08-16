@@ -59,6 +59,7 @@ import { ScheduleCreationComponent } from './pages/schedule-creation/schedule-cr
 import { ScheduleFormComponent } from './components/schedule-form/schedule-form.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { ScheduleDisplayComponent } from './components/schedule-display/schedule-display.component';
+import { CalendarDayComponent } from './dialogs/calendar-day/calendar-day.component';
 
 @NgModule(
   {
@@ -95,7 +96,8 @@ import { ScheduleDisplayComponent } from './components/schedule-display/schedule
       DrugsDashboardComponent,
       ScheduleCreationComponent,
       ScheduleFormComponent,
-      ScheduleDisplayComponent
+      ScheduleDisplayComponent,
+      CalendarDayComponent
     ],
     imports: [
       BrowserModule,
@@ -128,7 +130,8 @@ import { ScheduleDisplayComponent } from './components/schedule-display/schedule
       MatNativeDateModule
     ],
     entryComponents: [
-      ClearDataComponent
+      ClearDataComponent,
+      CalendarDayComponent
     ],
     providers:       [
       {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}

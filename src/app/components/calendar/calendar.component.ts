@@ -1,4 +1,5 @@
-import {Component, Input, OnInit, Renderer} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, Renderer} from '@angular/core';
+import {number} from '@amcharts/amcharts4/core';
 
 @Component(
   {
@@ -10,6 +11,7 @@ import {Component, Input, OnInit, Renderer} from '@angular/core';
 export class CalendarComponent implements OnInit {
 
   @Input() dates: string[];
+  @Output() selection: EventEmitter<Date> = new EventEmitter<Date>();
 
   public selected: Date;
 
@@ -24,7 +26,7 @@ export class CalendarComponent implements OnInit {
   }
 
   renderCalendarCells() {
-    const currentYear = this.selected.getFullYear();
+    const currentYear  = this.selected.getFullYear();
     const currentMonth = this.selected.getMonth();
     const date         = new Date(this.selected.getFullYear(), currentMonth, 1);
 
@@ -37,6 +39,7 @@ export class CalendarComponent implements OnInit {
 
         if (displayDate) {
           this.renderer.createText(elem, '' + date.getDate());
+          this.renderer.setElementAttribute(elem, 'data-date', '' + date.getTime());
         } else {
           this.renderer.setText(elem, null);
         }
@@ -99,5 +102,15 @@ export class CalendarComponent implements OnInit {
   reset(): void {
     this.selected = new Date();
     this.renderCalendarCells();
+  }
+
+  select(e: MouseEvent) {
+    const cell      = e.toElement;
+    const attribute = cell.attributes.getNamedItem('data-date');
+
+    if (attribute) {
+      const date = new Date(parseInt(attribute.value, 10));
+      this.selection.emit(date);
+    }
   }
 }

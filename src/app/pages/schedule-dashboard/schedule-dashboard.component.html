@@ -4,7 +4,7 @@
   </div>
 
   <mat-card class="shadow">
-    <app-calendar [dates]="getEventDates()"></app-calendar>
+    <app-calendar [dates]="getEventDates()" (selection)="displayRecap($event)"></app-calendar>
   </mat-card>
 
   <div *ngFor="let appointment of comming">

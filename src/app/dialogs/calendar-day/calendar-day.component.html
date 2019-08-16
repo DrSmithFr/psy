@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>{{date|date}}</h1>
+<div mat-dialog-content class="events-list">
+  <div *ngFor="let appointment of events">
+    <app-schedule-display [appointment]="appointment" [highlighted]="isHighlighted(appointment)"></app-schedule-display>
+  </div>
+</div>
+<div mat-dialog-actions>
+
+  <div class="row">
+    <div class="small-6 left">
+      <button mat-button [mat-dialog-close]="false">Close</button>
+    </div>
+    <div class="small-6 right">
+      <button mat-flat-button color="primary" routerLink="/schedule/create" [mat-dialog-close]="false">Add event</button>
+    </div>
+  </div>
+
+</div>

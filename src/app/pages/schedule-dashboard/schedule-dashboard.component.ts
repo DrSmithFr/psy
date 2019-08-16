@@ -3,6 +3,9 @@ import {AppointmentModel} from '../../../models/appointment.model';
 import {DbService} from '../../services/db.service';
 import {ScheduleService} from '../../services/schedule.service';
 import * as _ from 'lodash';
+import {ClearDataComponent} from '../../dialogs/clear-data/clear-data.component';
+import {MatDialog} from '@angular/material';
+import {CalendarDayComponent} from '../../dialogs/calendar-day/calendar-day.component';
 
 @Component(
   {
@@ -18,6 +21,7 @@ export class ScheduleDashboardComponent implements OnInit {
   public comming: AppointmentModel[];
 
   constructor(
+    public dialog: MatDialog,
     private database: DbService,
     private service: ScheduleService
   ) {
@@ -44,5 +48,13 @@ export class ScheduleDashboardComponent implements OnInit {
     }
 
     return _.uniq(dates);
+  }
+
+  displayRecap(date: Date) {
+    this.dialog.open(CalendarDayComponent, {
+      width: '95%',
+      data: date,
+      hasBackdrop: true
+    });
   }
 }
