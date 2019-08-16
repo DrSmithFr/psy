@@ -27,7 +27,8 @@ export class SettingsComponent implements OnInit {
 
   openDialog(): void {
     this.dialog.open(ClearDataComponent, {
-      width: '80%'
+      width: '95%',
+      hasBackdrop: true
     });
   }
 

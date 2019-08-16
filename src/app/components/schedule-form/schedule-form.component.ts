@@ -45,24 +45,26 @@ export class ScheduleFormComponent implements OnInit {
 
   ngOnInit() {
     if (this.appointment.date) {
+      const time = this.appointment.date.getHours() + ':' + this.appointment.date.getMinutes();
+
       this.when.patchValue(
         {
           date: this.appointment.date,
-          time: this.appointment.date.getHours() + ':' + this.appointment.date.getMinutes()
+          time: time !== '0:0' ? time : null
         }
       );
     }
 
     this.what.patchValue(
       {
-        title: this.appointment.title,
+        title:       this.appointment.title,
         description: this.appointment.description
       }
     );
 
     this.where.patchValue(
       {
-        city: this.appointment.city,
+        city:   this.appointment.city,
         street: this.appointment.address
       }
     );

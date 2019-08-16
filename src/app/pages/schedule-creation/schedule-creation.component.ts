@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {AppointmentModel} from '../../../models/appointment.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DbService} from '../../services/db.service';
-import {MedsModel} from '../../../models/meds.model';
 
 @Component(
   {
@@ -23,10 +22,15 @@ export class ScheduleCreationComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id   = this.route.snapshot.paramMap.get('id');
+    const date = this.route.snapshot.queryParamMap.get('date');
 
     if (id === null) {
       this.appointment = new AppointmentModel();
+
+      if (date) {
+        this.appointment.date = new Date(parseInt(date, 10));
+      }
     } else {
       this
         .database
