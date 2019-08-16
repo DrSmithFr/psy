@@ -23,52 +23,48 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MoodDashboardComponent} from './pages/mood-dashboard/mood-dashboard.component';
-import {MoodSelectorComponent} from './components/mood-selector/mood-selector.component';
-import {FeelingSelectorComponent} from './components/feeling-selector/feeling-selector.component';
-import {MoodOverviewComponent} from './pages/mood-overview/mood-overview.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NavigationComponent} from './components/navigation/navigation.component';
 import {MenuComponent} from './components/menu/menu.component';
-import {ThoughtNoteComponent} from './components/thought-note/thought-note.component';
-import {OverviewDisplayComponent} from './components/overview-display/overview-display.component';
-import {MoodLoadComponent} from './components/mood-load/mood-load.component';
-import {MoodShortHistoryComponent} from './components/mood-short-history/mood-short-history.component';
-import {OverviewHistoryComponent} from './pages/overview-history/overview-history.component';
 import {TranslatorPipe} from './pipes/translator.pipe';
-import {SettingsComponent} from './pages/settings/settings.component';
 import {InstallPwaComponent} from './components/install-pwa/install-pwa.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import {EventsSelectorComponent} from './components/events-selector/events-selector.component';
-import {FeelingChartComponent} from './components/feeling-chart/feeling-chart.component';
 import {ClearDataComponent} from './dialogs/clear-data/clear-data.component';
-import { EventHeatMapComponent } from './components/event-heat-map/event-heat-map.component';
 import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
-import { SleepDashboardComponent } from './pages/sleep-dashboard/sleep-dashboard.component';
-import { MedsDashboardComponent } from './pages/meds-dashboard/meds-dashboard.component';
-import { EventDashboardComponent } from './pages/event-dashboard/event-dashboard.component';
-import { CalendarComponent } from './components/calendar/calendar.component';
-import { MedsListComponent } from './components/meds-list/meds-list.component';
-import { MedsCreationComponent } from './pages/meds-creation/meds-creation.component';
-import { MedsFormComponent } from './components/meds-form/meds-form.component';
-import { MedDisplayComponent } from './components/med-display/med-display.component';
-import { MedsEditionComponent } from './pages/meds-edition/meds-edition.component';
-import { DrugsDashboardComponent } from './pages/drugs-dashboard/drugs-dashboard.component';
-import { EventCreationComponent } from './pages/event-creation/event-creation.component';
-import { EventFormComponent } from './components/event-form/event-form.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-import { EventDisplayComponent } from './components/event-display/event-display.component';
 import { CalendarDayComponent } from './dialogs/calendar-day/calendar-day.component';
+import {ThoughtNoteComponent} from './modules/mood/components/thought-note/thought-note.component';
+import {MoodLoadComponent} from './modules/mood/components/mood-load/mood-load.component';
+import {MoodShortHistoryComponent} from './modules/mood/components/mood-short-history/mood-short-history.component';
+import {OverviewHistoryComponent} from './modules/mood/pages/overview-history/overview-history.component';
+import {SettingsComponent} from './modules/settings/pages/settings/settings.component';
+import {EventsSelectorComponent} from './modules/mood/components/events-selector/events-selector.component';
+import {FeelingChartComponent} from './modules/mood/components/feeling-chart/feeling-chart.component';
+import {EventHeatMapComponent} from './modules/mood/components/event-heat-map/event-heat-map.component';
+import {MoodDashboardComponent} from './modules/mood/pages/mood-dashboard/mood-dashboard.component';
+import {MoodSelectorComponent} from './modules/mood/components/mood-selector/mood-selector.component';
+import {FeelingSelectorComponent} from './modules/mood/components/feeling-selector/feeling-selector.component';
+import {MoodOverviewComponent} from './modules/mood/pages/mood-overview/mood-overview.component';
+import {SleepDashboardComponent} from './modules/sleep/pages/sleep-dashboard/sleep-dashboard.component';
+import {MedsDashboardComponent} from './modules/meds/pages/meds-dashboard/meds-dashboard.component';
+import {EventDashboardComponent} from './modules/event/pages/event-dashboard/event-dashboard.component';
+import {CalendarComponent} from './modules/event/components/calendar/calendar.component';
+import {MedsListComponent} from './modules/meds/components/meds-list/meds-list.component';
+import {MedsCreationComponent} from './modules/meds/pages/meds-creation/meds-creation.component';
+import {MedsFormComponent} from './modules/meds/components/meds-form/meds-form.component';
+import {MedDisplayComponent} from './modules/meds/components/med-display/med-display.component';
+import {MedsEditionComponent} from './modules/meds/pages/meds-edition/meds-edition.component';
+import {DrugsDashboardComponent} from './modules/drugs/drugs-dashboard/drugs-dashboard.component';
+import {EventCreationComponent} from './modules/event/pages/event-creation/event-creation.component';
+import {EventFormComponent} from './modules/event/components/event-form/event-form.component';
+import {EventDisplayComponent} from './modules/event/components/event-display/event-display.component';
+import {OverviewDisplayComponent} from './modules/mood/components/overview-display/overview-display.component';
 
 @NgModule(
   {
     declarations:    [
       AppComponent,
-      MoodDashboardComponent,
-      MoodSelectorComponent,
-      FeelingSelectorComponent,
-      MoodOverviewComponent,
       NavigationComponent,
       MenuComponent,
       ThoughtNoteComponent,
@@ -82,8 +78,12 @@ import { CalendarDayComponent } from './dialogs/calendar-day/calendar-day.compon
       EventsSelectorComponent,
       FeelingChartComponent,
       ClearDataComponent,
-      EventHeatMapComponent,
       UnderConstructionComponent,
+      EventHeatMapComponent,
+      MoodDashboardComponent,
+      MoodSelectorComponent,
+      FeelingSelectorComponent,
+      MoodOverviewComponent,
       SleepDashboardComponent,
       MedsDashboardComponent,
       EventDashboardComponent,
@@ -97,7 +97,7 @@ import { CalendarDayComponent } from './dialogs/calendar-day/calendar-day.compon
       EventCreationComponent,
       EventFormComponent,
       EventDisplayComponent,
-      CalendarDayComponent
+      CalendarDayComponent,
     ],
     imports: [
       BrowserModule,
@@ -127,7 +127,7 @@ import { CalendarDayComponent } from './dialogs/calendar-day/calendar-day.compon
       MatDialogModule,
       NgxMaterialTimepickerModule,
       MatDatepickerModule,
-      MatNativeDateModule
+      MatNativeDateModule,
     ],
     entryComponents: [
       ClearDataComponent,

@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {MoodOverviewComponent} from './pages/mood-overview/mood-overview.component';
-import {MoodDashboardComponent} from './pages/mood-dashboard/mood-dashboard.component';
-import {OverviewHistoryComponent} from './pages/overview-history/overview-history.component';
-import {SettingsComponent} from './pages/settings/settings.component';
-import {MedsDashboardComponent} from './pages/meds-dashboard/meds-dashboard.component';
-import {SleepDashboardComponent} from './pages/sleep-dashboard/sleep-dashboard.component';
-import {EventDashboardComponent} from './pages/event-dashboard/event-dashboard.component';
-import {MedsCreationComponent} from './pages/meds-creation/meds-creation.component';
-import {MedsEditionComponent} from './pages/meds-edition/meds-edition.component';
-import {DrugsDashboardComponent} from './pages/drugs-dashboard/drugs-dashboard.component';
-import {EventCreationComponent} from './pages/event-creation/event-creation.component';
+import {MoodOverviewComponent} from './modules/mood/pages/mood-overview/mood-overview.component';
+import {OverviewHistoryComponent} from './modules/mood/pages/overview-history/overview-history.component';
+import {MoodDashboardComponent} from './modules/mood/pages/mood-dashboard/mood-dashboard.component';
+import {MedsCreationComponent} from './modules/meds/pages/meds-creation/meds-creation.component';
+import {MedsEditionComponent} from './modules/meds/pages/meds-edition/meds-edition.component';
+import {MedsDashboardComponent} from './modules/meds/pages/meds-dashboard/meds-dashboard.component';
+import {DrugsDashboardComponent} from './modules/drugs/drugs-dashboard/drugs-dashboard.component';
+import {SleepDashboardComponent} from './modules/sleep/pages/sleep-dashboard/sleep-dashboard.component';
+import {EventCreationComponent} from './modules/event/pages/event-creation/event-creation.component';
+import {EventDashboardComponent} from './modules/event/pages/event-dashboard/event-dashboard.component';
+import {SettingsComponent} from './modules/settings/pages/settings/settings.component';
 
 const routes: Routes = [
   {
