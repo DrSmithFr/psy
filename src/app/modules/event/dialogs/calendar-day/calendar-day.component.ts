@@ -1,12 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
-import {EventModel} from '../../../models/event.model';
-import {DbService} from '../../services/db.service';
+import {EventModel} from '../../../../../models/event.model';
+import {DbService} from '../../../../services/db.service';
 
 @Component({
-  selector: 'app-calendar-day',
+  selector:    'app-calendar-day',
   templateUrl: './calendar-day.component.html',
-  styleUrls: ['./calendar-day.component.scss']
+  styleUrls:   ['./calendar-day.component.scss']
 })
 export class CalendarDayComponent implements OnInit {
 

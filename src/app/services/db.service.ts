@@ -58,7 +58,7 @@ export class DbService {
             db
               .getAll(store)
               .then(list => {
-                observer.next(list);
+                observer.next(list.reverse());
                 observer.complete();
               });
           }

@@ -21,7 +21,7 @@
     </div>
 
     <div class="report" *ngIf="event.report">
-      <h2>Report</h2>
+      <h2>Note</h2>
       {{event.report}}
     </div>
 
@@ -36,7 +36,7 @@
         <button mat-button routerLink="/event/edit/{{event.id}}" [mat-dialog-close]="true">Edit</button>
       </div>
       <div class="small-6 right">
-        <button mat-flat-button color="primary" routerLink="/event/report/{{event.id}}" [mat-dialog-close]="true">Report</button>
+        <button mat-flat-button color="primary" routerLink="/event/report/{{event.id}}" [mat-dialog-close]="true">Add note</button>
       </div>
     </div>
 

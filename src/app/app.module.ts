@@ -33,7 +33,7 @@ import {environment} from '../environments/environment';
 import {ClearDataComponent} from './dialogs/clear-data/clear-data.component';
 import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-import { CalendarDayComponent } from './dialogs/calendar-day/calendar-day.component';
+import { CalendarDayComponent } from './modules/event/dialogs/calendar-day/calendar-day.component';
 import {ThoughtNoteComponent} from './modules/mood/components/thought-note/thought-note.component';
 import {MoodLoadComponent} from './modules/mood/components/mood-load/mood-load.component';
 import {MoodShortHistoryComponent} from './modules/mood/components/mood-short-history/mood-short-history.component';
