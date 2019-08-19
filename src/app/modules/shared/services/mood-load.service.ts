@@ -1,7 +1,7 @@
 import {Injectable}      from '@angular/core';
-import {OverviewModel}   from '../../models/overview.model';
+import {OverviewModel}   from '../../../../models/overview.model';
 import {OverviewService} from './overview.service';
-import {LoadModel} from '../../models/load.model';
+import {LoadModel} from '../../../../models/load.model';
 
 @Injectable(
   {

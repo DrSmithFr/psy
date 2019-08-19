@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {EventModel} from '../../../../../models/event.model';
-import {DbService} from '../../../../services/db.service';
+import {DbService} from '../../../shared/services/db.service';
 
 @Component({
   selector:    'app-calendar-day',

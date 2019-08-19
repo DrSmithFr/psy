@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MedsModel} from '../../../../../models/meds.model';
-import {DbService} from '../../../../services/db.service';
+import {DbService} from '../../../shared/services/db.service';
 
 @Component({
   selector: 'app-meds-dashboard',

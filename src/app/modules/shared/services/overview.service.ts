@@ -1,5 +1,5 @@
 import { Injectable }  from '@angular/core';
-import {OverviewModel} from '../../models/overview.model';
+import {OverviewModel} from '../../../../models/overview.model';
 
 @Injectable({
   providedIn: 'root'

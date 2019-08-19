@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {OverviewModel} from '../../../../../models/overview.model';
-import {DbService} from '../../../../services/db.service';
+import {DbService} from '../../../shared/services/db.service';
 
 @Component(
   {

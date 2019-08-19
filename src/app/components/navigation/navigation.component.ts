@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {NotifierService} from '../../services/notifier.service';
+import {NotifierService} from '../../modules/shared/services/notifier.service';
 import {ActivatedRoute, NavigationEnd, ResolveStart, Router} from '@angular/router';
 import {filter, map, mergeMap} from 'rxjs/operators';
 

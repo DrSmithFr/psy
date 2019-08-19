@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import * as _ from 'lodash';
 import {MatDialog} from '@angular/material';
 import {EventModel} from '../../../../../models/event.model';
-import {DbService} from '../../../../services/db.service';
-import {EventService} from '../../../../services/event.service';
+import {DbService} from '../../../shared/services/db.service';
+import {EventService} from '../../../shared/services/event.service';
 import {CalendarDayComponent} from '../../dialogs/calendar-day/calendar-day.component';
 
 @Component(

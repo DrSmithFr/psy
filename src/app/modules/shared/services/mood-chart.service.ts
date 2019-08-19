@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {OverviewService} from './overview.service';
-import {OverviewModel} from '../../models/overview.model';
+import {OverviewModel} from '../../../../models/overview.model';
 
 @Injectable({
               providedIn: 'root'

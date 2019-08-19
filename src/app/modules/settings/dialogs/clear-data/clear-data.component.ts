@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import {DbService} from '../../services/db.service';
+import {DbService} from '../../../shared/services/db.service';
 import {Router} from '@angular/router';
 import {combineLatest} from 'rxjs';
 

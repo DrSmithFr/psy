@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EventModel} from '../../../../../models/event.model';
-import {DbService} from '../../../../services/db.service';
+import {DbService} from '../../../shared/services/db.service';
 
 @Component(
   {

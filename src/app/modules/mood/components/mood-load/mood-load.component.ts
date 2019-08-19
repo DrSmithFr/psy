@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {OverviewModel} from '../../../../../models/overview.model';
 import {LoadModel} from '../../../../../models/load.model';
-import {MoodLoadService} from '../../../../services/mood-load.service';
+import {MoodLoadService} from '../../../shared/services/mood-load.service';
 
 @Component(
   {

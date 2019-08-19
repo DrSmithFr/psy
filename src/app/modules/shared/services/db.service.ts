@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {OverviewModel} from '../../models/overview.model';
+import {OverviewModel} from '../../../../models/overview.model';
 import {openDB} from 'idb';
 import {combineLatest, Observable} from 'rxjs';
-import {MedsModel} from '../../models/meds.model';
-import {EventModel} from '../../models/event.model';
+import {MedsModel} from '../../../../models/meds.model';
+import {EventModel} from '../../../../models/event.model';
 
 @Injectable(
   {

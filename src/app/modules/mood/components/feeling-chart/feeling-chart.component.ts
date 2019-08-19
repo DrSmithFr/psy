@@ -5,8 +5,8 @@ import * as am4charts from '@amcharts/amcharts4/charts';
 // Importing themes
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import {OverviewModel} from '../../../../../models/overview.model';
-import {OverviewService} from '../../../../services/overview.service';
-import {MoodChartService} from '../../../../services/mood-chart.service';
+import {OverviewService} from '../../../shared/services/overview.service';
+import {MoodChartService} from '../../../shared/services/mood-chart.service';
 
 @Component(
   {

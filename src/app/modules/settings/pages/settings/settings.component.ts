@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {StateService} from '../../../../services/state.service';
-import {ClearDataComponent} from '../../../../dialogs/clear-data/clear-data.component';
+import {StateService} from '../../../shared/services/state.service';
+import {ClearDataComponent} from '../../dialogs/clear-data/clear-data.component';
 
 @Component(
   {

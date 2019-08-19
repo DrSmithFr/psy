@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {moodLoadTranslations} from '../translations/mood-load';
-import {generalTranslations} from '../translations/general';
-import {TranslationModel} from '../../models/translation.model';
+import {moodLoadTranslations} from '../../../translations/mood-load';
+import {generalTranslations} from '../../../translations/general';
+import {TranslationModel} from '../../../../models/translation.model';
 import {Observable, ReplaySubject} from 'rxjs';
 import {StateService} from './state.service';
 import {take} from 'rxjs/operators';

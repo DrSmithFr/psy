@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {OverviewModel} from '../../../../../models/overview.model';
-import {DbService} from '../../../../services/db.service';
+import {DbService} from '../../../shared/services/db.service';
 
 @Component({
   selector: 'app-overview-history',
