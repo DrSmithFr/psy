@@ -17,9 +17,11 @@ import {
   MatDatepickerModule,
   MatDialogModule,
   MatExpansionModule,
-  MatFormFieldModule, MatIconModule,
+  MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule,
   MatStepperModule
 } from '@angular/material';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule(
   {
@@ -40,7 +42,11 @@ import {
       SharedModule,
       RouterModule,
       FormsModule,
+      ReactiveFormsModule,
+      BrowserModule,
+      BrowserAnimationsModule,
 
+      MatInputModule,
       MatButtonModule,
       MatExpansionModule,
       MatDialogModule,
@@ -49,6 +55,7 @@ import {
       ReactiveFormsModule,
       MatFormFieldModule,
       MatDatepickerModule,
+      MatNativeDateModule,
       MatIconModule,
 
       NgxMaterialTimepickerModule,

@@ -12,18 +12,23 @@ import {MoodDashboardComponent} from './pages/mood-dashboard/mood-dashboard.comp
 import {MoodSelectorComponent} from './components/mood-selector/mood-selector.component';
 import {FeelingSelectorComponent} from './components/feeling-selector/feeling-selector.component';
 import {MoodOverviewComponent} from './pages/mood-overview/mood-overview.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
 import {
-  MAT_DIALOG_DEFAULT_OPTIONS,
+  MAT_DIALOG_DEFAULT_OPTIONS, MatButtonModule,
   MatCardModule,
   MatChipsModule,
-  MatExpansionModule, MatFormFieldModule,
+  MatExpansionModule,
   MatIconModule,
-  MatListModule, MatPaginatorModule,
+  MatInputModule,
+  MatListModule,
+  MatPaginatorModule,
   MatSliderModule,
   MatStepperModule
 } from '@angular/material';
+import {RouterModule} from '@angular/router';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule(
   {
@@ -41,11 +46,16 @@ import {
       FeelingSelectorComponent,
       MoodOverviewComponent,
     ],
-    imports: [
+    imports:      [
       CommonModule,
       SharedModule,
+      RouterModule,
       FormsModule,
+      ReactiveFormsModule,
+      BrowserModule,
+      BrowserAnimationsModule,
 
+      MatInputModule,
       MatCardModule,
       MatStepperModule,
       MatIconModule,
@@ -54,9 +64,9 @@ import {
       MatSliderModule,
       MatExpansionModule,
       MatPaginatorModule,
-      MatFormFieldModule,
+      MatButtonModule,
     ],
-    providers:       [
+    providers:    [
       {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
     ],
   }

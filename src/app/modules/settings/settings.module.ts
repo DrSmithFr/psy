@@ -7,10 +7,14 @@ import {
   MatButtonModule,
   MatCardModule,
   MatDialogModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatInputModule,
   MatSelectModule
 } from '@angular/material';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {SharedModule} from '../shared/shared.module';
+import {RouterModule} from '@angular/router';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule(
   {
@@ -23,8 +27,14 @@ import {FormsModule} from '@angular/forms';
     ],
     imports: [
       CommonModule,
+      SharedModule,
+      RouterModule,
       FormsModule,
+      ReactiveFormsModule,
+      BrowserModule,
+      BrowserAnimationsModule,
 
+      MatInputModule,
       MatDialogModule,
       MatButtonModule,
       MatCardModule,

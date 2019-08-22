@@ -6,18 +6,20 @@ import {MedsCreationComponent} from './pages/meds-creation/meds-creation.compone
 import {MedsFormComponent} from './components/meds-form/meds-form.component';
 import {MedDisplayComponent} from './components/med-display/med-display.component';
 import {MedsEditionComponent} from './pages/meds-edition/meds-edition.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
 import {
   MatButtonModule,
   MatCardModule,
   MatExpansionModule,
   MatFormFieldModule,
-  MatIconModule,
+  MatIconModule, MatInputModule,
   MatPaginatorModule,
   MatStepperModule
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule(
   {
@@ -34,7 +36,11 @@ import {RouterModule} from '@angular/router';
       SharedModule,
       RouterModule,
       FormsModule,
+      ReactiveFormsModule,
+      BrowserModule,
+      BrowserAnimationsModule,
 
+      MatInputModule,
       MatIconModule,
       MatCardModule,
       MatStepperModule,
