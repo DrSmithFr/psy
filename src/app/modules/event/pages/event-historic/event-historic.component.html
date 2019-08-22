@@ -1,0 +1,5 @@
+<div class="wrapper" *ngIf="events">
+  <div *ngFor="let event of events">
+    <app-event-display [event]="event" [highlighted]="true" [expanded]="true"></app-event-display>
+  </div>
+</div>

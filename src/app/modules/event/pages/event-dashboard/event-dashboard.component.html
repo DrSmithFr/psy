@@ -1,6 +1,6 @@
 <div class="wrapper" *ngIf="events">
   <div *ngFor="let event of today">
-    <app-event-display [event]="event" [highlighted]="true"></app-event-display>
+    <app-event-display [event]="event" [highlighted]="true" [expanded]="true"></app-event-display>
   </div>
 
   <mat-card class="shadow">

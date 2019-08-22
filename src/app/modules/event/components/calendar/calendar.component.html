@@ -78,8 +78,13 @@
     </table>
   </div>
 
-  <div class="showDate">
-    <button mat-button [disabled]="isInDefault()" (click)="reset()">Today</button>
+  <div class="row">
+    <div class="small-6">
+      <button mat-button routerLink="/event/historic">Historic</button>
+    </div>
+    <div class="small-6 right">
+      <button mat-button [disabled]="isInDefault()" (click)="reset()">Today</button>
+    </div>
   </div>
 
 </div>

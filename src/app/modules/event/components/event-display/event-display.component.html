@@ -1,9 +1,13 @@
 <mat-accordion>
-  <mat-expansion-panel [class.highlighted]="highlighted" class="shadow">
+  <mat-expansion-panel [class.highlighted]="highlighted" class="shadow" [expanded]="expanded">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <h1>{{event.title}}</h1>
-        <p *ngIf="highlighted">{{event.date|date: 'HH:mm'}}</p>
+        <div *ngIf="highlighted" class="right">
+          <p *ngIf="isToday()"><b>Today</b></p>
+          <p *ngIf="!isToday()"><b>{{event.date|date}}</b></p>
+          <p>{{event.date|date: 'HH:mm'}}</p>
+        </div>
         <div *ngIf="!highlighted" class="right">
           <p><b>{{event.date|date}}</b></p>
           <p>{{event.date|date: 'HH:mm'}}</p>

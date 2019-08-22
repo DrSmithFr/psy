@@ -12,6 +12,7 @@ import {EventCreationComponent} from './modules/event/pages/event-creation/event
 import {EventDashboardComponent} from './modules/event/pages/event-dashboard/event-dashboard.component';
 import {SettingsComponent} from './modules/settings/pages/settings/settings.component';
 import {EventReportComponent} from './modules/event/pages/event-report/event-report.component';
+import {EventHistoricComponent} from './modules/event/pages/event-historic/event-historic.component';
 
 const routes: Routes = [
   {
@@ -119,6 +120,14 @@ const routes: Routes = [
           animation: 'EventReport'
         },
         component: EventReportComponent
+      },
+      {
+        path:      'historic',
+        data: {
+          img: '/assets/draws/events.svg',
+          animation: 'EventHistoric'
+        },
+        component: EventHistoricComponent
       },
       {
         path:      '',

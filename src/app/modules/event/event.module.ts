@@ -22,6 +22,7 @@ import {
 } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {EventHistoricComponent} from './pages/event-historic/event-historic.component';
 
 @NgModule(
   {
@@ -33,11 +34,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
       EventReportComponent,
       EventDashboardComponent,
       CalendarComponent,
+      EventHistoricComponent,
     ],
     entryComponents: [
       CalendarDayComponent
     ],
-    imports: [
+    imports:         [
       CommonModule,
       SharedModule,
       RouterModule,
