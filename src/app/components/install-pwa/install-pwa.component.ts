@@ -9,7 +9,8 @@ import {SwUpdate}                        from '@angular/service-worker';
 })
 export class InstallPwaComponent {
 
-  promptEvent: any;
+  public promptEvent: any;
+  public displayUpdateBanner;
 
   constructor(
     private swUpdate: SwUpdate,
@@ -22,7 +23,7 @@ export class InstallPwaComponent {
 
     // force update if needed
     swUpdate.available.subscribe(() => {
-      window.location.reload();
+      this.displayUpdateBanner();
     });
   }
 

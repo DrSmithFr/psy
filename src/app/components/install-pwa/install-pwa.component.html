@@ -1,5 +1,18 @@
 <div class="install-pwa" [ngClass]="{'show': promptEvent}">
   <button mat-flat-button aria-label="Installer l'application" (click)="installApplication()">
-    <mat-icon>mobile_friendly</mat-icon> Installer l'app
+    <mat-icon>mobile_friendly</mat-icon>
+    Installer l'app
   </button>
+</div>
+
+<div class="update-banner" [ngClass]="{'show': displayUpdateBanner}">
+  <div class="v-center">
+    <div>
+      <h1>New update is available</h1>
+      Reload application to see the latest changes.
+    </div>
+    <div>
+      <button mat-button (click)="displayUpdateBanner = false">CLOSE</button>
+    </div>
+  </div>
 </div>
