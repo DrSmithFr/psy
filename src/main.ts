@@ -9,5 +9,11 @@ if (environment.production) {
   enableProdMode();
 }
 
+// tslint:disable-next-line:prefer-const
+let onDeviceReady = () => {
+  platformBrowserDynamic().bootstrapModule(AppModule);
+};
+document.addEventListener('deviceready', onDeviceReady, false);
+
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
