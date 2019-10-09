@@ -6,53 +6,54 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NavigationComponent} from './components/navigation/navigation.component';
 import {MenuComponent} from './components/menu/menu.component';
-import {InstallPwaComponent} from './components/install-pwa/install-pwa.component';
-import {ServiceWorkerModule} from '@angular/service-worker';
-import {environment} from '../environments/environment';
 import {MoodModule} from './modules/mood/mood.module';
 import {EventModule} from './modules/event/event.module';
 import {MedsModule} from './modules/meds/meds.module';
 import {DrugsModule} from './modules/drugs/drugs.module';
 import {SleepModule} from './modules/sleep/sleep.module';
 import {SettingsModule} from './modules/settings/settings.module';
-import {MatButtonModule, MatFormFieldModule, MatIconModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatToolbarModule
+} from '@angular/material';
 
 @NgModule(
-  {
-    declarations: [
-      AppComponent,
+    {
+        declarations: [
+            AppComponent,
 
-      NavigationComponent,
-      MenuComponent,
-      InstallPwaComponent,
-    ],
-    imports: [
-      AppRoutingModule,
+            NavigationComponent,
+            MenuComponent,
+        ],
+        imports:      [
+            AppRoutingModule,
 
-      MoodModule,
-      EventModule,
-      MedsModule,
-      DrugsModule,
-      SleepModule,
-      SettingsModule,
+            MoodModule,
+            EventModule,
+            MedsModule,
+            DrugsModule,
+            SleepModule,
+            SettingsModule,
 
-      FormsModule,
-      ReactiveFormsModule,
+            FormsModule,
+            ReactiveFormsModule,
 
-      BrowserModule,
-      BrowserAnimationsModule,
-      ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+            BrowserModule,
+            BrowserAnimationsModule,
 
-      MatFormFieldModule,
-      MatSidenavModule,
-      MatButtonModule,
-      MatToolbarModule,
-      MatIconModule,
-    ],
-    bootstrap:    [
-      AppComponent
-    ]
-  }
+            MatFormFieldModule,
+            MatSidenavModule,
+            MatButtonModule,
+            MatToolbarModule,
+            MatIconModule,
+        ],
+        bootstrap:    [
+            AppComponent
+        ]
+    }
 )
 export class AppModule {
 }
