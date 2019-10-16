@@ -4,7 +4,7 @@
     <span>{{ overview.createdAt|date: 'H:m:s' }}</span>
 
     <div class="center mood-icon">
-      <img src="/assets/mood-levels/{{overview.mood}}.svg" height="50">
+      <img src="{{('/assets/mood-levels/' + overview.mood + '.svg')|trans}}" height="50">
     </div>
 
     <div class="row" *ngIf="overview.feelings.length && overview.note">

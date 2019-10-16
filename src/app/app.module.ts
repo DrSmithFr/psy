@@ -19,6 +19,7 @@ import {
     MatSidenavModule,
     MatToolbarModule
 } from '@angular/material';
+import {SharedModule} from './modules/shared/shared.module';
 
 @NgModule(
     {
@@ -28,28 +29,29 @@ import {
             NavigationComponent,
             MenuComponent,
         ],
-        imports:      [
-            AppRoutingModule,
+      imports: [
+        AppRoutingModule,
 
-            MoodModule,
-            EventModule,
-            MedsModule,
-            DrugsModule,
-            SleepModule,
-            SettingsModule,
+        MoodModule,
+        EventModule,
+        MedsModule,
+        DrugsModule,
+        SleepModule,
+        SettingsModule,
 
-            FormsModule,
-            ReactiveFormsModule,
+        FormsModule,
+        ReactiveFormsModule,
 
-            BrowserModule,
-            BrowserAnimationsModule,
+        BrowserModule,
+        BrowserAnimationsModule,
 
-            MatFormFieldModule,
-            MatSidenavModule,
-            MatButtonModule,
-            MatToolbarModule,
-            MatIconModule,
-        ],
+        MatFormFieldModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatIconModule,
+        SharedModule,
+      ],
         bootstrap:    [
             AppComponent
         ]

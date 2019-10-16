@@ -11,7 +11,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "android": "ng build --prod --aot && cordova emulate android"
+    "android": "ng build --configuration=application --base-href='file:///android_asset/www/' && cordova emulate android"
   },
   "private": true,
   "dependencies": {

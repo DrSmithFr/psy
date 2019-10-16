@@ -5,8 +5,6 @@ import {RouterOutlet} from '@angular/router';
 import {slideInAnimation} from './animations/slideIn.animation';
 import {TranslatorService} from './modules/shared/services/translator.service';
 
-declare var device;
-
 @Component(
     {
         selector:    'app-root',
@@ -17,7 +15,7 @@ declare var device;
         ]
     }
 )
-export class AppComponent implements OnInit {
+export class AppComponent {
     @ViewChild('sidenav', {static: true}) sidenav: MatSidenav;
 
     constructor(
@@ -26,12 +24,6 @@ export class AppComponent implements OnInit {
     ) {
         database.connect();
         translator.init();
-    }
-
-    ngOnInit(): void {
-        document.addEventListener('deviceready', () => {
-            alert(device.platform);
-        }, false);
     }
 
     close() {

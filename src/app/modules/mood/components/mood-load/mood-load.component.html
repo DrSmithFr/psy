@@ -1,17 +1,17 @@
 <div class="row center" *ngIf="stats && periods && stats.length === 3">
 
   <div class="small-4 midle-4">
-    <img src="/assets/mood-levels/{{ stats[0].mood }}.svg" height="80">
+    <img src="{{ ('/assets/mood-levels/' + stats[0].mood + '.svg')|asset }}" height="80">
     <span>{{periods[0]}} Days</span>
   </div>
 
   <div class="small-4 midle-4">
-    <img src="/assets/mood-levels/{{ stats[1].mood }}.svg" height="80">
+    <img src="{{ ('/assets/mood-levels/' + stats[1].mood + '.svg')|asset }}" height="80">
     <span>{{periods[1]}} Days</span>
   </div>
 
   <div class="small-4 midle-4">
-    <img src="/assets/mood-levels/{{ stats[2].mood }}.svg" height="80">
+    <img src="{{ ('/assets/mood-levels/' + stats[2].mood + '.svg')|asset }}" height="80">
     <span>{{periods[2]}} Days</span>
   </div>
 

@@ -7,7 +7,7 @@
 
     <span class="spacer"></span>
 
-    <img src="{{currentImage}}" height="50" *ngIf="currentImage !== ''">
+    <img src="{{currentImage|asset}}" height="50" *ngIf="currentImage !== ''">
 
 <!--    <button mat-button>-->
 <!--      <mat-icon class="icon" >notification_important</mat-icon>-->
