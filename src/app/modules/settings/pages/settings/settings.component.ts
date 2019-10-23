@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {StateService} from '../../../shared/services/state.service';
 import {ClearDataComponent} from '../../dialogs/clear-data/clear-data.component';
+import {AssetService} from '../../../shared/services/asset.service';
+import {environment} from '../../../../../environments/environment';
 
 @Component(
   {
@@ -16,7 +18,8 @@ export class SettingsComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private state: StateService
+    private state: StateService,
+    private assets: AssetService
   ) {
     this.currentLocale = this.state.STATE_LOCALE.getValue();
 
@@ -39,6 +42,10 @@ export class SettingsComponent implements OnInit {
     this.state.STATE_LOCALE.next(this.currentLocale);
 
     // applying translations
-    window.location.replace('/');
+    if (environment.application) {
+      window.location.replace(this.assets.getUrl('/index.html'));
+    } else {
+      window.location.replace('/');
+    }
   }
 }

@@ -5,7 +5,7 @@
     <input cdkFocusInitial type='text' style="display: none" />
 
     <button mat-button (click)="close()" routerLink="/mood" routerLinkActive="active" autofocus="false">
-      <img src="/assets/draws/mood.svg">
+      <img src="{{ '/assets/draws/mood.svg'|asset }}">
       <mat-label>Mood</mat-label>
     </button>
 
@@ -20,17 +20,17 @@
 <!--    </button>-->
 
     <button mat-button (click)="close()" routerLink="/event" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-      <img src="/assets/draws/events.svg">
+      <img src="{{'/assets/draws/events.svg'|asset}}">
       <mat-label>Events</mat-label>
     </button>
 
     <button mat-button (click)="close()" routerLink="/meds" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-      <img src="/assets/draws/medecine.svg">
+      <img src="{{'/assets/draws/medecine.svg'|asset}}">
       <mat-label>Meds</mat-label>
     </button>
 
     <button mat-button (click)="close()" routerLink="/settings" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-      <img src="/assets/draws/settings.svg">
+      <img src="{{'/assets/draws/settings.svg'|asset}}">
       <mat-label>Settings</mat-label>
     </button>
 
@@ -44,7 +44,6 @@
         <div [@routeAnimations]="prepareRoute(outlet)" >
           <router-outlet #outlet="outlet"></router-outlet>
         </div>
-        <app-install-pwa></app-install-pwa>
       </div>
     </div>
   </mat-sidenav-content>

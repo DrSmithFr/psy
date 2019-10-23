@@ -13,6 +13,7 @@ import {EventDashboardComponent} from './modules/event/pages/event-dashboard/eve
 import {SettingsComponent} from './modules/settings/pages/settings/settings.component';
 import {EventReportComponent} from './modules/event/pages/event-report/event-report.component';
 import {EventHistoricComponent} from './modules/event/pages/event-historic/event-historic.component';
+import {environment} from '../environments/environment';
 
 const routes: Routes = [
   {
@@ -156,7 +157,7 @@ const routes: Routes = [
 
 @NgModule(
   {
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, { useHash: environment.application})],
     exports: [RouterModule]
   }
 )

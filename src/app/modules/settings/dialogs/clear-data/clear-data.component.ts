@@ -3,6 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import {DbService} from '../../../shared/services/db.service';
 import {Router} from '@angular/router';
 import {combineLatest} from 'rxjs';
+import {environment} from '../../../../../environments/environment';
+import {AssetService} from '../../../shared/services/asset.service';
 
 @Component(
   {
@@ -16,7 +18,8 @@ export class ClearDataComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ClearDataComponent>,
     private router: Router,
-    private database: DbService
+    private database: DbService,
+    private assets: AssetService
   ) {
   }
 
@@ -24,19 +27,23 @@ export class ClearDataComponent implements OnInit {
   }
 
   clearData() {
-    combineLatest(
+    combineLatest([
       this.database.getOverviews(),
       this.database.getMeds(),
-    ).subscribe(
+    ]).subscribe(
       ([
          overviews,
          meds
        ]) => {
-        combineLatest(
+        combineLatest([
           this.database.removeOverviews(overviews),
           this.database.removeMeds(meds)
-        ).subscribe(() => {
-          window.location.replace('/');
+        ]).subscribe(() => {
+          if (environment.application) {
+            window.location.replace(this.assets.getUrl('/index.html'));
+          } else {
+            window.location.replace('/');
+          }
         });
       });
   }

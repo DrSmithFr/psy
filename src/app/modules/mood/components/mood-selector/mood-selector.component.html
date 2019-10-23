@@ -1,12 +1,12 @@
 <div class="row icons">
   <div class="small-4 midle-4 large-4 left">
-    <img src="/assets/moods/bad.svg" height="30">
+    <img src="{{'/assets/moods/bad.svg'|asset}}" height="30">
   </div>
   <div class="small-4 midle-4 center">
-    <img src="/assets/mood-levels/{{slider.displayValue}}.svg" height="60">
+    <img src="{{ ('/assets/mood-levels/' + slider.displayValue + '.svg')|asset}}" height="60">
   </div>
   <div class="small-4 midle-4 right">
-    <img src="/assets/moods/happy.svg" height="30">
+    <img src="{{'/assets/moods/happy.svg'|asset}}" height="30">
   </div>
 </div>
 

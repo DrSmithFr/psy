@@ -1,48 +1,46 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {NotifierService} from '../../modules/shared/services/notifier.service';
-import {ActivatedRoute, NavigationEnd, ResolveStart, Router} from '@angular/router';
-import {filter, map, mergeMap} from 'rxjs/operators';
+import {ResolveStart, Router} from '@angular/router';
+import {filter, map} from 'rxjs/operators';
 
 @Component(
-  {
-    selector:    'app-navigation',
-    templateUrl: './navigation.component.html',
-    styleUrls:   ['./navigation.component.scss']
-  }
+    {
+        selector:    'app-navigation',
+        templateUrl: './navigation.component.html',
+        styleUrls:   ['./navigation.component.scss']
+    }
 )
 export class NavigationComponent implements OnInit {
 
-  @Output() opening           = new EventEmitter<true>();
-  public currentImage: string = null;
+    @Output() opening           = new EventEmitter<true>();
+    public currentImage: string = null;
 
-  constructor(
-    private router: Router,
-    public notifier: NotifierService
-  ) {
-  }
+    constructor(
+        private router: Router
+    ) {
+    }
 
-  ngOnInit() {
-    this.router.events.pipe(
-      filter(event => event instanceof ResolveStart),
-      map((event: ResolveStart) => {
-        let data  = null;
+    ngOnInit() {
+        this.router.events.pipe(
+            filter(event => event instanceof ResolveStart),
+            map((event: ResolveStart) => {
+                let data = null;
 
-        let route = event.state.root;
+                let route = event.state.root;
 
-        while (route) {
-          data  = route.data || data;
-          route = route.firstChild;
-        }
+                while (route) {
+                    data  = route.data || data;
+                    route = route.firstChild;
+                }
 
-        return data;
-      }),
-    ).subscribe((data: { img: string }) => {
-      this.currentImage = data.img;
-    });
-  }
+                return data;
+            }),
+        ).subscribe((data: { img: string }) => {
+            this.currentImage = data.img;
+        });
+    }
 
-  onMenuClick() {
-    this.opening.emit(true);
-  }
+    onMenuClick() {
+        this.opening.emit(true);
+    }
 
 }
