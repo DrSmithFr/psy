@@ -14,7 +14,7 @@ import {
   MatExpansionModule,
   MatFormFieldModule,
   MatIconModule, MatInputModule,
-  MatPaginatorModule,
+  MatPaginatorModule, MatSlideToggleModule,
   MatStepperModule
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
@@ -48,6 +48,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
       MatExpansionModule,
       MatPaginatorModule,
       MatButtonModule,
+      MatSlideToggleModule,
     ]
   }
 )

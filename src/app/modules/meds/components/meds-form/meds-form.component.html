@@ -1,50 +1,102 @@
 <div class="wrapper">
+
   <mat-card class="shadow">
+    <mat-card-title>
+      <h1>Description</h1>
+    </mat-card-title>
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <input placeholder="Name" matInput maxlength="255" [(ngModel)]="med.name">
+      </mat-form-field>
 
-    <mat-vertical-stepper>
+      <mat-form-field class="full-width">
+        <input placeholder="Note" matInput #message maxlength="255" [(ngModel)]="med.note">
+        <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+      </mat-form-field>
 
-      <mat-step>
-        <ng-template matStepLabel>Description</ng-template>
-
-        <mat-form-field class="full-width">
-            <input placeholder="Name" matInput #message maxlength="255" [(ngModel)]="med.name">
-          <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-        </mat-form-field>
-
-        <div class="actions">
-          <button mat-button matStepperNext color="primary">{{'general.next'|trans|async}}</button>
-        </div>
-      </mat-step>
-
-      <mat-step>
-        <ng-template matStepLabel>Quantity</ng-template>
-
-        <div class="int-field">
-          <button mat-icon-button (click)="med.count = med.count - 1">-</button>
-          <mat-form-field>
-            <input matInput min="0" [(ngModel)]="med.count" type="number">
-          </mat-form-field>
-          <button mat-icon-button (click)="med.count = med.count + 1">+</button>
-        </div>
-
-        <div class="actions">
-          <button mat-button matStepperNext color="primary">{{'general.next'|trans|async}}</button>
-        </div>
-      </mat-step>
-
-      <mat-step optional>
-        <ng-template matStepLabel>Reminders</ng-template>
-
-
-
-        <div class="actions">
-          <button mat-raised-button color="primary" (click)="submit()">
-            {{'general.save'|trans|async}}</button>
-        </div>
-      </mat-step>
-
-    </mat-vertical-stepper>
-
-
+    </mat-card-content>
   </mat-card>
+
+  <mat-card class="shadow">
+    <mat-card-title>
+      <h1>Quantity</h1>
+    </mat-card-title>
+    <mat-card-content>
+      <div class="int-field">
+        <button mat-icon-button (click)="med.count = med.count - 1">-</button>
+        <mat-form-field>
+          <input matInput min="0" [(ngModel)]="med.count" type="number">
+        </mat-form-field>
+        <button mat-icon-button (click)="med.count = med.count + 1">+</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+
+  <mat-card class="shadow">
+    <mat-card-title>
+      <h1>Reminders</h1>
+    </mat-card-title>
+    <mat-card-content>
+
+      <div class="row">
+        <div class="small-6">
+
+          <h2>Hours</h2>
+          <div class="int-field">
+            <button mat-icon-button (click)="med.hour = med.hour - 1">-</button>
+            <mat-form-field>
+              <input matInput min="0" [(ngModel)]="med.hour" type="number">
+            </mat-form-field>
+            <button mat-icon-button (click)="med.hour = med.hour + 1">+</button>
+          </div>
+
+        </div>
+        <div class="small-6">
+
+          <h2>Minutes</h2>
+          <div class="int-field">
+            <button mat-icon-button (click)="med.minute = med.minute - 1">-</button>
+            <mat-form-field>
+              <input matInput min="0" [(ngModel)]="med.minute" type="number">
+            </mat-form-field>
+            <button mat-icon-button (click)="med.minute = med.minute + 1">+</button>
+          </div>
+
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>Days</h2>
+      <ul>
+        <li>
+          <mat-slide-toggle [(ngModel)]="med.sunday">Sunday</mat-slide-toggle>
+        </li>
+        <li>
+          <mat-slide-toggle [(ngModel)]="med.monday">Monday</mat-slide-toggle>
+        </li>
+        <li>
+          <mat-slide-toggle [(ngModel)]="med.tuesday">Thuesday</mat-slide-toggle>
+        </li>
+        <li>
+          <mat-slide-toggle [(ngModel)]="med.wednesday">Wednesday</mat-slide-toggle>
+        </li>
+        <li>
+          <mat-slide-toggle [(ngModel)]="med.thursday">Thursday</mat-slide-toggle>
+        </li>
+        <li>
+          <mat-slide-toggle [(ngModel)]="med.friday">Friday</mat-slide-toggle>
+        </li>
+        <li>
+          <mat-slide-toggle [(ngModel)]="med.saturday">Saturday</mat-slide-toggle>
+        </li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+
+  <button mat-raised-button color="primary" (click)="submit()">
+    {{'general.save'|trans|async}}
+  </button>
 </div>
