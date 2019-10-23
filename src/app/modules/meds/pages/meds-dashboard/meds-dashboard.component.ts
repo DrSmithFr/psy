@@ -10,6 +10,7 @@ import {MedsService} from '../../../shared/services/meds.service';
 })
 export class MedsDashboardComponent implements OnInit {
 
+  public today: Date;
   public timeMap: Map<Date, MedsModel[]> = new Map();
   public list: MedsModel[] = [];
 
@@ -20,6 +21,8 @@ export class MedsDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.today = new Date();
+
     this
       .database
       .getMeds()
@@ -30,4 +33,7 @@ export class MedsDashboardComponent implements OnInit {
       });
   }
 
+  takeMedication(meds: MedsModel[]) {
+    console.log(meds);
+  }
 }

@@ -17,7 +17,7 @@
           <mat-icon>notification_important</mat-icon>
           <mat-label>{{object.key|date: 'HH:mm'}}</mat-label>
         </p>
-        <button mat-stroked-button [disabled]="true">Take</button>
+        <button mat-stroked-button [disabled]="today < object.key" (click)="takeMedication(object.value)">Take</button>
       </mat-card-title>
       <mat-card-content>
         <div class="drug" *ngFor="let med of object.value">
