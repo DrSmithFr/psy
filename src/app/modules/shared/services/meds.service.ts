@@ -37,14 +37,17 @@ export class MedsService {
   getTimeMap(list: MedsModel[]): Map<Date, MedsModel[]> {
     const today = new Date();
 
-    return list.reduce((map: Map<Date, MedsModel[]>, med) => {
-      const key = new Date(
+    const keyHasString = list.reduce((map: Map<string, MedsModel[]>, med) => {
+      const date = new Date(
         today.getUTCFullYear(),
         today.getUTCMonth(),
         today.getUTCDate(),
         med.hour,
         med.minute
       );
+
+      // use a string key to avoid duplicate
+      const key = date.getHours() + ':' + date.getMinutes();
 
       if (!map.has(key)) {
         map.set(key, []);
@@ -54,6 +57,25 @@ export class MedsService {
 
       return map;
     }, new Map());
+
+    const timeMap = new Map();
+
+    keyHasString.forEach((meds, key) => {
+      const [hour, minute] = key.split(':');
+
+      // reconstruct key as Date
+      const date = new Date(
+        today.getUTCFullYear(),
+        today.getUTCMonth(),
+        today.getUTCDate(),
+        hour,
+        minute
+      );
+
+      timeMap.set(date, meds);
+    });
+
+    return timeMap;
   }
 
 }
