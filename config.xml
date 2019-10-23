@@ -32,4 +32,5 @@
   <allow-navigation href="data:*"/>
   <allow-intent href="*"/>
   <access origin="*"/>
+  <preference name="AndroidPersistentFileLocation" value="Internal" />
 </widget>
