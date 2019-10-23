@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MedsModel} from '../../../../../models/meds.model';
 import {DbService} from '../../../shared/services/db.service';
+import {MedsService} from '../../../shared/services/meds.service';
 
 @Component({
   selector: 'app-meds-dashboard',
@@ -9,10 +10,12 @@ import {DbService} from '../../../shared/services/db.service';
 })
 export class MedsDashboardComponent implements OnInit {
 
+  public timeMap: Map<Date, MedsModel[]> = new Map();
   public list: MedsModel[] = [];
 
   constructor(
-    private database: DbService
+    private database: DbService,
+    private service: MedsService
   ) {
   }
 
@@ -22,6 +25,8 @@ export class MedsDashboardComponent implements OnInit {
       .getMeds()
       .subscribe(list => {
         this.list = list;
+        const activeToday = this.service.getActives(list);
+        this.timeMap = this.service.getTimeMap(activeToday);
       });
   }
 

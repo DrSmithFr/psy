@@ -10,23 +10,18 @@
     <button mat-flat-button color="primary" routerLink="/meds/create">Create medications</button>
   </div>
 
-  <div *ngIf="list.length">
-    <mat-card class="shadow reminder">
+  <div *ngIf="timeMap.size">
+    <mat-card class="shadow reminder" *ngFor="let object of timeMap | keyvalue">
       <mat-card-title>
         <p>
           <mat-icon>notification_important</mat-icon>
-          <mat-label>20:30</mat-label>
+          <mat-label>{{object.key|date: 'HH:mm'}}</mat-label>
         </p>
         <button mat-stroked-button [disabled]="true">Take</button>
       </mat-card-title>
       <mat-card-content>
-        <div class="drug">
-          <h1>Lamicatal 100mg</h1>
-          <span>x 1</span>
-        </div>
-        <div class="drug">
-          <h1>Levotirox 100mg</h1>
-          <span>x 2</span>
+        <div class="drug" *ngFor="let med of object.value">
+          <h1>{{ med.name }}</h1>
         </div>
       </mat-card-content>
     </mat-card>
