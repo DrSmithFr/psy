@@ -7,62 +7,62 @@ import {StateService} from './state.service';
 import {take} from 'rxjs/operators';
 
 @Injectable(
-  {
-    providedIn: 'root'
-  }
+    {
+        providedIn: 'root'
+    }
 )
 export class TranslatorService {
 
-  public local = 'fr';
+    public local = 'fr';
 
-  private translations: Map<string, TranslationModel>;
-  private loaded: ReplaySubject<boolean> = new ReplaySubject<boolean>();
+    private translations: Map<string, TranslationModel>;
+    private loaded: ReplaySubject<boolean> = new ReplaySubject<boolean>();
 
-  constructor(
-    private state: StateService
-  ) {
-    this.translations = new Map<string, TranslationModel>();
-    this.loaded       = new ReplaySubject<true>();
-  }
+    constructor(
+        private state: StateService
+    ) {
+        this.translations = new Map<string, TranslationModel>();
+        this.loaded       = new ReplaySubject<true>();
+    }
 
-  init() {
-    const registered = [
-      moodLoadTranslations,
-      generalTranslations
-    ];
+    init() {
+        const registered = [
+            moodLoadTranslations,
+            generalTranslations
+        ];
 
-    registered.forEach((list: TranslationModel[]) => {
-      list.forEach(trans => {
-        this.translations.set(trans.id, trans);
-      });
-    });
+        registered.forEach((list: TranslationModel[]) => {
+            list.forEach(trans => {
+                this.translations.set(trans.id, trans);
+            });
+        });
 
-    this
-      .state
-      .STATE_LOCALE
-      .pipe(take(1))
-      .subscribe(locale => {
-        this.local = locale;
-        this.loaded.next(true);
-      });
-  }
+        this
+            .state
+            .STATE_LOCALE
+            .pipe(take(1))
+            .subscribe(locale => {
+                this.local = locale;
+                this.loaded.next(true);
+            });
+    }
 
-  trans(value: string): Observable<string> {
-    return Observable.create((observer) => {
+    trans(value: string): Observable<string> {
+        return new Observable((observer) => {
 
-      this.loaded.subscribe(() => {
-        const translation = this.translations.get(value);
+            this.loaded.subscribe(() => {
+                const translation = this.translations.get(value);
 
-        if (!translation) {
-          throw new Error('cannot found transaltion ' + value);
-        }
+                if (!translation) {
+                    throw new Error('cannot found transaltion ' + value);
+                }
 
-        observer.next(this.getTranslationAccordingToLocal(translation));
-      });
-    });
-  }
+                observer.next(this.getTranslationAccordingToLocal(translation));
+            });
+        });
+    }
 
-  getTranslationAccordingToLocal(t: TranslationModel): string {
-    return t[this.local];
-  }
+    getTranslationAccordingToLocal(t: TranslationModel): string {
+        return t[this.local];
+    }
 }

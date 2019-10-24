@@ -22,7 +22,7 @@ export class EventDisplayComponent implements OnInit {
 
   isToday(): boolean {
     const today = new Date();
-    return this.event.date.toDateString() === today.toDateString()
+    return this.event.date.toDateString() === today.toDateString();
   }
 
 }
