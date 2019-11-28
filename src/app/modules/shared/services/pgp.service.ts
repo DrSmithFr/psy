@@ -1,0 +1,78 @@
+import {Injectable} from '@angular/core';
+import * as openpgp from 'openpgp';
+import {StateService} from './state.service';
+import {PgpKeyModel} from '../../../../models/pgp.key.model';
+import {EncryptResult} from 'openpgp';
+import {DecryptResult} from 'openpgp';
+
+@Injectable(
+    {
+        providedIn: 'root'
+    }
+)
+export class PgpService {
+
+    constructor(
+        private state: StateService
+    ) {
+    }
+
+    async generate(uuid: string, pass: string): Promise<PgpKeyModel> {
+        const options = {
+            userIds:    [
+                {name: uuid, email: uuid + '@secure.none'}
+            ],
+            numBits:    4096,
+            passphrase: pass
+        };
+
+        const key = await openpgp.generateKey(options);
+
+        const privateKey = key.privateKeyArmored;
+        const publicKey  = key.publicKeyArmored;
+
+        return {
+            private: privateKey,
+            public:  publicKey,
+            password: pass
+        };
+    }
+
+    async sign(sender: PgpKeyModel) {
+        const privKeyObj = (await openpgp.key.readArmored(sender.private)).keys[0];
+
+        await privKeyObj.decrypt(sender.password);
+
+        return privKeyObj;
+    }
+
+    async encrypt(message: string, sender: PgpKeyModel, receiver: PgpKeyModel): Promise<string> {
+        const options = {
+            message:     openpgp.message.fromText(message),
+            publicKeys:  (await openpgp.key.readArmored(receiver.public)).keys,
+            privateKeys: [await this.sign(sender)],
+            compression: openpgp.enums.compression.zip
+        };
+
+        const encrypted = await openpgp.encrypt(options);
+
+        return encrypted.data;
+    }
+
+    async decrypt(encrypted: string, sender: PgpKeyModel, receiver: PgpKeyModel): Promise<string|null> {
+        const options = {
+            message:     await openpgp.message.readArmored(encrypted),
+            publicKeys:  (await openpgp.key.readArmored(sender.public)).keys,
+            privateKeys: [await this.sign(receiver)],
+            compression: openpgp.enums.compression.zip
+        };
+
+        const decrypted = await openpgp.decrypt(options);
+
+        if (decrypted.signatures[0].valid) {
+            return decrypted.data.toString();
+        }
+
+        return null;
+    }
+}

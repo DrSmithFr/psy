@@ -37,6 +37,7 @@
     "karma-teamcity-reporter": "^1.1.0",
     "lodash": "^4.17.15",
     "ngx-material-timepicker": "^4.0.2",
+    "openpgp": "^4.7.0",
     "rxjs": "~6.5.2",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
@@ -50,6 +51,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/lodash": "^4.14.136",
     "@types/node": "~12.7.1",
+    "@types/openpgp": "^4.4.7",
     "codelyzer": "^5.0.1",
     "cordova-plugin-whitelist": "^1.3.4",
     "jasmine-core": "~3.4.0",
