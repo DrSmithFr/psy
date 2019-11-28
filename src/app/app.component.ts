@@ -5,6 +5,7 @@ import {RouterOutlet} from '@angular/router';
 import {slideInAnimation} from './animations/slideIn.animation';
 import {TranslatorService} from './modules/shared/services/translator.service';
 import {PgpService} from './modules/shared/services/pgp.service';
+import {Argon2Service} from './modules/shared/services/argon2.service';
 
 @Component(
     {
@@ -22,17 +23,35 @@ export class AppComponent {
     constructor(
         private database: DbService,
         private translator: TranslatorService,
-        private gpg: PgpService
+        private gpg: PgpService,
+        private crypto: Argon2Service
     ) {
         database.connect();
         translator.init();
 
-        this.crypto().then(() => {
+        this.password('1234').then(() => {
+            console.log('password test finish');
+        });
+
+        this.e2e().then(() => {
             console.log('Ending secure chat');
         });
     }
 
-    async crypto() {
+    async password(pass: string) {
+        const salt           = this.crypto.generateSalt();
+        const strongPassword = await this.crypto.encodePassword(pass, salt);
+
+        console.log('encrypted pass: ' + strongPassword);
+
+        if (await this.crypto.isPasswordCorrect(pass, strongPassword)) {
+            console.log('password valid');
+        } else {
+            console.log('password invalid');
+        }
+    }
+
+    async e2e() {
         console.log('generating GPG keys for alice and bob');
 
         const alice = await this.gpg.generate('6dfb23ca-ecf4-4e8b-889f-33e25e9a82dc', '123');
