@@ -21,9 +21,9 @@ export class SettingsComponent implements OnInit {
     private state: StateService,
     private assets: AssetService
   ) {
-    this.currentLocale = this.state.STATE_LOCALE.getValue();
+    this.currentLocale = this.state.LOCALE.getValue();
 
-    this.state.STATE_LOCALE.subscribe(locale => {
+    this.state.LOCALE.subscribe(locale => {
       this.currentLocale = locale;
     });
   }
@@ -39,7 +39,7 @@ export class SettingsComponent implements OnInit {
   }
 
   onLocaleSelection() {
-    this.state.STATE_LOCALE.next(this.currentLocale);
+    this.state.LOCALE.next(this.currentLocale);
 
     // applying translations
     if (environment.application) {

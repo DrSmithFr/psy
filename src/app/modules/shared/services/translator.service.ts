@@ -39,7 +39,7 @@ export class TranslatorService {
 
         this
             .state
-            .STATE_LOCALE
+            .LOCALE
             .pipe(take(1))
             .subscribe(locale => {
                 this.local = locale;

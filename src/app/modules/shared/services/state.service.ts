@@ -8,9 +8,12 @@ import {mapTo, take} from 'rxjs/operators';
     }
 )
 export class StateService {
-    STATE_LOCALE: BehaviorSubject<string>;
-    STATE_PGP_PRIVATE: BehaviorSubject<string>;
-    STATE_PGP_PUBLIC: BehaviorSubject<string>;
+    LOCALE: BehaviorSubject<string>;
+    TOKEN: BehaviorSubject<string>;
+    USER_UUID: BehaviorSubject<string>;
+    PASSWORD: BehaviorSubject<string>;
+    PGP_PRIVATE: BehaviorSubject<string>;
+    PGP_PUBLIC: BehaviorSubject<string>;
 
     constructor() {
         this.initState();
@@ -18,24 +21,38 @@ export class StateService {
     }
 
     initState() {
-        this.STATE_LOCALE = new BehaviorSubject<string>(
-            this.getItemParsed('STATE_LOCALE') || 'en'
+        this.LOCALE = new BehaviorSubject<string>(
+            this.getItemParsed('LOCALE') || 'en'
         );
 
-        this.STATE_PGP_PRIVATE = new BehaviorSubject<string>(
-            this.getItemParsed('STATE_PGP_PRIVATE') || null
+        this.TOKEN = new BehaviorSubject<string>(
+            this.getItemParsed('TOKEN') || null
         );
 
-        this.STATE_PGP_PUBLIC = new BehaviorSubject<string>(
-            this.getItemParsed('STATE_PGP_PUBLIC') || null
+        this.USER_UUID = new BehaviorSubject<string>(
+            this.getItemParsed('USER_UUID') || null
+        );
+
+        this.PASSWORD = new BehaviorSubject<string>(
+            this.getItemParsed('PASSWORD') || null
+        );
+
+        this.PGP_PRIVATE = new BehaviorSubject<string>(
+            this.getItemParsed('PGP_PRIVATE') || null
+        );
+
+        this.PGP_PUBLIC = new BehaviorSubject<string>(
+            this.getItemParsed('PGP_PUBLIC') || null
         );
     }
 
     private listenToStateChangesAndSave() {
         merge(
-            this.STATE_LOCALE.pipe(mapTo('STATE_LOCALE')),
-            this.STATE_PGP_PRIVATE.pipe(mapTo('STATE_PGP_PRIVATE')),
-            this.STATE_PGP_PUBLIC.pipe(mapTo('STATE_PGP_PUBLIC')),
+            this.LOCALE.pipe(mapTo('LOCALE')),
+            this.TOKEN.pipe(mapTo('TOKEN')),
+            this.TOKEN.pipe(mapTo('USER_UUID')),
+            this.PGP_PRIVATE.pipe(mapTo('PGP_PRIVATE')),
+            this.PGP_PUBLIC.pipe(mapTo('PGP_PUBLIC')),
         ).subscribe(val => this.persistanceInLocalDevice(val));
     }
 

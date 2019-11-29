@@ -15,6 +15,37 @@
     </mat-form-field>
   </mat-card>
 
+  <mat-card class="shadow">
+    <h1>Account Setting</h1>
+
+    <div class="center">
+      <img src="{{'/assets/draws/account.svg'|asset}}" height="150">
+    </div>
+
+    <p>
+      Les compte sont <b>anonyme</b> et protéger uniquement par un <b>mot de passe</b>.
+    </p>
+
+    <ul>
+      <li>
+        <small>Un identifiant de connexion à 32 caractère (UUID) vous sera attribuer automatiquement</small>
+      </li>
+      <li>
+        <small>L'identifiant de connexion sera sauvegarder sur la memoire interne de vos téléphone</small>
+      </li>
+      <li>
+        <small>Une signature PGP sera créer pour sécuriser tout vos echanges au seins de l'application</small>
+      </li>
+      <li>
+        <small>Votre compte ne pourras pas être transféré si vous perder votre téléphone.</small>
+      </li>
+    </ul>
+
+    <div class="center">
+      <button mat-flat-button color="primary" (click)="openDialog()">Créer un compte maintenant</button>
+    </div>
+  </mat-card>
+
   <div class="center ">
 
   </div>

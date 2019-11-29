@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  application: false
+  application: false,
+  api_url: 'https://gateway.heystudent.fr'
 };
 
 /*
