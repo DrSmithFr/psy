@@ -32,22 +32,9 @@ export class AppComponent {
         database.connect();
         translator.init();
 
-        this.redirect();
-
         this.e2e().then(() => {
             console.log('Ending secure chat');
         });
-    }
-
-    redirect() {
-      if (this.stats.PASSWORD.getValue() === null) {
-        // return to create account
-      }
-
-      if (this.stats.CONNECTED.getValue() === false) {
-        // return to login form
-        this.stats.CONNECTED.next(true);
-      }
     }
 
     async e2e() {
