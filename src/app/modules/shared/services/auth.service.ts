@@ -7,58 +7,88 @@ import {RegisterationModel} from '../../../../models/api/registeration.model';
 import {Argon2Service} from './argon2.service';
 
 @Injectable(
-    {
-        providedIn: 'root'
-    }
+  {
+    providedIn: 'root'
+  }
 )
 export class AuthService {
 
-    constructor(
-        private api: ApiService,
-        private state: StateService,
-        private crypto: Argon2Service
-    ) {
-    }
+  constructor(
+    private api: ApiService,
+    private state: StateService,
+    private crypto: Argon2Service
+  ) {
+  }
 
-    register(password: string): Promise<RegisterationModel> {
-        return this
-            .api
-            .register(password)
-            .pipe<RegisterationModel>(
-                tap(register => {
-                    const salt = this.crypto.generateSalt();
+  register(password: string): Promise<RegisterationModel> {
+    return this
+      .api
+      .register(password)
+      .pipe<RegisterationModel>(
+        tap(register => {
+          const salt = this.crypto.generateSalt();
 
-                    this.crypto.encodePassword(password, salt).then(strongPassword => {
-                        this.state.USER_UUID.next(register.username);
-                        this.state.PASSWORD.next(strongPassword);
-                    });
-                }),
-            )
-            .toPromise();
-    }
+          this
+            .crypto
+            .encodePassword(password, salt)
+            .subscribe(strongPassword => {
+              this.state.USER_UUID.next(register.username);
+              this.state.PASSWORD.next(strongPassword);
+              this.state.CONNECTED.next(true);
+            });
+        }),
+      )
+      .toPromise();
+  }
 
-    connect(login: string, password: string): Promise<ConnectionModel> {
-        return this
-            .api
-            .connect(login, password)
-            .pipe<ConnectionModel>(
-                tap(connection => {
-                    // updating session with the new token
-                    this.state.TOKEN.next(connection.token);
-                }),
-            )
-            .toPromise();
-    }
+  login(password: string): Promise<boolean> {
+    const encoded = this.state.PASSWORD.getValue();
 
-    getUser(): string {
-        return this.state.USER_UUID.getValue();
-    }
+    return this
+      .crypto
+      .isPasswordCorrect(password, encoded)
+      .pipe(
+        tap(logged => {
+          this.state.CONNECTED.next(logged);
+        })
+      )
+      .toPromise();
+  }
 
-    hasSession(): boolean {
-        return this.state.TOKEN.getValue() !== null;
-    }
+  connect(password: string): Promise<ConnectionModel> {
+    return this
+      .api
+      .connect(
+        this.getUser(),
+        password
+      )
+      .pipe<ConnectionModel>(
+        tap(connection => {
+          // updating session with the new token
+          this.state.TOKEN.next(connection.token);
+        }),
+      )
+      .toPromise();
+  }
 
-    clearSession(): void {
-        this.state.TOKEN.next(null);
-    }
+  getUser(): string | null {
+    return this.state.USER_UUID.getValue();
+  }
+
+  isConnected(): boolean {
+    return this.state.CONNECTED.getValue();
+  }
+
+  hasSession(): boolean {
+    return this.state.TOKEN.getValue() !== null;
+  }
+
+  clearSession(): void {
+    this.state.TOKEN.next(null);
+  }
+
+  logout(): void {
+    this.clearSession();
+    this.state.CONNECTED.next(false);
+  }
 }

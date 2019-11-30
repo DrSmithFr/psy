@@ -36,7 +36,7 @@
 
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content *ngIf="auth.isConnected()">
     <div class="sidenav-wrapper">
       <app-navigation (opening)="sidenav.open()"></app-navigation>
 

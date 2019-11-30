@@ -12,50 +12,44 @@ import {MedsModule} from './modules/meds/meds.module';
 import {DrugsModule} from './modules/drugs/drugs.module';
 import {SleepModule} from './modules/sleep/sleep.module';
 import {SettingsModule} from './modules/settings/settings.module';
-import {
-    MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatToolbarModule
-} from '@angular/material';
+import {MatButtonModule, MatFormFieldModule, MatIconModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 import {SharedModule} from './modules/shared/shared.module';
 
 @NgModule(
-    {
-        declarations: [
-            AppComponent,
+  {
+    declarations: [
+      AppComponent,
 
-            NavigationComponent,
-            MenuComponent,
-        ],
-      imports: [
-        AppRoutingModule,
+      NavigationComponent,
+      MenuComponent,
+    ],
+    imports:      [
+      AppRoutingModule,
 
-        MoodModule,
-        EventModule,
-        MedsModule,
-        DrugsModule,
-        SleepModule,
-        SettingsModule,
+      MoodModule,
+      EventModule,
+      MedsModule,
+      DrugsModule,
+      SleepModule,
+      SettingsModule,
 
-        FormsModule,
-        ReactiveFormsModule,
+      FormsModule,
+      ReactiveFormsModule,
 
-        BrowserModule,
-        BrowserAnimationsModule,
+      BrowserModule,
+      BrowserAnimationsModule,
 
-        MatFormFieldModule,
-        MatSidenavModule,
-        MatButtonModule,
-        MatToolbarModule,
-        MatIconModule,
-        SharedModule,
-      ],
-        bootstrap:    [
-            AppComponent
-        ]
-    }
+      MatFormFieldModule,
+      MatSidenavModule,
+      MatButtonModule,
+      MatToolbarModule,
+      MatIconModule,
+      SharedModule,
+    ],
+    bootstrap:    [
+      AppComponent
+    ]
+  }
 )
 export class AppModule {
 }

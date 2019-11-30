@@ -6,6 +6,8 @@ import {slideInAnimation} from './animations/slideIn.animation';
 import {TranslatorService} from './modules/shared/services/translator.service';
 import {PgpService} from './modules/shared/services/pgp.service';
 import {Argon2Service} from './modules/shared/services/argon2.service';
+import {StateService} from './modules/shared/services/state.service';
+import {AuthService} from './modules/shared/services/auth.service';
 
 @Component(
     {
@@ -24,31 +26,28 @@ export class AppComponent {
         private database: DbService,
         private translator: TranslatorService,
         private gpg: PgpService,
-        private crypto: Argon2Service
+        private auth: AuthService,
+        private stats: StateService
     ) {
         database.connect();
         translator.init();
 
-        this.password('1234').then(() => {
-            console.log('password test finish');
-        });
+        this.redirect();
 
         this.e2e().then(() => {
             console.log('Ending secure chat');
         });
     }
 
-    async password(pass: string) {
-        const salt           = this.crypto.generateSalt();
-        const strongPassword = await this.crypto.encodePassword(pass, salt);
+    redirect() {
+      if (this.stats.PASSWORD.getValue() === null) {
+        // return to create account
+      }
 
-        console.log('encrypted pass: ' + strongPassword);
-
-        if (await this.crypto.isPasswordCorrect(pass, strongPassword)) {
-            console.log('password valid');
-        } else {
-            console.log('password invalid');
-        }
+      if (this.stats.CONNECTED.getValue() === false) {
+        // return to login form
+        this.stats.CONNECTED.next(true);
+      }
     }
 
     async e2e() {

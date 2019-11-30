@@ -4,7 +4,7 @@ import {TranslatorPipe} from './pipes/translator.pipe';
 import {UnderConstructionComponent} from './components/under-construction/under-construction.component';
 import {MatCardModule} from '@angular/material';
 import {AssetPipe} from './pipes/asset.pipe';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {InterceptorService} from './services/interceptor/interceptor.service';
 
 @NgModule(
@@ -16,6 +16,7 @@ import {InterceptorService} from './services/interceptor/interceptor.service';
         ],
         imports:      [
             CommonModule,
+            HttpClientModule,
             MatCardModule
         ],
         exports:      [

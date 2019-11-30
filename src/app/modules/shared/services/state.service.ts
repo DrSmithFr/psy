@@ -3,69 +3,72 @@ import {BehaviorSubject, merge} from 'rxjs';
 import {mapTo, take} from 'rxjs/operators';
 
 @Injectable(
-    {
-        providedIn: 'root'
-    }
+  {
+    providedIn: 'root'
+  }
 )
 export class StateService {
-    LOCALE: BehaviorSubject<string>;
-    TOKEN: BehaviorSubject<string>;
-    USER_UUID: BehaviorSubject<string>;
-    PASSWORD: BehaviorSubject<string>;
-    PGP_PRIVATE: BehaviorSubject<string>;
-    PGP_PUBLIC: BehaviorSubject<string>;
+  LOCALE: BehaviorSubject<string>;
+  TOKEN: BehaviorSubject<string>;
+  USER_UUID: BehaviorSubject<string>;
+  PASSWORD: BehaviorSubject<string>;
+  CONNECTED: BehaviorSubject<boolean>;
+  PGP_PRIVATE: BehaviorSubject<string>;
+  PGP_PUBLIC: BehaviorSubject<string>;
 
-    constructor() {
-        this.initState();
-        this.listenToStateChangesAndSave();
-    }
+  constructor() {
+    this.initState();
+    this.listenToStateChangesAndSave();
+  }
 
-    initState() {
-        this.LOCALE = new BehaviorSubject<string>(
-            this.getItemParsed('LOCALE') || 'en'
-        );
+  initState() {
+    this.CONNECTED = new BehaviorSubject<boolean>(false);
 
-        this.TOKEN = new BehaviorSubject<string>(
-            this.getItemParsed('TOKEN') || null
-        );
+    this.LOCALE = new BehaviorSubject<string>(
+      this.getItemParsed('LOCALE') || 'en'
+    );
 
-        this.USER_UUID = new BehaviorSubject<string>(
-            this.getItemParsed('USER_UUID') || null
-        );
+    this.TOKEN = new BehaviorSubject<string>(
+      this.getItemParsed('TOKEN') || null
+    );
 
-        this.PASSWORD = new BehaviorSubject<string>(
-            this.getItemParsed('PASSWORD') || null
-        );
+    this.USER_UUID = new BehaviorSubject<string>(
+      this.getItemParsed('USER_UUID') || null
+    );
 
-        this.PGP_PRIVATE = new BehaviorSubject<string>(
-            this.getItemParsed('PGP_PRIVATE') || null
-        );
+    this.PASSWORD = new BehaviorSubject<string>(
+      this.getItemParsed('PASSWORD') || null
+    );
 
-        this.PGP_PUBLIC = new BehaviorSubject<string>(
-            this.getItemParsed('PGP_PUBLIC') || null
-        );
-    }
+    this.PGP_PRIVATE = new BehaviorSubject<string>(
+      this.getItemParsed('PGP_PRIVATE') || null
+    );
 
-    private listenToStateChangesAndSave() {
-        merge(
-            this.LOCALE.pipe(mapTo('LOCALE')),
-            this.TOKEN.pipe(mapTo('TOKEN')),
-            this.TOKEN.pipe(mapTo('USER_UUID')),
-            this.PGP_PRIVATE.pipe(mapTo('PGP_PRIVATE')),
-            this.PGP_PUBLIC.pipe(mapTo('PGP_PUBLIC')),
-        ).subscribe(val => this.persistanceInLocalDevice(val));
-    }
+    this.PGP_PUBLIC = new BehaviorSubject<string>(
+      this.getItemParsed('PGP_PUBLIC') || null
+    );
+  }
 
-    private getItemParsed(str: string) {
-        return JSON.parse(localStorage.getItem(str));
-    }
+  private listenToStateChangesAndSave() {
+    merge(
+      this.LOCALE.pipe(mapTo('LOCALE')),
+      this.TOKEN.pipe(mapTo('TOKEN')),
+      this.TOKEN.pipe(mapTo('USER_UUID')),
+      this.PGP_PRIVATE.pipe(mapTo('PGP_PRIVATE')),
+      this.PGP_PUBLIC.pipe(mapTo('PGP_PUBLIC')),
+    ).subscribe(val => this.persistanceInLocalDevice(val));
+  }
 
-    private async persistanceInLocalDevice(obsrvblName = null) {
-        localStorage.setItem(
-            obsrvblName,
-            JSON.stringify(
-                await this[obsrvblName].pipe(take(1)).toPromise()
-            )
-        );
-    }
+  private getItemParsed(str: string) {
+    return JSON.parse(localStorage.getItem(str));
+  }
+
+  private async persistanceInLocalDevice(obsrvblName = null) {
+    localStorage.setItem(
+      obsrvblName,
+      JSON.stringify(
+        await this[obsrvblName].pipe(take(1)).toPromise()
+      )
+    );
+  }
 }
