@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  application: false
+  application: false,
+  api_url: 'https://gateway'
 };

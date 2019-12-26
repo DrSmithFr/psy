@@ -1,68 +1,65 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {MatSidenav} from '@angular/material/sidenav';
 import {DbService} from './modules/shared/services/db.service';
 import {RouterOutlet} from '@angular/router';
 import {slideInAnimation} from './animations/slideIn.animation';
 import {TranslatorService} from './modules/shared/services/translator.service';
 import {PgpService} from './modules/shared/services/pgp.service';
-import {Argon2Service} from './modules/shared/services/argon2.service';
-import {StateService} from './modules/shared/services/state.service';
 import {AuthService} from './modules/shared/services/auth.service';
 
 @Component(
-    {
-        selector:    'app-root',
-        templateUrl: './app.component.html',
-        styleUrls:   ['./app.component.scss'],
-        animations:  [
-            slideInAnimation
-        ]
-    }
+  {
+    selector:    'app-root',
+    templateUrl: './app.component.html',
+    styleUrls:   ['./app.component.scss'],
+    animations:  [
+      slideInAnimation
+    ]
+  }
 )
 export class AppComponent {
-    @ViewChild('sidenav', {static: true}) sidenav: MatSidenav;
+  @ViewChild('sidenav', {static: true}) sidenav: MatSidenav;
 
-    constructor(
-        private database: DbService,
-        private translator: TranslatorService,
-        private gpg: PgpService,
-        private auth: AuthService,
-        private stats: StateService
-    ) {
-        database.connect();
-        translator.init();
+  constructor(
+    private database: DbService,
+    private translator: TranslatorService,
+    private gpg: PgpService,
+    public auth: AuthService,
+  ) {
+    database.connect();
+    translator.init();
 
-        // this.e2e().then(() => {
-        //     console.log('Ending secure chat');
-        // });
-    }
+    // this.e2e().then(() => {
+    //     console.log('Ending secure chat');
+    // });
+  }
 
-    async e2e() {
-        console.log('generating GPG keys for alice and bob');
+  async e2e() {
+    console.log('generating GPG keys for alice and bob');
 
-        const alice = await this.gpg.generate('6dfb23ca-ecf4-4e8b-889f-33e25e9a82dc', '123');
-        const bob = await this.gpg.generate('79a959be-8cb0-4945-916f-3e02ca257797', '456');
+    const alice = await this.gpg.generate('6dfb23ca-ecf4-4e8b-889f-33e25e9a82dc', '123');
+    const bob   = await this.gpg.generate('79a959be-8cb0-4945-916f-3e02ca257797', '456');
 
-        console.log('starting secure chat');
+    console.log('starting secure chat');
 
-        const message = await this.gpg.encrypt('Whats up bob ?', alice, bob);
-        console.log(message);
+    const message = await this.gpg.encrypt('Whats up bob ?', alice, bob);
+    console.log(message);
 
-        const messageDecrypted = await this.gpg.decrypt(message, alice, bob);
-        console.log(messageDecrypted);
+    const messageDecrypted = await this.gpg.decrypt(message, alice, bob);
+    console.log(messageDecrypted);
 
-        const answer = await this.gpg.encrypt('just chilling alice !', bob, alice);
-        console.log(answer);
+    const answer = await this.gpg.encrypt('just chilling alice !', bob, alice);
+    console.log(answer);
 
-        const answerDecrypted = await this.gpg.decrypt(answer, bob, alice);
-        console.log(answerDecrypted);
-    }
+    const answerDecrypted = await this.gpg.decrypt(answer, bob, alice);
+    console.log(answerDecrypted);
+  }
 
-    close() {
-        this.sidenav.close();
-    }
+  close() {
+    this.sidenav.close();
+  }
 
-    prepareRoute(outlet: RouterOutlet) {
-        return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
-    }
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
+  }
 }
