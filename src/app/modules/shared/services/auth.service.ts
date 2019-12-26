@@ -5,6 +5,8 @@ import {tap} from 'rxjs/operators';
 import {ConnectionModel} from '../../../../models/api/connection.model';
 import {RegisterationModel} from '../../../../models/api/registeration.model';
 import {Argon2Service} from './argon2.service';
+import {PgpService} from './pgp.service';
+import {Observable} from 'rxjs';
 
 @Injectable(
   {
@@ -16,29 +18,68 @@ export class AuthService {
   constructor(
     private api: ApiService,
     private state: StateService,
-    private crypto: Argon2Service
+    private crypto: Argon2Service,
+    private pgp: PgpService,
   ) {
   }
 
   register(password: string): Promise<RegisterationModel> {
-    return this
-      .api
-      .register(password)
-      .pipe<RegisterationModel>(
-        tap(register => {
-          const salt = this.crypto.generateSalt();
+    return new Observable<RegisterationModel>(obs => {
+      // creating account on gateway
+      this
+        .api
+        .register(password)
+        .subscribe(
+          registration => {
+            this.state.USER_UUID.next(registration.username);
 
-          this
-            .crypto
-            .encodePassword(password, salt)
-            .subscribe(strongPassword => {
-              this.state.USER_UUID.next(register.username);
-              this.state.PASSWORD.next(strongPassword);
-              this.state.CONNECTED.next(true);
-            });
-        }),
-      )
-      .toPromise();
+            // ensure account creation with connection
+            this
+              .connect(password)
+              .then(() => {
+                // encode password to local memory
+                const salt = this.crypto.generateSalt();
+
+                this
+                  .crypto
+                  .encodePassword(password, salt)
+                  .subscribe(
+                    strongPassword => {
+                      this.state.PASSWORD.next(strongPassword);
+                      this.state.CONNECTED.next(true);
+
+                      // generating GPG keys to secure exchange
+                      this
+                        .pgp
+                        .generate(registration.username, password)
+                        .then(keys => {
+                          this.state.PGP_PRIVATE.next(keys.private);
+
+                          this
+                            .api
+                            .secure({key: keys.public})
+                            .subscribe(
+                              gpg => {
+                                this.state.PGP_PUBLIC.next(gpg.key);
+                                obs.next(registration);
+                              },
+                              error => {
+                                obs.error(error);
+                              }
+                            );
+                        });
+                    },
+                    error => {
+                      obs.error(error);
+                    }
+                  );
+              });
+          },
+          error => {
+            obs.error(error);
+          }
+        );
+    }).toPromise();
   }
 
   login(password: string): Promise<boolean> {

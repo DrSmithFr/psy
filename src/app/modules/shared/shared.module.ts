@@ -5,37 +5,39 @@ import {UnderConstructionComponent} from './components/under-construction/under-
 import {MatCardModule, MatFormFieldModule} from '@angular/material';
 import {AssetPipe} from './pipes/asset.pipe';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {LoginComponent} from './components/login/login.component';
 import {InterceptorService} from './services/interceptor/interceptor.service';
-import { LoginComponent } from './components/login/login.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule(
-    {
-        declarations: [
-            TranslatorPipe,
-            AssetPipe,
-            UnderConstructionComponent,
-            LoginComponent,
-        ],
-      imports: [
-        CommonModule,
-        HttpClientModule,
-        MatCardModule,
-        MatFormFieldModule
-      ],
-        exports:      [
-            TranslatorPipe,
-            AssetPipe,
-            UnderConstructionComponent,
-            LoginComponent
-        ],
-        providers:    [
-            {
-                provide:  HTTP_INTERCEPTORS,
-                useClass: InterceptorService,
-                multi:    true
-            },
-        ]
-    }
+  {
+    declarations: [
+      TranslatorPipe,
+      AssetPipe,
+      UnderConstructionComponent,
+      LoginComponent,
+    ],
+    imports:      [
+      CommonModule,
+      HttpClientModule,
+      MatCardModule,
+      MatFormFieldModule,
+      MatSnackBarModule,
+    ],
+    exports:      [
+      TranslatorPipe,
+      AssetPipe,
+      UnderConstructionComponent,
+      LoginComponent
+    ],
+    providers:    [
+      {
+        provide:  HTTP_INTERCEPTORS,
+        useClass: InterceptorService,
+        multi:    true
+      },
+    ]
+  }
 )
 export class SharedModule {
 }

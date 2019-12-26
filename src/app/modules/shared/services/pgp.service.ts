@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as openpgp from 'openpgp';
-import {PgpKeyModel} from '../../../../models/pgp.key.model';
+import {GpgKeyModel} from '../../../../models/gpgKeyModel';
 
 @Injectable(
     {
@@ -12,7 +12,7 @@ export class PgpService {
     constructor() {
     }
 
-    async generate(uuid: string, pass: string): Promise<PgpKeyModel> {
+    async generate(uuid: string, pass: string): Promise<GpgKeyModel> {
         const options = {
             userIds:    [
                 {name: uuid, email: uuid + '@secure.none'}
@@ -33,14 +33,14 @@ export class PgpService {
         };
     }
 
-    async sign(sender: PgpKeyModel) {
+    async sign(sender: GpgKeyModel) {
         const key = (await openpgp.key.readArmored(sender.private)).keys[0];
         await key.decrypt(sender.password);
 
         return key;
     }
 
-    async encrypt(message: string, sender: PgpKeyModel, receiver: PgpKeyModel): Promise<string> {
+    async encrypt(message: string, sender: GpgKeyModel, receiver: GpgKeyModel): Promise<string> {
         const options = {
             message:     openpgp.message.fromText(message),
             publicKeys:  (await openpgp.key.readArmored(receiver.public)).keys,
@@ -53,7 +53,7 @@ export class PgpService {
         return encrypted.data;
     }
 
-    async decrypt(encrypted: string, sender: PgpKeyModel, receiver: PgpKeyModel): Promise<string | null> {
+    async decrypt(encrypted: string, sender: GpgKeyModel, receiver: GpgKeyModel): Promise<string | null> {
         const options = {
             message:     await openpgp.message.readArmored(encrypted),
             publicKeys:  (await openpgp.key.readArmored(sender.public)).keys,

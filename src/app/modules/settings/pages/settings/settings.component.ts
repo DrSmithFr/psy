@@ -4,6 +4,8 @@ import {StateService} from '../../../shared/services/state.service';
 import {ClearDataComponent} from '../../dialogs/clear-data/clear-data.component';
 import {AssetService} from '../../../shared/services/asset.service';
 import {environment} from '../../../../../environments/environment';
+import {PgpService} from '../../../shared/services/pgp.service';
+import {CreateAccountComponent} from '../../dialogs/create-account/create-account.component';
 
 @Component(
   {
@@ -19,7 +21,8 @@ export class SettingsComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private state: StateService,
-    private assets: AssetService
+    private assets: AssetService,
+    private gpg: PgpService,
   ) {
     this.currentLocale = this.state.LOCALE.getValue();
 
@@ -47,5 +50,12 @@ export class SettingsComponent implements OnInit {
     } else {
       window.location.replace('/');
     }
+  }
+
+  createAccount() {
+    this.dialog.open(CreateAccountComponent, {
+      width: '95%',
+      hasBackdrop: true
+    });
   }
 }

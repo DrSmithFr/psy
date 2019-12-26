@@ -12,7 +12,13 @@ import {MedsModule} from './modules/meds/meds.module';
 import {DrugsModule} from './modules/drugs/drugs.module';
 import {SleepModule} from './modules/sleep/sleep.module';
 import {SettingsModule} from './modules/settings/settings.module';
-import {MatButtonModule, MatFormFieldModule, MatIconModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatSidenavModule,
+  MatToolbarModule
+} from '@angular/material';
 import {SharedModule} from './modules/shared/shared.module';
 
 @NgModule(
@@ -48,7 +54,7 @@ import {SharedModule} from './modules/shared/shared.module';
     ],
     bootstrap:    [
       AppComponent
-    ]
+    ],
   }
 )
 export class AppModule {

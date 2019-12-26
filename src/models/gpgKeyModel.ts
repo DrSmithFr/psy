@@ -1,4 +1,4 @@
-export class PgpKeyModel {
+export class GpgKeyModel {
     public: string;
     private: string;
     password: string;

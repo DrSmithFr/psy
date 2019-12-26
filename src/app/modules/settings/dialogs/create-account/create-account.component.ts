@@ -7,32 +7,35 @@ import {AuthService} from '../../../shared/services/auth.service';
 import {StateService} from '../../../shared/services/state.service';
 
 @Component(
-    {
-        selector:    'app-create-account',
-        templateUrl: './create-account.component.html',
-        styleUrls:   ['./create-account.component.scss']
-    }
+  {
+    selector:    'app-create-account',
+    templateUrl: './create-account.component.html',
+    styleUrls:   ['./create-account.component.scss']
+  }
 )
 export class CreateAccountComponent implements OnInit {
 
-    constructor(
-        public dialogRef: MatDialogRef<CreateAccountComponent>,
-        private router: Router,
-        private crypto: Argon2Service,
-        private pgp: PgpService,
-        private auth: AuthService,
-        private state: StateService
-    ) {
-    }
+  constructor(
+    public dialogRef: MatDialogRef<CreateAccountComponent>,
+    private router: Router,
+    private crypto: Argon2Service,
+    private auth: AuthService,
+  ) {
+  }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
 
-    async createAccount(password: string) {
-        const registration = await this.auth.register(password);
-        const keys         = await this.pgp.generate(registration.username, password);
+  }
 
-        this.state.PGP_PRIVATE.next(keys.private);
-        this.state.PGP_PUBLIC.next(keys.public);
-    }
+  createAccount() {
+    this
+      .makeAccount('5646')
+      .then(() => {
+        this.dialogRef.close();
+      });
+  }
+
+  async makeAccount(password: string) {
+    await this.auth.register(password);
+  }
 }

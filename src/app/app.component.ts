@@ -32,9 +32,9 @@ export class AppComponent {
         database.connect();
         translator.init();
 
-        this.e2e().then(() => {
-            console.log('Ending secure chat');
-        });
+        // this.e2e().then(() => {
+        //     console.log('Ending secure chat');
+        // });
     }
 
     async e2e() {

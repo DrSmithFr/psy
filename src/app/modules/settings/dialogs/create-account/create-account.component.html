@@ -1,18 +1,18 @@
-<h1 mat-dialog-title>Clear local data?</h1>
+<h1 mat-dialog-title>Create an account?</h1>
+
 <div mat-dialog-content>
   <p>
     Everything will be lost for long !
   </p>
 </div>
-<div mat-dialog-actions>
 
+<div mat-dialog-actions>
   <div class="row">
     <div class="small-6 left">
-      <button mat-button color="warn" (click)="clearData()">Clear data</button>
-    </div>
-    <div class="small-6 right">
       <button mat-button [mat-dialog-close]="false">No Thanks</button>
     </div>
+    <div class="small-6 right">
+      <button mat-button color="warn" (click)="createAccount()">Create account</button>
+    </div>
   </div>
-
 </div>
