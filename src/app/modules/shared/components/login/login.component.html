@@ -5,7 +5,7 @@
   <br>
 
   <!-- first connection -->
-  <mat-card *ngIf="!auth.hasAccount()">
+  <mat-card *ngIf="!auth.hasPassword()">
     <form [formGroup]="registerForm" (ngSubmit)="encodePassword()">
       <div class="center">
         <img src="{{'/assets/draws/login.svg'|asset}}" height="150">
@@ -41,7 +41,7 @@
   </mat-card>
 
   <!-- normal connection -->
-  <mat-card *ngIf="auth.hasAccount()">
+  <mat-card *ngIf="auth.hasPassword()">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="center">
         <img src="{{'/assets/draws/login.svg'|asset}}" height="150">

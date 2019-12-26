@@ -149,7 +149,11 @@ export class AuthService {
     this.state.CONNECTED.next(false);
   }
 
-  hasAccount() {
+  hasPassword() {
     return this.state.PASSWORD.getValue() !== null;
+  }
+
+  hasAccount() {
+    return this.state.USER_UUID.getValue() !== null;
   }
 }

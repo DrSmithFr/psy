@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import {StateService} from '../../../shared/services/state.service';
 import {ClearDataComponent} from '../../dialogs/clear-data/clear-data.component';
 import {AssetService} from '../../../shared/services/asset.service';
 import {environment} from '../../../../../environments/environment';
-import {PgpService} from '../../../shared/services/pgp.service';
 import {CreateAccountComponent} from '../../dialogs/create-account/create-account.component';
+import {AuthService} from '../../../shared/services/auth.service';
 
 @Component(
   {
@@ -20,9 +20,9 @@ export class SettingsComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
+    public auth: AuthService,
     private state: StateService,
     private assets: AssetService,
-    private gpg: PgpService,
   ) {
     this.currentLocale = this.state.LOCALE.getValue();
 
@@ -33,7 +33,7 @@ export class SettingsComponent implements OnInit {
 
   openDialog(): void {
     this.dialog.open(ClearDataComponent, {
-      width: '95%',
+      width:       '95%',
       hasBackdrop: true
     });
   }
@@ -54,7 +54,7 @@ export class SettingsComponent implements OnInit {
 
   createAccount() {
     this.dialog.open(CreateAccountComponent, {
-      width: '95%',
+      width:       '95%',
       hasBackdrop: true
     });
   }

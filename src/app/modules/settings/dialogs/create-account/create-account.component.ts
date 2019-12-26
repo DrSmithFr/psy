@@ -2,9 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {Argon2Service} from '../../../shared/services/argon2.service';
-import {PgpService} from '../../../shared/services/pgp.service';
 import {AuthService} from '../../../shared/services/auth.service';
-import {StateService} from '../../../shared/services/state.service';
 
 @Component(
   {
@@ -29,13 +27,10 @@ export class CreateAccountComponent implements OnInit {
 
   createAccount() {
     this
-      .makeAccount('5646')
+      .auth
+      .register('5646')
       .then(() => {
         this.dialogRef.close();
       });
-  }
-
-  async makeAccount(password: string) {
-    await this.auth.register(password);
   }
 }
