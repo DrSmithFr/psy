@@ -8,6 +8,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './components/login/login.component';
 import {InterceptorService} from './services/interceptor/interceptor.service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule(
   {
@@ -17,12 +20,19 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
       UnderConstructionComponent,
       LoginComponent,
     ],
-    imports:      [
+    imports: [
       CommonModule,
       HttpClientModule,
+
+      MatInputModule,
       MatCardModule,
       MatFormFieldModule,
       MatSnackBarModule,
+      MatFormFieldModule,
+
+      FormsModule,
+      ReactiveFormsModule,
+      MatButtonModule,
     ],
     exports:      [
       TranslatorPipe,

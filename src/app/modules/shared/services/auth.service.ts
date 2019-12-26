@@ -23,6 +23,21 @@ export class AuthService {
   ) {
   }
 
+  addPassword(password: string): Promise<string> {
+    // encode password to local memory
+    const salt = this.crypto.generateSalt();
+
+    return this
+      .crypto
+      .encodePassword(password, salt)
+      .pipe(
+        tap(strongPassword => {
+          this.state.PASSWORD.next(strongPassword);
+        })
+      )
+      .toPromise();
+  }
+
   register(password: string): Promise<RegisterationModel> {
     return new Observable<RegisterationModel>(obs => {
       // creating account on gateway
@@ -132,5 +147,9 @@ export class AuthService {
   logout(): void {
     this.clearSession();
     this.state.CONNECTED.next(false);
+  }
+
+  hasAccount() {
+    return this.state.PASSWORD.getValue() !== null;
   }
 }

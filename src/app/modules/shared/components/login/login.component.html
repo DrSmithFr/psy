@@ -4,13 +4,65 @@
   <br>
   <br>
 
-  <mat-card>
-    <div class="center">
-      <img src="{{'/assets/draws/login.svg'|asset}}" height="150">
-    </div>
+  <!-- first connection -->
+  <mat-card *ngIf="!auth.hasAccount()">
+    <form [formGroup]="registerForm" (ngSubmit)="encodePassword()">
+      <div class="center">
+        <img src="{{'/assets/draws/login.svg'|asset}}" height="150">
+      </div>
 
+      <p>Vous devez crée un mot de passe pour assurer la sécurité de votre application</p>
 
+      <mat-form-field class="full-width">
+        <input
+          placeholder="Password"
+          matInput
+          type="password"
+          formControlName="password"
+          autofocus
+          required>
+      </mat-form-field>
 
+      <mat-form-field class="full-width">
+        <input
+          placeholder="Repeat Password"
+          matInput
+          type="password"
+          formControlName="confirmPassword"
+          required>
+      </mat-form-field>
+
+      <div class="center">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">
+          Validate password
+        </button>
+      </div>
+    </form>
+  </mat-card>
+
+  <!-- normal connection -->
+  <mat-card *ngIf="auth.hasAccount()">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="center">
+        <img src="{{'/assets/draws/login.svg'|asset}}" height="150">
+      </div>
+
+      <mat-form-field class="full-width">
+        <input
+          placeholder="Password"
+          matInput
+          type="password"
+          formControlName="password"
+          autofocus
+          required>
+      </mat-form-field>
+
+      <div class="center">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">
+          Login
+        </button>
+      </div>
+    </form>
   </mat-card>
 
   <br>

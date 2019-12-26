@@ -3,11 +3,13 @@ import {Router} from '@angular/router';
 import {MedsModel} from '../../../../../models/meds.model';
 import {DbService} from '../../../shared/services/db.service';
 
-@Component({
-  selector: 'app-meds-form',
-  templateUrl: './meds-form.component.html',
-  styleUrls: ['./meds-form.component.scss']
-})
+@Component(
+  {
+    selector:    'app-meds-form',
+    templateUrl: './meds-form.component.html',
+    styleUrls:   ['./meds-form.component.scss']
+  }
+)
 export class MedsFormComponent implements OnInit {
 
   @Input() med: MedsModel;
@@ -15,14 +17,18 @@ export class MedsFormComponent implements OnInit {
   constructor(
     private database: DbService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
   }
 
   submit() {
-    this.database.addMed(this.med).subscribe(() => {
-      this.router.navigateByUrl('/meds');
-    });
+    this
+      .database
+      .addMed(this.med)
+      .subscribe(() => {
+        this.router.navigateByUrl('/meds');
+      });
   }
 }

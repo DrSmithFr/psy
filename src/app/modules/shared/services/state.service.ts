@@ -21,31 +21,35 @@ export class StateService {
     this.listenToStateChangesAndSave();
   }
 
+  private static getItemParsed(str: string) {
+    return JSON.parse(localStorage.getItem(str));
+  }
+
   initState() {
     this.CONNECTED = new BehaviorSubject<boolean>(false);
 
     this.LOCALE = new BehaviorSubject<string>(
-      this.getItemParsed('LOCALE') || 'en'
+      StateService.getItemParsed('LOCALE') || 'en'
     );
 
     this.TOKEN = new BehaviorSubject<string>(
-      this.getItemParsed('TOKEN') || null
+      StateService.getItemParsed('TOKEN') || null
     );
 
     this.USER_UUID = new BehaviorSubject<string>(
-      this.getItemParsed('USER_UUID') || null
+      StateService.getItemParsed('USER_UUID') || null
     );
 
     this.PASSWORD = new BehaviorSubject<string>(
-      this.getItemParsed('PASSWORD') || null
+      StateService.getItemParsed('PASSWORD') || null
     );
 
     this.PGP_PRIVATE = new BehaviorSubject<string>(
-      this.getItemParsed('PGP_PRIVATE') || null
+      StateService.getItemParsed('PGP_PRIVATE') || null
     );
 
     this.PGP_PUBLIC = new BehaviorSubject<string>(
-      this.getItemParsed('PGP_PUBLIC') || null
+      StateService.getItemParsed('PGP_PUBLIC') || null
     );
   }
 
@@ -54,13 +58,10 @@ export class StateService {
       this.LOCALE.pipe(mapTo('LOCALE')),
       this.TOKEN.pipe(mapTo('TOKEN')),
       this.TOKEN.pipe(mapTo('USER_UUID')),
+      this.PASSWORD.pipe(mapTo('PASSWORD')),
       this.PGP_PRIVATE.pipe(mapTo('PGP_PRIVATE')),
       this.PGP_PUBLIC.pipe(mapTo('PGP_PUBLIC')),
     ).subscribe(val => this.persistanceInLocalDevice(val));
-  }
-
-  private getItemParsed(str: string) {
-    return JSON.parse(localStorage.getItem(str));
   }
 
   private async persistanceInLocalDevice(obsrvblName = null) {
