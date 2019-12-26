@@ -60,7 +60,8 @@ export class AuthService {
                             .secure({key: keys.public})
                             .subscribe(
                               gpg => {
-                                this.state.PGP_PUBLIC.next(gpg.key);
+                                // enable back for e2ee
+                                // this.state.PGP_PUBLIC.next(gpg.key);
                                 obs.next(registration);
                               },
                               error => {
