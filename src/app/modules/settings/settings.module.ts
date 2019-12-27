@@ -17,13 +17,19 @@ import {RouterModule} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CreateAccountComponent} from './dialogs/create-account/create-account.component';
+import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
+import { LocaleSettingsComponent } from './components/locale-settings/locale-settings.component';
+import { SecureAreaSettingsComponent } from './components/secure-area-settings/secure-area-settings.component';
 
 @NgModule(
     {
         declarations:    [
             SettingsComponent,
             ClearDataComponent,
-            CreateAccountComponent
+            CreateAccountComponent,
+            AccountSettingsComponent,
+            LocaleSettingsComponent,
+            SecureAreaSettingsComponent
         ],
         entryComponents: [
             ClearDataComponent,

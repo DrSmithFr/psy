@@ -1,0 +1,15 @@
+<mat-card class="shadow">
+  <h1>Global Setting</h1>
+
+  <div class="center">
+    <img src="{{'/assets/draws/settings.svg'|asset}}" height="150">
+  </div>
+
+  <mat-form-field>
+    <mat-label>Language</mat-label>
+    <mat-select [(ngModel)]="currentLocale" (selectionChange)="onLocaleSelection()">
+      <mat-option value="fr" >Français</mat-option>
+      <mat-option value="en">English</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-card>
