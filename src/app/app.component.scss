@@ -22,7 +22,6 @@ mat-sidenav {
     border-bottom: 1px solid #ddd;
 
     &.active, &:active, &:focus {
-      background: #fff;
       color: #607d8b;
       border-left: 5px solid #607d8b;
       text-decoration: underline;

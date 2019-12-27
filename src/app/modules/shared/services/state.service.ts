@@ -9,6 +9,7 @@ import {mapTo, take} from 'rxjs/operators';
 )
 export class StateService {
   LOCALE: BehaviorSubject<string>;
+  STYLE: BehaviorSubject<string>;
   TOKEN: BehaviorSubject<string>;
   USER_UUID: BehaviorSubject<string>;
   PASSWORD: BehaviorSubject<string>;
@@ -30,6 +31,10 @@ export class StateService {
 
     this.LOCALE = new BehaviorSubject<string>(
       StateService.getItemParsed('LOCALE') || 'en'
+    );
+
+    this.STYLE = new BehaviorSubject<string>(
+      StateService.getItemParsed('STYLE') || 'day'
     );
 
     this.TOKEN = new BehaviorSubject<string>(
@@ -56,6 +61,7 @@ export class StateService {
   private listenToStateChangesAndSave() {
     merge(
       this.LOCALE.pipe(mapTo('LOCALE')),
+      this.STYLE.pipe(mapTo('STYLE')),
       this.TOKEN.pipe(mapTo('TOKEN')),
       this.TOKEN.pipe(mapTo('USER_UUID')),
       this.PASSWORD.pipe(mapTo('PASSWORD')),

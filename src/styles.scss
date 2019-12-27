@@ -26,9 +26,6 @@ $psy-theme: mat-light-theme($psy-primary, $psy-accent, $psy-warn);
 // `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
 @include angular-material-theme($psy-theme);
 
-// Personal grid system
-
-
 /* You can add global styles to this file, and also import other style files */
 
 html, body {
@@ -105,7 +102,7 @@ div, p, a, .text {
 }
 
 hr {
-  border-color: 1px solid #eee;
+  border-color: #eee;
 }
 
 .full {
@@ -161,4 +158,18 @@ input {
   -moz-user-select: auto !important;
   -ms-user-select: auto !important;
   user-select: auto !important;
+}
+
+// Define an alternate dark theme.
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$dark-warn:    mat-palette($mat-deep-orange);
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+// dark mode
+#colorContainer.night {
+  background: #121212;
+  color: #555555;
+
+  @include angular-material-theme($dark-theme);
 }

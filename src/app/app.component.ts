@@ -1,11 +1,11 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {MatSidenav} from '@angular/material/sidenav';
 import {DbService} from './modules/shared/services/db.service';
 import {RouterOutlet} from '@angular/router';
 import {slideInAnimation} from './animations/slideIn.animation';
 import {TranslatorService} from './modules/shared/services/translator.service';
-import {PgpService} from './modules/shared/services/pgp.service';
 import {AuthService} from './modules/shared/services/auth.service';
+import {StateService} from './modules/shared/services/state.service';
 
 @Component(
   {
@@ -17,42 +17,25 @@ import {AuthService} from './modules/shared/services/auth.service';
     ]
   }
 )
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild('sidenav', {static: true}) sidenav: MatSidenav;
 
   constructor(
     private database: DbService,
     private translator: TranslatorService,
-    private gpg: PgpService,
+    private state: StateService,
+    private renderer: Renderer2,
     public auth: AuthService,
   ) {
     database.connect();
     translator.init();
-
-    // this.e2e().then(() => {
-    //     console.log('Ending secure chat');
-    // });
   }
 
-  async e2e() {
-    console.log('generating GPG keys for alice and bob');
-
-    const alice = await this.gpg.generate('6dfb23ca-ecf4-4e8b-889f-33e25e9a82dc', '123');
-    const bob   = await this.gpg.generate('79a959be-8cb0-4945-916f-3e02ca257797', '456');
-
-    console.log('starting secure chat');
-
-    const message = await this.gpg.encrypt('Whats up bob ?', alice, bob);
-    console.log(message);
-
-    const messageDecrypted = await this.gpg.decrypt(message, alice, bob);
-    console.log(messageDecrypted);
-
-    const answer = await this.gpg.encrypt('just chilling alice !', bob, alice);
-    console.log(answer);
-
-    const answerDecrypted = await this.gpg.decrypt(answer, bob, alice);
-    console.log(answerDecrypted);
+  ngOnInit(): void {
+    // this.state.STYLE.subscribe(style => {
+    //   const elem = this.renderer.selectRootElement('html');
+    //   this.renderer.addClass(elem, style);
+    // });
   }
 
   close() {
