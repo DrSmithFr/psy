@@ -55,25 +55,25 @@ export class CalendarComponent implements OnInit {
   }
 
   onCellRender(date: Date, elem: any): void {
-    this.renderer.setAttribute(
-      elem,
-      'selectable',
-      (date.getMonth() === this.selected.getMonth()) ? 'true' : 'false'
-    );
+    if (date.getMonth() === this.selected.getMonth()) {
+      this.renderer.addClass(elem, 'selectable');
+    } else {
+      this.renderer.removeClass(elem, 'selectable');
+    }
 
     const today = new Date();
 
-    this.renderer.setAttribute(
-      elem,
-      'currentDay',
-      (date.toDateString() === today.toDateString()) ? 'true' : 'false'
-    );
+    if (date.toDateString() === today.toDateString()) {
+      this.renderer.addClass(elem, 'currentDay');
+    } else {
+      this.renderer.removeClass(elem, 'currentDay');
+    }
 
-    this.renderer.setAttribute(
-      elem,
-      'has-event',
-      (this.dates.indexOf(date.toDateString()) !== -1) ? 'true' : 'false'
-    );
+    if (this.dates.indexOf(date.toDateString()) !== -1) {
+      this.renderer.addClass(elem, 'has-event');
+    } else {
+      this.renderer.removeClass(elem, 'has-event');
+    }
   }
 
   getCell(row: number, column: number): any {
