@@ -3,9 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production:  false,
   application: false,
-  api_url: 'https://gateway.heystudent.fr'
+  developer:   true,
+  api_url:     'https://gateway'
 };
 
 /*

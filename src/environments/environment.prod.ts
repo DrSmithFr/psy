@@ -1,5 +1,6 @@
 export const environment = {
-  production: true,
+  production:  true,
   application: false,
-  api_url: 'https://gateway'
+  developer:   false,
+  api_url:     'https://gateway.heystudent.fr'
 };

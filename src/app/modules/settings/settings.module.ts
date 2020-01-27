@@ -20,6 +20,7 @@ import {CreateAccountComponent} from './dialogs/create-account/create-account.co
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { LocaleSettingsComponent } from './components/locale-settings/locale-settings.component';
 import { SecureAreaSettingsComponent } from './components/secure-area-settings/secure-area-settings.component';
+import { SecureAreaDevelopperComponent } from './components/secure-area-developper/secure-area-developper.component';
 
 @NgModule(
     {
@@ -29,7 +30,8 @@ import { SecureAreaSettingsComponent } from './components/secure-area-settings/s
             CreateAccountComponent,
             AccountSettingsComponent,
             LocaleSettingsComponent,
-            SecureAreaSettingsComponent
+            SecureAreaSettingsComponent,
+            SecureAreaDevelopperComponent
         ],
         entryComponents: [
             ClearDataComponent,

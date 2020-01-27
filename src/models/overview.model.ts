@@ -29,4 +29,24 @@ export class OverviewModel {
       this.addFeeling(value);
     }
   }
+
+  addEvent(value: string): void {
+    this.events.push(value);
+  }
+
+  removeEvent(value: string): void {
+    this.events = this.events.filter(s => s !== value);
+  }
+
+  hasEvent(value: string): boolean {
+    return this.events.indexOf(value) !== -1;
+  }
+
+  toggleEvent(value: string): void {
+    if (this.hasFeeling(value)) {
+      this.removeFeeling(value);
+    } else {
+      this.addFeeling(value);
+    }
+  }
 }
