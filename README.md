@@ -1,3 +1,3 @@
 # Psy
 
-Application for medical survey and helper.
+Application for medical survey and helper. It's a PWA !
