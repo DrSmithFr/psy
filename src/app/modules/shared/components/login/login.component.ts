@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {LoggerService} from '../../services/logger.service';
 
 @Component(
   {
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private logger: LoggerService,
     public auth: AuthService
   ) {
   }
@@ -41,28 +43,31 @@ export class LoginComponent implements OnInit {
   }
 
   encodePassword() {
+    this.logger.debug('start encode password');
     this
       .auth
       .addPassword(this.registerForm.get('password').value)
-      .then(
-        () => {
+      .subscribe(
+        encoded => {
+          this.logger.debug('password encoded: ' + encoded);
         },
         error => {
-          console.error(error);
+          this.logger.error(error.message);
         }
       );
   }
 
   login() {
+    this.logger.debug('logging');
     this
       .auth
       .login(this.loginForm.get('password').value)
-      .then(
+      .subscribe(
         result => {
-          console.log(result);
+          this.logger.debug(result ? 'logged' : 'cannot login');
         },
         error => {
-          console.error(error);
+          this.logger.error(error.message);
         }
       );
   }

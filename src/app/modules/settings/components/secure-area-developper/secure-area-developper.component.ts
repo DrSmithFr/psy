@@ -3,6 +3,7 @@ import {DbService} from '../../../shared/services/db.service';
 import * as Faker from 'faker';
 import {OverviewModel} from '../../../../../models/overview.model';
 import {forkJoin, Observable} from 'rxjs';
+import {LoggerService} from '../../../shared/services/logger.service';
 
 @Component(
   {
@@ -14,7 +15,8 @@ import {forkJoin, Observable} from 'rxjs';
 export class SecureAreaDevelopperComponent implements OnInit {
 
   constructor(
-    private db: DbService
+    private db: DbService,
+    private logger: LoggerService
   ) {
   }
 
@@ -22,6 +24,8 @@ export class SecureAreaDevelopperComponent implements OnInit {
   }
 
   generateData() {
+    this.logger.debug('generating data');
+
     const today = new Date();
     const limit = new Date();
 
@@ -46,7 +50,10 @@ export class SecureAreaDevelopperComponent implements OnInit {
     }
 
     forkJoin(...observabes)
-      .subscribe(result => console.log(result));
+      .subscribe(result => {
+        console.log(result);
+        this.logger.debug('data generated');
+      });
   }
 
   private generateDataAt(limit: Date): Observable<OverviewModel> {

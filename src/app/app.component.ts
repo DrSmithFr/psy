@@ -6,6 +6,7 @@ import {slideInAnimation} from './animations/slideIn.animation';
 import {TranslatorService} from './modules/shared/services/translator.service';
 import {AuthService} from './modules/shared/services/auth.service';
 import {StateService} from './modules/shared/services/state.service';
+import {LoggerService} from './modules/shared/services/logger.service';
 
 @Component(
   {
@@ -23,8 +24,6 @@ export class AppComponent implements OnInit {
   constructor(
     private database: DbService,
     private translator: TranslatorService,
-    private state: StateService,
-    private renderer: Renderer2,
     public auth: AuthService,
   ) {
     database.connect();

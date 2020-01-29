@@ -3,6 +3,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {Argon2Service} from '../../../shared/services/argon2.service';
 import {AuthService} from '../../../shared/services/auth.service';
+import {LoggerService} from '../../../shared/services/logger.service';
 
 @Component(
   {
@@ -18,6 +19,7 @@ export class CreateAccountComponent implements OnInit {
     private router: Router,
     private crypto: Argon2Service,
     private auth: AuthService,
+    private logger: LoggerService
   ) {
   }
 
@@ -26,11 +28,19 @@ export class CreateAccountComponent implements OnInit {
   }
 
   createAccount() {
+    this.logger.debug('creating account');
+
     this
       .auth
       .register('5646')
-      .then(() => {
-        this.dialogRef.close();
-      });
+      .subscribe(
+        () => {
+          this.logger.debug('account created');
+          this.dialogRef.close();
+        },
+        error => {
+          this.logger.error(error.message);
+        }
+      );
   }
 }

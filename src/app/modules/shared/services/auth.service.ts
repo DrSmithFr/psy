@@ -23,7 +23,7 @@ export class AuthService {
   ) {
   }
 
-  addPassword(password: string): Promise<string> {
+  addPassword(password: string): Observable<string> {
     // encode password to local memory
     const salt = this.crypto.generateSalt();
 
@@ -34,11 +34,10 @@ export class AuthService {
         tap(strongPassword => {
           this.state.PASSWORD.next(strongPassword);
         })
-      )
-      .toPromise();
+      );
   }
 
-  register(password: string): Promise<RegisterationModel> {
+  register(password: string): Observable<RegisterationModel> {
     return new Observable<RegisterationModel>(obs => {
       // creating account on gateway
       this
@@ -51,7 +50,7 @@ export class AuthService {
             // ensure account creation with connection
             this
               .connect(password)
-              .then(() => {
+              .subscribe(() => {
                 // encode password to local memory
                 const salt = this.crypto.generateSalt();
 
@@ -95,10 +94,10 @@ export class AuthService {
             obs.error(error);
           }
         );
-    }).toPromise();
+    });
   }
 
-  login(password: string): Promise<boolean> {
+  login(password: string): Observable<boolean> {
     const encoded = this.state.PASSWORD.getValue();
 
     return this
@@ -108,11 +107,10 @@ export class AuthService {
         tap(logged => {
           this.state.CONNECTED.next(logged);
         })
-      )
-      .toPromise();
+      );
   }
 
-  connect(password: string): Promise<ConnectionModel> {
+  connect(password: string): Observable<ConnectionModel> {
     return this
       .api
       .connect(
@@ -124,8 +122,7 @@ export class AuthService {
           // updating session with the new token
           this.state.TOKEN.next(connection.token);
         }),
-      )
-      .toPromise();
+      );
   }
 
   getUser(): string | null {

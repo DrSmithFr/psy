@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {combineLatest} from 'rxjs';
 import {environment} from '../../../../../environments/environment';
 import {AssetService} from '../../../shared/services/asset.service';
+import {LoggerService} from '../../../shared/services/logger.service';
 
 @Component(
   {
@@ -16,10 +17,10 @@ import {AssetService} from '../../../shared/services/asset.service';
 export class ClearDataComponent implements OnInit {
 
   constructor(
-    public dialogRef: MatDialogRef<ClearDataComponent>,
     private router: Router,
     private database: DbService,
-    private assets: AssetService
+    private assets: AssetService,
+    private logger: LoggerService
   ) {
   }
 
@@ -27,6 +28,8 @@ export class ClearDataComponent implements OnInit {
   }
 
   clearData() {
+    this.logger.debug('removing data');
+
     combineLatest([
       this.database.getOverviews(),
       this.database.getMeds(),
@@ -35,10 +38,13 @@ export class ClearDataComponent implements OnInit {
          overviews,
          meds
        ]) => {
+        this.logger.debug('data loaded to memory');
         combineLatest([
           this.database.removeOverviews(overviews),
           this.database.removeMeds(meds)
         ]).subscribe(() => {
+          this.logger.debug('all data clear');
+
           if (environment.application) {
             window.location.replace(this.assets.getUrl('/index.html'));
           } else {
