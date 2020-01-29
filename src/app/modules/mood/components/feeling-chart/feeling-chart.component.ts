@@ -47,8 +47,6 @@ export class FeelingChartComponent implements OnInit {
     series.dataFields.dateX = 'createAt';
     series.name = name;
 
-    chart.series = series;
-
     // adding cursor
     chart.cursor = new am4charts.XYCursor();
   }
