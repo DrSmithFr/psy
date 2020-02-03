@@ -87,8 +87,6 @@ export class FeelingChartComponent implements AfterContentInit {
     const scrollbarX = new am4charts.XYChartScrollbar();
     scrollbarX.series.push(series);
     chart.scrollbarX = scrollbarX;
-    chart.cursor.snapToSeries = series;
-    chart.cursor.xAxis = dateAxis;
 
     chart.cursor = new am4charts.XYCursor();
   }
