@@ -27,7 +27,7 @@ export class MoodShortHistoryComponent implements OnInit {
       .database
       .getOverviews()
       .subscribe(all => {
-        this.overviews = all;
+        this.overviews = all.reverse();
         this.reset();
       });
   }

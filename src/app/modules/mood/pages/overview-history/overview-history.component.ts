@@ -20,7 +20,7 @@ export class OverviewHistoryComponent implements OnInit {
       .database
       .getOverviews()
       .subscribe(list => {
-        this.overviews = list;
+        this.overviews = list.reverse();
       });
   }
 
