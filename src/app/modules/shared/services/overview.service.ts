@@ -13,13 +13,13 @@ export class OverviewService {
 
     overviewBefore(list: OverviewModel[], before: Date) {
         return list.filter(model => {
-            return model.createdAt > before;
+            return model.createdAt.getTime() > before.getTime();
         });
     }
 
     overviewOldest(list: OverviewModel[]): OverviewModel {
         return list.reduce((previous, current) => {
-            return previous.createdAt > current.createdAt ? current : previous;
+            return previous.createdAt.getTime() > current.createdAt.getTime() ? current : previous;
         });
     }
 

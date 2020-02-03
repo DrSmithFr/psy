@@ -58,7 +58,21 @@ export class DbService {
             db
               .getAll(store)
               .then(list => {
-                observer.next(list.reverse());
+                const result = list
+                  .reverse()
+                  .sort((a, b) => {
+                    if (a.createdAt < b.createdAt ) {
+                      return -1;
+                    }
+
+                    if (a.createdAt > b.createdAt ) {
+                      return 1;
+                    }
+
+                    return 0;
+                  });
+
+                observer.next(result);
                 observer.complete();
               });
           }

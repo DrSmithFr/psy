@@ -12,16 +12,16 @@ export class MoodChartService {
   ) {
   }
 
-  getOverviewOfTheWeek(list: OverviewModel[]): OverviewModel[] {
-    const today     = new Date();
-    const lastMonth = new Date(today.getDate() - 7);
-    return this.stats.overviewBefore(list, lastMonth);
+  getOverviewOfTheMonth(list: OverviewModel[]): OverviewModel[] {
+    const today  = new Date();
+    const before = new Date(today.getTime() - 30 * 24 * 3600 * 1000);
+    return this.stats.overviewBefore(list, before);
   }
 
   convertToSlicedData(list: OverviewModel[]): object[] {
     return list.map(overview => {
       return {
-        name: 'mood',
+        name:  'mood',
         value: overview.mood
       };
     });

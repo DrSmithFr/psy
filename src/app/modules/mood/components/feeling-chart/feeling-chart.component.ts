@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterContentInit, Component, Input} from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 // Importing themes
@@ -13,7 +13,7 @@ import {MoodChartService} from '../../../shared/services/mood-chart.service';
     styleUrls:   ['./feeling-chart.component.scss']
   }
 )
-export class FeelingChartComponent implements OnInit {
+export class FeelingChartComponent implements AfterContentInit {
 
   @Input() overviews: OverviewModel[];
 
@@ -25,30 +25,71 @@ export class FeelingChartComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
-    if (!this.overviews.length) {
-      // avoid display errors
-      return;
-    }
-
+  ngAfterContentInit(): void {
     this.instanciateChart();
-    this.chart.data = this.service.getOverviewOfTheWeek(this.overviews);
+    this.chart.data = this.service.getOverviewOfTheMonth(this.overviews);
   }
 
   instanciateChart() {
     const chart = this.chart = am4core.create('mood-chart', am4charts.XYChart);
 
-    // axis
-    const dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-    const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+    chart.titles.template.fontSize   = 10;
+    chart.titles.template.textAlign  = 'end';
+    chart.titles.template.isMeasured = false;
 
-    const series = chart.series.push(new am4charts.LineSeries());
+    chart.padding(20, 5, 2, 5);
+
+    const dateAxis                             = chart.xAxes.push(new am4charts.DateAxis());
+    dateAxis.renderer.grid.template.disabled   = true;
+    dateAxis.renderer.labels.template.disabled = true;
+    dateAxis.startLocation                     = 0.5;
+    dateAxis.endLocation                       = 0.7;
+    dateAxis.cursorTooltipEnabled              = false;
+
+    const valueAxis                             = chart.yAxes.push(new am4charts.ValueAxis());
+    valueAxis.min                               = 0;
+    valueAxis.renderer.grid.template.disabled   = true;
+    valueAxis.renderer.baseGrid.disabled        = true;
+    valueAxis.renderer.labels.template.disabled = true;
+    valueAxis.cursorTooltipEnabled              = false;
+
+    chart.cursor                = new am4charts.XYCursor();
+    chart.cursor.lineY.disabled = true;
+    chart.cursor.behavior       = 'none';
+
+    const series             = chart.series.push(new am4charts.LineSeries());
+    series.dataFields.dateX  = 'createdAt';
     series.dataFields.valueY = 'mood';
-    series.dataFields.dateX = 'createAt';
-    series.name = name;
+    series.tensionX          = 0.8;
+    series.strokeWidth       = 2;
 
-    // adding cursor
+
+// bullet is added because we add tooltip to a bullet for it to change color
+    const bullet       = series.bullets.push(new am4charts.Bullet());
+    bullet.tooltipText = '{valueY}';
+
+    bullet.adapter.add('fill', (fill, target) => {
+      // @ts-ignore
+      if (target.dataItem.valueY < 5) {
+        return am4core.color('#cb5154');
+      }
+
+      return fill;
+    });
+
+    const range           = valueAxis.createSeriesRange(series);
+    range.value           = 5;
+    range.endValue        = 0;
+    range.contents.stroke = am4core.color('#cb5154');
+    range.contents.fill   = range.contents.stroke;
+
+// Add scrollbar
+    const scrollbarX = new am4charts.XYChartScrollbar();
+    scrollbarX.series.push(series);
+    chart.scrollbarX = scrollbarX;
+    chart.cursor.snapToSeries = series;
+    chart.cursor.xAxis = dateAxis;
+
     chart.cursor = new am4charts.XYCursor();
   }
-
 }
