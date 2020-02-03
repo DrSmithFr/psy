@@ -3,13 +3,13 @@ import {CommonModule} from '@angular/common';
 import {SettingsComponent} from './pages/settings/settings.component';
 import {ClearDataComponent} from './dialogs/clear-data/clear-data.component';
 import {
-    MAT_DIALOG_DEFAULT_OPTIONS,
-    MatButtonModule,
-    MatCardModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule
+  MAT_DIALOG_DEFAULT_OPTIONS,
+  MatButtonModule,
+  MatCardModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule, MatSlideToggleModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
@@ -37,22 +37,23 @@ import { SecureAreaDevelopperComponent } from './components/secure-area-developp
             ClearDataComponent,
             CreateAccountComponent
         ],
-        imports:         [
-            CommonModule,
-            SharedModule,
-            RouterModule,
-            FormsModule,
-            ReactiveFormsModule,
-            BrowserModule,
-            BrowserAnimationsModule,
+      imports: [
+        CommonModule,
+        SharedModule,
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserModule,
+        BrowserAnimationsModule,
 
-            MatInputModule,
-            MatDialogModule,
-            MatButtonModule,
-            MatCardModule,
-            MatFormFieldModule,
-            MatSelectModule,
-        ],
+        MatInputModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatSlideToggleModule,
+      ],
         providers:       [
             {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
         ],

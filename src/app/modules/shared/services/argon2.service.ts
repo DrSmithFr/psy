@@ -71,6 +71,9 @@ export class Argon2Service {
           () => {
             this.logger.debug('password invalid');
             obs.next(false);
+          },
+          () => {
+            this.logger.debug('password ended');
           }
         );
     });

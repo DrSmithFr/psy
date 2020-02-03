@@ -5,10 +5,16 @@
     <img src="{{'/assets/draws/settings.svg'|asset}}" height="150">
   </div>
 
+  <mat-slide-toggle
+    [checked]="isSecured"
+    (change)="applySecurityParam()">
+    Secure Application
+  </mat-slide-toggle>
+
   <mat-form-field>
     <mat-label>Theme</mat-label>
     <mat-select [(ngModel)]="currentStyle" (selectionChange)="onStyleSelection()">
-      <mat-option value="day" >Day Mode</mat-option>
+      <mat-option value="day">Day Mode</mat-option>
       <mat-option value="night">Dark Mode</mat-option>
     </mat-select>
   </mat-form-field>
@@ -16,7 +22,7 @@
   <mat-form-field>
     <mat-label>Language</mat-label>
     <mat-select [(ngModel)]="currentLocale" (selectionChange)="onLocaleSelection()">
-      <mat-option value="fr" >Français</mat-option>
+      <mat-option value="fr">Français</mat-option>
       <mat-option value="en">English</mat-option>
     </mat-select>
   </mat-form-field>

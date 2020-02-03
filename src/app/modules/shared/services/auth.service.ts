@@ -133,6 +133,14 @@ export class AuthService {
     return this.state.CONNECTED.getValue();
   }
 
+  isLoggingNeeded(): boolean {
+    if (this.state.IS_SECURED.getValue()) {
+      return !this.isConnected();
+    }
+
+    return false;
+  }
+
   hasSession(): boolean {
     return this.state.TOKEN.getValue() !== null;
   }

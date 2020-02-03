@@ -12,6 +12,7 @@ export class StateService {
   STYLE: BehaviorSubject<string>;
   TOKEN: BehaviorSubject<string>;
   USER_UUID: BehaviorSubject<string>;
+  IS_SECURED: BehaviorSubject<boolean>;
   PASSWORD: BehaviorSubject<string>;
   CONNECTED: BehaviorSubject<boolean>;
   PGP_PRIVATE: BehaviorSubject<string>;
@@ -56,6 +57,10 @@ export class StateService {
     this.PGP_PUBLIC = new BehaviorSubject<string>(
       StateService.getItemParsed('PGP_PUBLIC') || null
     );
+
+    this.IS_SECURED = new BehaviorSubject<boolean>(
+      StateService.getItemParsed('IS_SECURED') || false
+    );
   }
 
   private listenToStateChangesAndSave() {
@@ -67,6 +72,7 @@ export class StateService {
       this.PASSWORD.pipe(mapTo('PASSWORD')),
       this.PGP_PRIVATE.pipe(mapTo('PGP_PRIVATE')),
       this.PGP_PUBLIC.pipe(mapTo('PGP_PUBLIC')),
+      this.IS_SECURED.pipe(mapTo('IS_SECURED')),
     ).subscribe(val => this.persistanceInLocalDevice(val));
   }
 

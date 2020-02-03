@@ -14,6 +14,7 @@ export class LocaleSettingsComponent implements OnInit {
 
   public currentLocale: string;
   public currentStyle: string;
+  public isSecured: boolean;
 
   constructor(
     private state: StateService,
@@ -29,6 +30,10 @@ export class LocaleSettingsComponent implements OnInit {
     this.state.STYLE.subscribe(style => {
       this.currentStyle = style;
     });
+
+    this.state.IS_SECURED.subscribe(isSecured => {
+      this.isSecured = isSecured;
+    });
   }
 
   ngOnInit() {
@@ -36,18 +41,20 @@ export class LocaleSettingsComponent implements OnInit {
 
   onLocaleSelection() {
     this.state.LOCALE.next(this.currentLocale);
-
-    // applying translations
-    if (environment.application) {
-      window.location.replace(this.assets.getUrl('/index.html'));
-    } else {
-      window.location.replace('/');
-    }
+    this.reloadApp();
   }
 
   onStyleSelection() {
     this.state.STYLE.next(this.currentStyle);
+    this.reloadApp();
+  }
 
+  applySecurityParam() {
+    this.state.IS_SECURED.next(!this.isSecured);
+    this.reloadApp();
+  }
+
+  reloadApp() {
     // applying translations
     if (environment.application) {
       window.location.replace(this.assets.getUrl('/index.html'));
