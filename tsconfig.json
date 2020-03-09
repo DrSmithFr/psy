@@ -21,9 +21,5 @@
       "es2018",
       "dom"
     ]
-  },
-  "angularCompilerOptions": {
-    // ...
-    "disableTypeScriptVersionCheck": true
   }
 }
