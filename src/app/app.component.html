@@ -4,6 +4,11 @@
     <!-- avoid focus -->
     <input cdkFocusInitial type='text' style="display: none"/>
 
+    <button mat-button (click)="close()" routerLink="/stress" routerLinkActive="active" autofocus="false">
+      <img src="{{ '/assets/draws/yoga.svg'|asset }}">
+      <mat-label>Mood</mat-label>
+    </button>
+
     <button mat-button (click)="close()" routerLink="/mood" routerLinkActive="active" autofocus="false">
       <img src="{{ '/assets/draws/mood.svg'|asset }}">
       <mat-label>Mood</mat-label>

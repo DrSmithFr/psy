@@ -20,6 +20,7 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import {SharedModule} from './modules/shared/shared.module';
+import {StressModule} from './modules/stress/stress.module';
 
 @NgModule(
   {
@@ -38,6 +39,7 @@ import {SharedModule} from './modules/shared/shared.module';
       DrugsModule,
       SleepModule,
       SettingsModule,
+      StressModule,
 
       FormsModule,
       ReactiveFormsModule,

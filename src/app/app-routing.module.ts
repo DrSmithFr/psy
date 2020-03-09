@@ -14,6 +14,7 @@ import {SettingsComponent} from './modules/settings/pages/settings/settings.comp
 import {EventReportComponent} from './modules/event/pages/event-report/event-report.component';
 import {EventHistoricComponent} from './modules/event/pages/event-historic/event-historic.component';
 import {environment} from '../environments/environment';
+import {BreathComponent} from './modules/stress/pages/breath/breath.component';
 
 const routes: Routes = [
   {
@@ -138,6 +139,27 @@ const routes: Routes = [
         },
         component: EventDashboardComponent
       },
+    ]
+  },
+  {
+    path:      'sleep',
+    data: {
+      img: '/assets/draws/sleep.svg',
+      animation: 'SleepDashboard'
+    },
+    component: SleepDashboardComponent
+  },
+  {
+    path:      'stress',
+    children: [
+      {
+        path:      '',
+        data: {
+          img: '/assets/draws/events.svg',
+          animation: 'EventCreation'
+        },
+        component: BreathComponent
+      }
     ]
   },
   {
