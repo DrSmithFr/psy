@@ -1,13 +1,17 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
-import { WaterMaterial } from '@babylonjs/materials/water';
+import {WaterMaterial} from '@babylonjs/materials/water';
 import {
   ArcRotateCamera,
-  Camera, Color3, CubeTexture,
+  Camera,
+  Color3,
+  CubeTexture,
   Engine,
   HemisphericLight,
   Mesh,
   Scene,
-  StandardMaterial, Texture, Vector2,
+  StandardMaterial,
+  Texture,
+  Vector2,
   Vector3
 } from '@babylonjs/core';
 
@@ -37,16 +41,18 @@ export class BreathComponent implements AfterViewInit {
 
     this.camera = new ArcRotateCamera(
       'camera',
-      -Math.PI / 2,
-      Math.PI / 4,
-      5,
+      3 * Math.PI / 2,
+      Math.PI / 2.5, 50,
       Vector3.Zero(),
       this.scene
     );
 
-    this.camera.attachControl(this.canvas.nativeElement, true);
-
     this.createScene(this.scene);
+
+    // running babylonJS
+    this.engine.runRenderLoop(() => {
+      this.scene.render();
+    });
   }
 
   createScene(scene: Scene) {
@@ -54,21 +60,24 @@ export class BreathComponent implements AfterViewInit {
     const light = new HemisphericLight('light1', new Vector3(0, 1, 0), scene);
 
     // Skybox
-    const skybox                                     = Mesh.CreateBox('skyBox', 5000.0, scene);
-    const skyboxMaterial                             = new StandardMaterial('skyBox', scene);
-    skyboxMaterial.backFaceCulling                   = false;
-    skyboxMaterial.reflectionTexture                 = new CubeTexture('//www.babylonjs.com/assets/skybox/TropicalSunnyDay', scene);
+    const skybox         = Mesh.CreateBox('skyBox', 5000.0, scene);
+    const skyboxMaterial = new StandardMaterial('skyBox', scene);
+
+    skyboxMaterial.backFaceCulling   = false;
+    skyboxMaterial.reflectionTexture = new CubeTexture('//www.babylonjs.com/assets/skybox/TropicalSunnyDay', scene);
+
     skyboxMaterial.reflectionTexture.coordinatesMode = Texture.SKYBOX_MODE;
-    skyboxMaterial.diffuseColor                      = new Color3(0, 0, 0);
-    skyboxMaterial.specularColor                     = new Color3(0, 0, 0);
-    skyboxMaterial.disableLighting                   = true;
-    skybox.material                                  = skyboxMaterial;
+
+    skyboxMaterial.diffuseColor    = new Color3(0, 0, 0);
+    skyboxMaterial.specularColor   = new Color3(0, 0, 0);
+    skyboxMaterial.disableLighting = true;
+    skybox.material                = skyboxMaterial;
 
     // Water material
     const waterMaterial            = new WaterMaterial('waterMaterial', scene, new Vector2(512, 512));
     waterMaterial.bumpTexture      = new Texture('//www.babylonjs.com/assets/waterbump.png', scene);
     waterMaterial.windForce        = -10;
-    waterMaterial.waveHeight       = 0.5;
+    waterMaterial.waveHeight       = 0.8;
     waterMaterial.bumpHeight       = 0.1;
     waterMaterial.waveLength       = 0.1;
     waterMaterial.waveSpeed        = 50.0;
@@ -77,7 +86,7 @@ export class BreathComponent implements AfterViewInit {
     waterMaterial.colorBlendFactor = 0;
 
     // Ground
-    const groundTexture  = new Texture('//www.babylonjs.com/assets/sand.jpg', scene);
+    const groundTexture  = new Texture('/assets/texture/sand.jpg', scene);
     groundTexture.vScale = groundTexture.uScale = 4.0;
 
     const groundMaterial          = new StandardMaterial('groundMaterial', scene);
@@ -106,14 +115,18 @@ export class BreathComponent implements AfterViewInit {
 
     ////////// RAY CAST TO FIND WATER HEIGHT ////////////
     const angle = 0;
-    const i = 0;
-    scene.registerBeforeRender(() => {
-      const time        = this.lastTime / 100000;
-      const x           = sphere.position.x;
-      const z           = sphere.position.z;
-      sphere.position.y = Math.abs(
-        (Math.sin(((x / 0.05) + time * waterMaterial.waveSpeed)) * waterMaterial.waveHeight * waterMaterial.windDirection.x * 5.0) + (Math.cos(((z / 0.05) + time * waterMaterial.waveSpeed)) * waterMaterial.waveHeight * waterMaterial.windDirection.y * 5.0));
+    const i     = 0;
 
+    scene.registerBeforeRender(function() {
+      // @ts-ignore steal readable
+      let time = waterMaterial._lastTime / 100000;
+      let x = sphere.position.x;
+      let z = sphere.position.z;
+
+      const height = Math.abs(
+        (Math.sin(((x / 0.05) + time * waterMaterial.waveSpeed)) * waterMaterial.waveHeight * waterMaterial.windDirection.x * 5.0) + (Math.cos(((z / 0.05) +  time * waterMaterial.waveSpeed)) * waterMaterial.waveHeight * waterMaterial.windDirection.y * 5.0));
+
+      sphere.position.y = height;
     });
   }
 
