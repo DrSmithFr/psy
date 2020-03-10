@@ -8,18 +8,45 @@ import {MedDisplayComponent} from './components/med-display/med-display.componen
 import {MedsEditionComponent} from './pages/meds-edition/meds-edition.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatExpansionModule,
-  MatFormFieldModule,
-  MatIconModule, MatInputModule,
-  MatPaginatorModule, MatSlideToggleModule,
-  MatStepperModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatStepperModule } from '@angular/material/stepper';
 import {RouterModule} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+const routes = [
+  {
+    path:      'create',
+    data:      {
+      img:       '/assets/draws/medecine.svg',
+      animation: 'MedsDashboard'
+    },
+    component: MedsCreationComponent
+  },
+  {
+    path:      'edit/:id',
+    data:      {
+      img:       '/assets/draws/medecine.svg',
+      animation: 'MedsDashboard'
+    },
+    component: MedsEditionComponent
+  },
+  {
+    path:      '',
+    data:      {
+      img:       '/assets/draws/medecine.svg',
+      animation: 'MedsDashboard'
+    },
+    component: MedsDashboardComponent
+  },
+];
 
 @NgModule(
   {
@@ -34,13 +61,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     imports: [
       CommonModule,
       SharedModule,
-      RouterModule,
+      RouterModule.forChild(routes),
 
       FormsModule,
       ReactiveFormsModule,
-
-      BrowserModule,
-      BrowserAnimationsModule,
 
       MatInputModule,
       MatIconModule,

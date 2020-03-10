@@ -1,12 +1,10 @@
-import {Component, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSidenav} from '@angular/material/sidenav';
 import {DbService} from './modules/shared/services/db.service';
 import {RouterOutlet} from '@angular/router';
 import {slideInAnimation} from './animations/slideIn.animation';
 import {TranslatorService} from './modules/shared/services/translator.service';
 import {AuthService} from './modules/shared/services/auth.service';
-import {StateService} from './modules/shared/services/state.service';
-import {LoggerService} from './modules/shared/services/logger.service';
 
 @Component(
   {

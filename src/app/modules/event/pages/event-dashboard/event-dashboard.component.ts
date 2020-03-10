@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import * as _ from 'lodash';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import {EventModel} from '../../../../../models/event.model';
 import {DbService} from '../../../shared/services/db.service';
 import {EventService} from '../../../shared/services/event.service';

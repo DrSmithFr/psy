@@ -14,11 +14,10 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput [ngxTimepicker]="timePicker" placeholder="Choose time" [format]="24" formControlName="time">
-            <button mat-button matSuffix mat-icon-button (click)="timePicker.open()">
+            <input matInput placeholder="Choose time" formControlName="time">
+            <button mat-button matSuffix mat-icon-button>
               <mat-icon>access_time</mat-icon>
             </button>
-            <ngx-material-timepicker #timePicker [minutesGap]="5"></ngx-material-timepicker>
           </mat-form-field>
 
           <div class="actions">

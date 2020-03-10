@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {tap, timeout} from 'rxjs/operators';
 import {AuthService} from '../auth.service';
 import {StateService} from '../state.service';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {TranslatorService} from '../translator.service';
 
 const TIME_OUT_DELAY_DEFAULT = 12000;

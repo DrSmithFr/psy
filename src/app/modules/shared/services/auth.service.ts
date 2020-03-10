@@ -4,9 +4,8 @@ import {ApiService} from './api.service';
 import {tap} from 'rxjs/operators';
 import {ConnectionModel} from '../../../../models/api/connection.model';
 import {RegisterationModel} from '../../../../models/api/registeration.model';
-import {Argon2Service} from './argon2.service';
 import {PgpService} from './pgp.service';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 @Injectable(
   {
@@ -18,23 +17,12 @@ export class AuthService {
   constructor(
     private api: ApiService,
     private state: StateService,
-    private crypto: Argon2Service,
     private pgp: PgpService,
   ) {
   }
 
   addPassword(password: string): Observable<string> {
-    // encode password to local memory
-    const salt = this.crypto.generateSalt();
-
-    return this
-      .crypto
-      .encodePassword(password, salt)
-      .pipe(
-        tap(strongPassword => {
-          this.state.PASSWORD.next(strongPassword);
-        })
-      );
+    return of(password);
   }
 
   register(password: string): Observable<RegisterationModel> {
@@ -50,45 +38,33 @@ export class AuthService {
             // ensure account creation with connection
             this
               .connect(password)
-              .subscribe(() => {
-                // encode password to local memory
-                const salt = this.crypto.generateSalt();
+              .subscribe(
+                () => {
+                  this
+                    .pgp
+                    .generate(registration.username, password)
+                    .then(keys => {
+                      this.state.PGP_PRIVATE.next(keys.private);
 
-                this
-                  .crypto
-                  .encodePassword(password, salt)
-                  .subscribe(
-                    strongPassword => {
-                      this.state.PASSWORD.next(strongPassword);
-                      this.state.CONNECTED.next(true);
-
-                      // generating GPG keys to secure exchange
                       this
-                        .pgp
-                        .generate(registration.username, password)
-                        .then(keys => {
-                          this.state.PGP_PRIVATE.next(keys.private);
-
-                          this
-                            .api
-                            .secure({key: keys.public})
-                            .subscribe(
-                              gpg => {
-                                // enable back for e2ee
-                                // this.state.PGP_PUBLIC.next(gpg.key);
-                                obs.next(registration);
-                              },
-                              error => {
-                                obs.error(error);
-                              }
-                            );
-                        });
-                    },
-                    error => {
-                      obs.error(error);
-                    }
-                  );
-              });
+                        .api
+                        .secure({key: keys.public})
+                        .subscribe(
+                          gpg => {
+                            // enable back for e2ee
+                            // this.state.PGP_PUBLIC.next(gpg.key);
+                            obs.next(registration);
+                          },
+                          error => {
+                            obs.error(error);
+                          }
+                        );
+                    });
+                },
+                error => {
+                  obs.error(error);
+                }
+              );
           },
           error => {
             obs.error(error);
@@ -98,16 +74,7 @@ export class AuthService {
   }
 
   login(password: string): Observable<boolean> {
-    const encoded = this.state.PASSWORD.getValue();
-
-    return this
-      .crypto
-      .isPasswordCorrect(password, encoded)
-      .pipe(
-        tap(logged => {
-          this.state.CONNECTED.next(logged);
-        })
-      );
+    return of(true);
   }
 
   connect(password: string): Observable<ConnectionModel> {

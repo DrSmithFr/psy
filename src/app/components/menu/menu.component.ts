@@ -8,9 +8,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class MenuComponent implements OnInit {
 
-  // @ts-ignore
-
-
   constructor() { }
 
   ngOnInit() {

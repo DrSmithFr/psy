@@ -12,15 +12,15 @@ import {MedsModule} from './modules/meds/meds.module';
 import {DrugsModule} from './modules/drugs/drugs.module';
 import {SleepModule} from './modules/sleep/sleep.module';
 import {SettingsModule} from './modules/settings/settings.module';
-import {
-  MatButtonModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatSidenavModule,
-  MatToolbarModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import {SharedModule} from './modules/shared/shared.module';
 import {StressModule} from './modules/stress/stress.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule(
   {
@@ -53,6 +53,7 @@ import {StressModule} from './modules/stress/stress.module';
       MatToolbarModule,
       MatIconModule,
       SharedModule,
+      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ],
     bootstrap:    [
       AppComponent

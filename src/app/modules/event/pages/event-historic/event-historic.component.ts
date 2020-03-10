@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {EventModel} from '../../../../../models/event.model';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import {DbService} from '../../../shared/services/db.service';
 import {EventService} from '../../../shared/services/event.service';
 
