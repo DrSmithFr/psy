@@ -4,10 +4,13 @@ import {
   ArcRotateCamera,
   Camera,
   Color3,
+  Color4,
   CubeTexture,
   Engine,
+  FresnelParameters,
   HemisphericLight,
   Mesh,
+  ParticleSystem,
   Scene,
   StandardMaterial,
   Texture,
@@ -47,6 +50,8 @@ export class BreathComponent implements AfterViewInit {
       this.scene
     );
 
+    this.camera.attachControl(this.canvas.nativeElement);
+
     this.createScene(this.scene);
 
     // running babylonJS
@@ -64,7 +69,7 @@ export class BreathComponent implements AfterViewInit {
     const skyboxMaterial = new StandardMaterial('skyBox', scene);
 
     skyboxMaterial.backFaceCulling   = false;
-    skyboxMaterial.reflectionTexture = new CubeTexture('//www.babylonjs.com/assets/skybox/TropicalSunnyDay', scene);
+    skyboxMaterial.reflectionTexture = new CubeTexture('assets/texture/TropicalSunnyDay', scene);
 
     skyboxMaterial.reflectionTexture.coordinatesMode = Texture.SKYBOX_MODE;
 
@@ -75,13 +80,13 @@ export class BreathComponent implements AfterViewInit {
 
     // Water material
     const waterMaterial            = new WaterMaterial('waterMaterial', scene, new Vector2(512, 512));
-    waterMaterial.bumpTexture      = new Texture('//www.babylonjs.com/assets/waterbump.png', scene);
+    waterMaterial.bumpTexture      = new Texture('/assets/texture/waterbump.png', scene);
     waterMaterial.windForce        = -10;
     waterMaterial.waveHeight       = 0.8;
     waterMaterial.bumpHeight       = 0.1;
     waterMaterial.waveLength       = 0.1;
     waterMaterial.waveSpeed        = 50.0;
-    waterMaterial.colorBlendFactor = 0;
+    waterMaterial.colorBlendFactor = 2;
     waterMaterial.windDirection    = new Vector2(1, 1);
     waterMaterial.colorBlendFactor = 0;
 
@@ -101,11 +106,25 @@ export class BreathComponent implements AfterViewInit {
     waterMesh.material = waterMaterial;
 
     // Sphere
-    const sphereMaterial          = new StandardMaterial('sphereMaterial', scene);
-    sphereMaterial.diffuseTexture = new Texture('//www.babylonjs.com/assets/wood.jpg', scene);
+    const sphereMaterial = new StandardMaterial('sphereMaterial', scene);
+
+    // Sphere1 material
+    sphereMaterial.refractionTexture = new CubeTexture('/assets/texture/TropicalSunnyDay', scene);
+    sphereMaterial.reflectionTexture = new CubeTexture('/assets/texture/TropicalSunnyDay', scene);
+    sphereMaterial.diffuseColor      = new Color3(0, 0, 0);
+    sphereMaterial.invertRefractionY = false;
+    sphereMaterial.indexOfRefraction = 0.98;
+    sphereMaterial.specularPower     = 128;
+
+    sphereMaterial.refractionFresnelParameters            = new FresnelParameters();
+    sphereMaterial.refractionFresnelParameters.power      = 2;
+    sphereMaterial.reflectionFresnelParameters            = new FresnelParameters();
+    sphereMaterial.reflectionFresnelParameters.power      = 2;
+    sphereMaterial.reflectionFresnelParameters.leftColor  = Color3.Black();
+    sphereMaterial.reflectionFresnelParameters.rightColor = Color3.White();
 
     const sphere      = Mesh.CreateSphere('sphere', 16, 10, scene);
-    sphere.position.y = 20;
+    sphere.position.y = 5;
     sphere.material   = sphereMaterial;
 
     // Configure water material
@@ -117,16 +136,21 @@ export class BreathComponent implements AfterViewInit {
     const angle = 0;
     const i     = 0;
 
-    scene.registerBeforeRender(function() {
+    scene.registerBeforeRender(() => {
       // @ts-ignore steal readable
-      let time = waterMaterial._lastTime / 100000;
-      let x = sphere.position.x;
-      let z = sphere.position.z;
+      const time = waterMaterial._lastTime / 100000;
+      const x    = sphere.position.x;
+      const z    = sphere.position.z;
 
       const height = Math.abs(
-        (Math.sin(((x / 0.05) + time * waterMaterial.waveSpeed)) * waterMaterial.waveHeight * waterMaterial.windDirection.x * 5.0) + (Math.cos(((z / 0.05) +  time * waterMaterial.waveSpeed)) * waterMaterial.waveHeight * waterMaterial.windDirection.y * 5.0));
+        Math.sin(((x) + time * waterMaterial.waveSpeed)) * waterMaterial.waveHeight * waterMaterial.windDirection.x * 5.0
+        + Math.cos(((z) + time * waterMaterial.waveSpeed)) * waterMaterial.waveHeight * waterMaterial.windDirection.y * 5.0
+      );
+
+      const scale = 0.5 + height / 4;
 
       sphere.position.y = height;
+      sphere.scaling = new Vector3(scale, scale, scale);
     });
   }
 
