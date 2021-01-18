@@ -65,6 +65,7 @@ export class FeelingChartComponent implements AfterContentInit {
     valueAxis.max          = 5;
     valueAxis.strictMinMax = true;
 
+    // mood image legend
     const image            = new Image();
     image.horizontalCenter = 'right';
     image.width            = 20;
@@ -79,27 +80,55 @@ export class FeelingChartComponent implements AfterContentInit {
 
     valueAxis.dataItems.template.bullet = image;
 
+    // creating series
     const series             = chart.series.push(new LineSeries());
     series.dataFields.dateX  = 'createdAt';
     series.dataFields.valueY = 'mood';
     series.tensionX          = 0.8;
     series.strokeWidth       = 2;
 
-    const positiveGradient    = new LinearGradient();
-    positiveGradient.rotation = 90;
-
-    positiveGradient.addColor(color('#c96264'), 0.8);
-    positiveGradient.addColor(color('#e8b465'), 0.8, 0.1);
-    positiveGradient.addColor(color('#ffffff'), 0.8, 0.2);
-    positiveGradient.addColor(color('#ffffff'), 0.8, 0.8);
-    positiveGradient.addColor(color('#575757'), 0.8, 0.9);
-    positiveGradient.addColor(color('#282828'), 0.8, 1);
-
-    series.fillOpacity = 1;
-    series.fill        = positiveGradient;
-
     series.strokeOpacity = 1;
     series.stroke        = color('#2f2f2f');
     series.strokeWidth   = 2;
+
+    // maniac state
+    const maniacRange         = valueAxis.createSeriesRange(series);
+    maniacRange.contents.fill = maniacRange.contents.stroke;
+
+    maniacRange.value    = 5;
+    maniacRange.endValue = 3;
+
+    const maniacGradient    = new LinearGradient();
+    maniacGradient.rotation = 90;
+
+    maniacGradient.addColor(color('#c96264'), 0.8);
+    maniacGradient.addColor(color('#FFFFFF'), 0.8, 0.2);
+
+    maniacRange.contents.fillOpacity = 1;
+    maniacRange.contents.fill        = maniacGradient;
+
+    maniacRange.contents.strokeOpacity = 1;
+    maniacRange.contents.stroke        = color('#2f2f2f');
+    maniacRange.contents.strokeWidth   = 2;
+
+    // depressed state
+    const depressedRange         = valueAxis.createSeriesRange(series);
+    depressedRange.contents.fill = depressedRange.contents.stroke;
+
+    depressedRange.value    = -3;
+    depressedRange.endValue = -5;
+
+    const depressedGradient    = new LinearGradient();
+    depressedGradient.rotation = 180 + 90;
+
+    depressedGradient.addColor(color('#2f2f2f'), 0.8);
+    depressedGradient.addColor(color('#FFFFFF'), 0.8, 0.2);
+
+    depressedRange.contents.fillOpacity = 1;
+    depressedRange.contents.fill        = depressedGradient;
+
+    depressedRange.contents.strokeOpacity = 1;
+    depressedRange.contents.stroke        = color('#2f2f2f');
+    depressedRange.contents.strokeWidth   = 2;
   }
 }
