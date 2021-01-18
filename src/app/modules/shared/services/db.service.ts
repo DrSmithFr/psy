@@ -4,6 +4,7 @@ import {openDB} from 'idb';
 import {combineLatest, Observable} from 'rxjs';
 import {MedsModel} from '../../../../models/meds.model';
 import {EventModel} from '../../../../models/event.model';
+import {map} from 'rxjs/operators';
 
 @Injectable(
   {
@@ -113,7 +114,15 @@ export class DbService {
   }
 
   getOverviews(): Observable<OverviewModel[]> {
-    return this.all('overview');
+    return this
+      .all('overview')
+      .pipe(
+        map(
+          overviews => overviews.sort(
+          (a: OverviewModel, b: OverviewModel) =>
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+        )
+      );
   }
 
   addOverview(value: OverviewModel) {
@@ -150,7 +159,15 @@ export class DbService {
   }
 
   getEvents(): Observable<EventModel[]> {
-    return this.all('events');
+    return this
+      .all('events')
+      .pipe(
+        map(
+          events => events.sort(
+            (a: EventModel, b: EventModel) =>
+              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+        )
+      );
   }
 
 

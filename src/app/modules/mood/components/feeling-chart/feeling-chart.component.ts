@@ -29,7 +29,7 @@ export class FeelingChartComponent implements AfterContentInit {
     this.instantiateChart();
     this.chart.data = this
       .service
-      .getOverviewOfTheMonth(this.overviews)
+      .getOverviewOfTheWeek(this.overviews)
       .map(overview => {
         return {
           mood:      overview.mood - 5,

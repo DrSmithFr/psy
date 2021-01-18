@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, Input} from '@angular/core';
 import {PageEvent} from '@angular/material/paginator';
 import {OverviewModel} from '../../../../../models/overview.model';
-import {DbService} from '../../../shared/services/db.service';
 
 @Component(
   {
@@ -10,33 +9,24 @@ import {DbService} from '../../../shared/services/db.service';
     styleUrls:   ['./mood-short-history.component.scss']
   }
 )
-export class MoodShortHistoryComponent implements OnInit {
+export class MoodShortHistoryComponent implements AfterContentInit {
 
-  public overviews: OverviewModel[] = [];
+  @Input() overviews: OverviewModel[];
 
   public pageSize              = 3;
+  public data: OverviewModel[] = [];
   public list: OverviewModel[] = [];
 
-  constructor(
-    private database: DbService
-  ) {
-  }
-
-  ngOnInit() {
-    this
-      .database
-      .getOverviews()
-      .subscribe(all => {
-        this.overviews = all.reverse();
-        this.reset();
-      });
+  ngAfterContentInit() {
+    this.data = [...this.overviews].reverse();
+    this.reset();
   }
 
   updateList(e: PageEvent) {
     const start = e.pageIndex * e.pageSize;
     const end   = start + e.pageSize;
 
-    this.list = this.overviews.slice(start, end);
+    this.list = this.data.slice(start, end).reverse();
   }
 
   reset() {
