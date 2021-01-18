@@ -26,7 +26,7 @@ export class FeelingChartComponent implements AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    this.instanciateChart();
+    this.instantiateChart();
     this.chart.data = this
       .service
       .getOverviewOfTheMonth(this.overviews)
@@ -38,7 +38,7 @@ export class FeelingChartComponent implements AfterContentInit {
       });
   }
 
-  instanciateChart() {
+  instantiateChart() {
     const chart = this.chart = create('mood-chart', XYChart);
 
     chart.titles.template.fontSize   = 10;
@@ -55,15 +55,14 @@ export class FeelingChartComponent implements AfterContentInit {
     dateAxis.cursorTooltipEnabled              = false;
 
     const valueAxis                             = chart.yAxes.push(new ValueAxis());
-    // valueAxis.min                               = 0;
     valueAxis.renderer.grid.template.disabled   = true;
     valueAxis.renderer.baseGrid.disabled        = true;
     valueAxis.renderer.labels.template.disabled = true;
     valueAxis.cursorTooltipEnabled              = false;
 
-    chart.cursor                = new XYCursor();
-    chart.cursor.lineY.disabled = true;
-    chart.cursor.behavior       = 'none';
+    // ensure graph consistency without extreme values
+    valueAxis.min = -5;
+    valueAxis.max = 5;
 
     const series             = chart.series.push(new LineSeries());
     series.dataFields.dateX  = 'createdAt';
@@ -75,40 +74,17 @@ export class FeelingChartComponent implements AfterContentInit {
     positiveGradient.rotation = 90;
 
     positiveGradient.addColor(color('#c96264'), 0.8);
-    positiveGradient.addColor(color('#FFFFFF'), 0.8, 0.3);
+    positiveGradient.addColor(color('#e8b465'), 0.8, 0.1);
+    positiveGradient.addColor(color('#ffffff'), 0.8, 0.2);
+    positiveGradient.addColor(color('#ffffff'), 0.8, 0.8);
+    positiveGradient.addColor(color('#575757'), 0.8, 0.9);
+    positiveGradient.addColor(color('#282828'), 0.8, 1);
 
     series.fillOpacity = 1;
     series.fill        = positiveGradient;
 
     series.strokeOpacity = 1;
-    series.stroke        = color('#cb5154');
+    series.stroke        = color('#2f2f2f');
     series.strokeWidth   = 2;
-
-    const range         = valueAxis.createSeriesRange(series);
-    range.contents.fill = range.contents.stroke;
-
-    range.value    = -5;
-    range.endValue = 0;
-
-    const negativeGradient    = new LinearGradient();
-    negativeGradient.rotation = 180 + 90;
-
-    negativeGradient.addColor(color('#575757'), 0.8);
-    negativeGradient.addColor(color('#FFFFFF'), 0.8, 0.3);
-
-    range.contents.fillOpacity = 1;
-    range.contents.fill        = negativeGradient;
-
-    range.contents.strokeOpacity = 1;
-    range.contents.stroke        = color('#2f2f2f');
-    range.contents.strokeWidth   = 2;
-
-
-// Add scrollbar
-    const scrollbarX = new XYChartScrollbar();
-    scrollbarX.series.push(series);
-    chart.scrollbarX = scrollbarX;
-
-    chart.cursor = new XYCursor();
   }
 }
