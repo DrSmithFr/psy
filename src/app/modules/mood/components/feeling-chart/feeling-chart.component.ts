@@ -1,6 +1,6 @@
 import {AfterContentInit, Component, Input} from '@angular/core';
-import {color, create, LinearGradient} from '@amcharts/amcharts4/core';
-import {DateAxis, LineSeries, ValueAxis, XYChart, XYChartScrollbar, XYCursor} from '@amcharts/amcharts4/charts';
+import {color, create, Image, LinearGradient} from '@amcharts/amcharts4/core';
+import {DateAxis, LineSeries, ValueAxis, ValueAxisDataItem, XYChart} from '@amcharts/amcharts4/charts';
 // Importing themes
 import {OverviewModel} from '../../../../../models/overview.model';
 import {OverviewService} from '../../../shared/services/overview.service';
@@ -45,24 +45,38 @@ export class FeelingChartComponent implements AfterContentInit {
     chart.titles.template.textAlign  = 'end';
     chart.titles.template.isMeasured = false;
 
-    chart.padding(20, 5, 2, 5);
+    chart.padding(20, 5, 2, 20);
 
     const dateAxis                             = chart.xAxes.push(new DateAxis());
     dateAxis.renderer.grid.template.disabled   = true;
     dateAxis.renderer.labels.template.disabled = true;
-    dateAxis.startLocation                     = 0.5;
+    // dateAxis.startLocation                     = 0.5;
     dateAxis.endLocation                       = 0.7;
     dateAxis.cursorTooltipEnabled              = false;
 
     const valueAxis                             = chart.yAxes.push(new ValueAxis());
-    valueAxis.renderer.grid.template.disabled   = true;
-    valueAxis.renderer.baseGrid.disabled        = true;
+    valueAxis.renderer.grid.template.disabled   = false;
+    valueAxis.renderer.baseGrid.disabled        = false;
     valueAxis.renderer.labels.template.disabled = true;
     valueAxis.cursorTooltipEnabled              = false;
 
     // ensure graph consistency without extreme values
     valueAxis.min = -5;
     valueAxis.max = 5;
+
+    const image            = new Image();
+    image.horizontalCenter = 'middle';
+    image.width            = 20;
+    image.height           = 20;
+    image.verticalCenter   = 'middle';
+
+    image.adapter.add('href', (href, target) => {
+      const item  = target.dataItem as ValueAxisDataItem;
+      const value = item.value + 5;
+      return '/assets/mood-levels/' + value + '.svg';
+    });
+
+    valueAxis.dataItems.template.bullet = image;
 
     const series             = chart.series.push(new LineSeries());
     series.dataFields.dateX  = 'createdAt';
