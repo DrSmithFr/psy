@@ -13,7 +13,7 @@ export class MoodShortHistoryComponent implements AfterContentInit {
 
   @Input() overviews: OverviewModel[];
 
-  public pageSize              = 3;
+  public pageSize              = 5;
   public data: OverviewModel[] = [];
   public list: OverviewModel[] = [];
 
