@@ -61,11 +61,12 @@ export class FeelingChartComponent implements AfterContentInit {
     valueAxis.cursorTooltipEnabled              = false;
 
     // ensure graph consistency without extreme values
-    valueAxis.min = -5;
-    valueAxis.max = 5;
+    valueAxis.min          = -5;
+    valueAxis.max          = 5;
+    valueAxis.strictMinMax = true;
 
     const image            = new Image();
-    image.horizontalCenter = 'middle';
+    image.horizontalCenter = 'right';
     image.width            = 20;
     image.height           = 20;
     image.verticalCenter   = 'middle';
