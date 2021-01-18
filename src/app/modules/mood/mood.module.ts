@@ -28,6 +28,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import {RouterModule} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 const routes = [
   {
@@ -89,6 +90,7 @@ const routes = [
       MatExpansionModule,
       MatPaginatorModule,
       MatButtonModule,
+      MatButtonToggleModule,
     ],
     providers:    [
       {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}

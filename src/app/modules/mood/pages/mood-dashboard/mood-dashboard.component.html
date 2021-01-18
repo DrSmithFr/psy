@@ -11,8 +11,6 @@
   </div>
 
   <div *ngIf="list && list.length">
-    <h1>Mood</h1>
-
     <mat-card class="shadow">
       <app-feeling-chart [overviews]="list"></app-feeling-chart>
     </mat-card>

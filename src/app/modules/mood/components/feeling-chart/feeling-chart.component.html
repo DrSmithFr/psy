@@ -1,3 +1,11 @@
 <div>
+  <div class="center">
+    <mat-button-toggle-group value="weekly" (change)="updateGraphValue($event)">
+      <mat-button-toggle value="weekly">Weekly</mat-button-toggle>
+      <mat-button-toggle value="monthly">Monthly</mat-button-toggle>
+      <mat-button-toggle value="yearly">Yearly</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
   <div id="mood-chart" style="height: 400px"></div>
 </div>

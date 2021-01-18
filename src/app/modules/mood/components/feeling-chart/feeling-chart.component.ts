@@ -5,6 +5,7 @@ import {DateAxis, LineSeries, ValueAxis, ValueAxisDataItem, XYChart} from '@amch
 import {OverviewModel} from '../../../../../models/overview.model';
 import {OverviewService} from '../../../shared/services/overview.service';
 import {MoodChartService} from '../../../shared/services/mood-chart.service';
+import {MatButtonToggleChange} from '@angular/material/button-toggle';
 
 @Component(
   {
@@ -27,15 +28,7 @@ export class FeelingChartComponent implements AfterContentInit {
 
   ngAfterContentInit(): void {
     this.instantiateChart();
-    this.chart.data = this
-      .service
-      .getOverviewOfTheWeek(this.overviews)
-      .map(overview => {
-        return {
-          mood:      overview.mood - 5,
-          createdAt: overview.createdAt
-        };
-      });
+    this.loadWeeklyValues();
   }
 
   instantiateChart() {
@@ -75,7 +68,12 @@ export class FeelingChartComponent implements AfterContentInit {
     image.adapter.add('href', (href, target) => {
       const item  = target.dataItem as ValueAxisDataItem;
       const value = item.value + 5;
-      return '/assets/mood-levels/' + value + '.svg';
+
+      if (value >= 0 && value <= 10) {
+        return '/assets/mood-levels/' + value + '.svg';
+      }
+
+      return href;
     });
 
     valueAxis.dataItems.template.bullet = image;
@@ -130,5 +128,58 @@ export class FeelingChartComponent implements AfterContentInit {
     depressedRange.contents.strokeOpacity = 1;
     depressedRange.contents.stroke        = color('#2f2f2f');
     depressedRange.contents.strokeWidth   = 2;
+  }
+
+  updateGraphValue(e: MatButtonToggleChange) {
+    this.chart.dispose();
+    this.instantiateChart();
+
+    switch (e.value) {
+      case 'weekly':
+        this.loadWeeklyValues();
+        break;
+      case 'monthly':
+        this.loadMonthlyValues();
+        break;
+      case 'yearly':
+        this.loadYearlyValues();
+        break;
+    }
+  }
+
+  loadWeeklyValues() {
+    this.chart.data = this
+      .service
+      .getOverviewOfTheWeek(this.overviews)
+      .map(overview => {
+        return {
+          mood:      overview.mood - 5,
+          createdAt: overview.createdAt
+        };
+      });
+  }
+
+  loadMonthlyValues() {
+    this.chart.data = this
+      .service
+      .getOverviewOfTheMonth(this.overviews)
+      .map(overview => {
+        return {
+          mood:      overview.mood - 5,
+          createdAt: overview.createdAt
+        };
+      });
+  }
+
+  loadYearlyValues() {
+    this.chart.data = this
+      .service
+      .getOverviewOfTheYear(this.overviews)
+      .map(overview => {
+        return {
+          mood:      overview.mood - 5,
+          createdAt: overview.createdAt
+        };
+      });
   }
 }
