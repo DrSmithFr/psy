@@ -26,7 +26,7 @@ export class MoodShortHistoryComponent implements OnInit {
     const start = e.pageIndex * e.pageSize;
     const end   = start + e.pageSize;
 
-    this.list = this.data.slice(start, end).reverse();
+    this.list = this.data.slice(start, end);
   }
 
   reset() {
