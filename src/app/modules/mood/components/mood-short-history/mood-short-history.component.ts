@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {PageEvent} from '@angular/material/paginator';
 import {OverviewModel} from '../../../../../models/overview.model';
 
@@ -9,7 +9,7 @@ import {OverviewModel} from '../../../../../models/overview.model';
     styleUrls:   ['./mood-short-history.component.scss']
   }
 )
-export class MoodShortHistoryComponent implements AfterContentInit {
+export class MoodShortHistoryComponent implements OnInit {
 
   @Input() overviews: OverviewModel[];
 
@@ -17,7 +17,7 @@ export class MoodShortHistoryComponent implements AfterContentInit {
   public data: OverviewModel[] = [];
   public list: OverviewModel[] = [];
 
-  ngAfterContentInit() {
+  ngOnInit() {
     this.data = [...this.overviews].reverse();
     this.reset();
   }
