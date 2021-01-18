@@ -20,6 +20,7 @@ export class MoodShortHistoryComponent implements OnInit {
   ngOnInit() {
     this.data = [...this.overviews].reverse();
     this.reset();
+
   }
 
   updateList(e: PageEvent) {
