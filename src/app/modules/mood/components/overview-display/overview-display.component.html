@@ -1,7 +1,6 @@
 <div>
   <div class="overview-container">
-    <h1>{{ overview.createdAt|date }}</h1>
-    <span>{{ overview.createdAt|date: 'H:m:s' }}</span>
+    <h1>{{ overview.createdAt|date }} - {{ overview.createdAt|date: 'H:m:s' }}</h1>
 
     <div class="center mood-icon">
       <img src="{{'/assets/mood-levels/' + overview.mood + '.svg'}}" height="50">

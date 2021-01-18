@@ -24,16 +24,6 @@
       </mat-step>
 
       <mat-step optional>
-        <ng-template matStepLabel>{{'mood.load.events'|trans|async}}</ng-template>
-        <div class="block activites">
-          <app-events-selector [overview]="overview"></app-events-selector>
-        </div>
-        <div class="actions">
-          <button mat-button matStepperNext color="primary">{{'general.next'|trans|async}}</button>
-        </div>
-      </mat-step>
-
-      <mat-step optional>
         <ng-template matStepLabel>{{'mood.load.thoughts'|trans|async}}</ng-template>
         <div class="block thoughts">
           <app-thought-note [overview]="overview"></app-thought-note>
