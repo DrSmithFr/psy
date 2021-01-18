@@ -8,7 +8,7 @@
 
     <div *ngIf="overviews && overviews.length">
 
-      <div *ngFor="let overview of list.reverse()">
+      <div *ngFor="let overview of list">
         <app-overview-display [overview]="overview"></app-overview-display>
         <hr>
       </div>
