@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LoggerService} from '../../services/logger.service';
+import {StateService} from '../../services/state.service';
 
 @Component(
   {
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private logger: LoggerService,
-    public auth: AuthService
+    public auth: AuthService,
+    private state: StateService,
   ) {
   }
 
@@ -70,5 +72,9 @@ export class LoginComponent implements OnInit {
           this.logger.error(error.message);
         }
       );
+  }
+
+  disablePassword() {
+    this.state.IS_SECURED.next(false);
   }
 }

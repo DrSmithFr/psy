@@ -11,7 +11,7 @@
         <img src="{{'/assets/draws/login.svg'|asset}}" height="150">
       </div>
 
-      <p>Vous devez crée un mot de passe pour assurer la sécurité de votre application</p>
+      <p>Vous pouvez créer un mot de passe pour assurer la sécurité de votre application et l'encryption de vos données personnels</p>
 
       <mat-form-field class="full-width">
         <input
@@ -33,9 +33,23 @@
       </mat-form-field>
 
       <div class="center">
-        <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">
-          Validate password
-        </button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">
+            Create password
+          </button>
+      </div>
+
+      <br>
+
+      <p>
+        Ou continuer sans créer de mot de passe et l'activer plus tard via les paramètres de l'application
+      </p>
+
+      <div class="center">
+        <div class="center">
+          <a mat-raised-button (click)="disablePassword()">
+            Continue without password
+          </a>
+        </div>
       </div>
     </form>
   </mat-card>
