@@ -5,7 +5,7 @@ import {tap} from 'rxjs/operators';
 import {ConnectionModel} from '../../../../models/api/connection.model';
 import {RegisterationModel} from '../../../../models/api/registeration.model';
 import {PgpService} from './pgp.service';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {CryptoService} from './crypto.service';
 
 @Injectable(
@@ -88,7 +88,16 @@ export class AuthService {
       .authenticate(password)
       .pipe(
         tap(isLogged => {
-          this.state.CONNECTED.next(isLogged);
+          if (isLogged === false) {
+            return;
+          }
+
+          this
+            .crypto
+            .encodePassword(password + '_locale_encryption')
+            .subscribe(encryptionKey => {
+              this.state.ENCRYPTION_KEY.next(encryptionKey);
+            });
         })
       );
   }
@@ -113,7 +122,7 @@ export class AuthService {
   }
 
   isConnected(): boolean {
-    return this.state.CONNECTED.getValue();
+    return this.state.ENCRYPTION_KEY.getValue() !== null;
   }
 
   isLoggingNeeded(): boolean {
@@ -134,7 +143,7 @@ export class AuthService {
 
   logout(): void {
     this.clearSession();
-    this.state.CONNECTED.next(false);
+    this.state.ENCRYPTION_KEY.next(null);
   }
 
   hasPassword() {

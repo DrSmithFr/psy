@@ -10,13 +10,16 @@ import {mapTo, take} from 'rxjs/operators';
 export class StateService {
   LOCALE: BehaviorSubject<string>;
   STYLE: BehaviorSubject<string>;
-  TOKEN: BehaviorSubject<string>;
-  USER_UUID: BehaviorSubject<string>;
+
   IS_SECURED: BehaviorSubject<boolean>;
   PASSWORD: BehaviorSubject<string>;
-  CONNECTED: BehaviorSubject<boolean>;
+  ENCRYPTION_KEY: BehaviorSubject<string>;
+
+  USER_UUID: BehaviorSubject<string>;
   PGP_PRIVATE: BehaviorSubject<string>;
   PGP_PUBLIC: BehaviorSubject<string>;
+
+  TOKEN: BehaviorSubject<string>;
 
   constructor() {
     this.initState();
@@ -28,8 +31,6 @@ export class StateService {
   }
 
   initState() {
-    this.CONNECTED = new BehaviorSubject<boolean>(false);
-
     this.LOCALE = new BehaviorSubject<string>(
       StateService.getItemParsed('LOCALE') || 'en'
     );
@@ -38,16 +39,23 @@ export class StateService {
       StateService.getItemParsed('STYLE') || 'day'
     );
 
-    this.TOKEN = new BehaviorSubject<string>(
-      StateService.getItemParsed('TOKEN') || null
-    );
-
-    this.USER_UUID = new BehaviorSubject<string>(
-      StateService.getItemParsed('USER_UUID') || null
-    );
-
+    // password management
     this.PASSWORD = new BehaviorSubject<string>(
       StateService.getItemParsed('PASSWORD') || null
+    );
+
+    const isSecured = StateService.getItemParsed('IS_SECURED');
+
+    this.IS_SECURED = new BehaviorSubject<boolean>(
+      isSecured === null ? true : isSecured
+    );
+
+    // locale encryption and connection requirement
+    this.ENCRYPTION_KEY = new BehaviorSubject<string>(null);
+
+    // account management
+    this.USER_UUID = new BehaviorSubject<string>(
+      StateService.getItemParsed('USER_UUID') || null
     );
 
     this.PGP_PRIVATE = new BehaviorSubject<string>(
@@ -58,10 +66,9 @@ export class StateService {
       StateService.getItemParsed('PGP_PUBLIC') || null
     );
 
-    const isSecured = StateService.getItemParsed('IS_SECURED');
-
-    this.IS_SECURED = new BehaviorSubject<boolean>(
-      isSecured === null ? true : isSecured
+    // session management
+    this.TOKEN = new BehaviorSubject<string>(
+      StateService.getItemParsed('TOKEN') || null
     );
   }
 
