@@ -6,6 +6,7 @@ import {ConnectionModel} from '../../../../models/api/connection.model';
 import {RegisterationModel} from '../../../../models/api/registeration.model';
 import {PgpService} from './pgp.service';
 import {Observable, of} from 'rxjs';
+import {CryptoService} from './crypto.service';
 
 @Injectable(
   {
@@ -18,11 +19,19 @@ export class AuthService {
     private api: ApiService,
     private state: StateService,
     private pgp: PgpService,
+    private crypto: CryptoService
   ) {
   }
 
   addPassword(password: string): Observable<string> {
-    return of(password);
+    return this
+      .crypto
+      .encodePassword(password)
+      .pipe(
+        tap(encodedPassword => {
+          this.state.PASSWORD.next(encodedPassword);
+        })
+      );
   }
 
   register(password: string): Observable<RegisterationModel> {
@@ -74,7 +83,14 @@ export class AuthService {
   }
 
   login(password: string): Observable<boolean> {
-    return of(true);
+    return this
+      .crypto
+      .authenticate(password)
+      .pipe(
+        tap(isLogged => {
+          this.state.CONNECTED.next(isLogged);
+        })
+      );
   }
 
   connect(password: string): Observable<ConnectionModel> {
